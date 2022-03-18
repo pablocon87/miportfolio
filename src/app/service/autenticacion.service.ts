@@ -16,7 +16,7 @@ export class AutenticacionService {
   cl:any;
   cl2:any;
   pepito:boolean=false;
-  apiUrl = 'http://localhost:7000';
+  apiUrl = 'https://porfoarp.herokuapp.com';
   constructor(private http: HttpClient,public router:Router,public _location:Location) { }
   login(user: string, password: string){
     const headers = { 'content-type': 'application/x-www-form-urlencoded'};
