@@ -1,0 +1,60 @@
+<div *ngFor="let tas of tasks" class="card mat-card" >
+<h1>Acerca de</h1>
+<p class="task">{{tas.acerca_de}}<fa-icon data-bs-toggle="modal" data-bs-target="#exampleModal2" [icon]="faEdit" (click)="moDific(tas)" [ngStyle]="{'color':'green'}" class="fic"></fa-icon></p>
+</div>
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="input-group " style="margin: 5px;padding: 5px; font-size:small">
+        
+                   
+                <div class="card">
+               <div class="card-body" style="text-align: center;">
+               <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span> 
+               </button> -->
+                   <h4 class="modal-title" id="exampleModalLabel">Modificar<br></h4>
+            
+                   <h6 class="text-muted card-subtitle mb-2">Escriba su dato&nbsp;</h6>
+                   <p class="card-text"></p>
+                   <div class="input-group">
+                    <form class="add-form" (ngSubmit)="onSubmit()"   >
+                        <div class="input-group">
+                            <div class="input-group-prepend"><span class="input-group-text" style="width: 110px;margin: 2px 0px 0px 0px;">Sobre mi:<br></span></div>
+                          <input type="textare" class="form-control"  id ="acerca_de" name="acerca_de"  [(ngModel)]="acerca_de" placeholder="una breve descripcion de usted" />
+                          </div>
+                          <input type="submit" class="form-control" id="valor" value="Guardar Cambios" class="btn btn-outline-primary" >
+                    </form>   
+
+
+                           <!-- <input type="submit" id="valor" value="Volver" (click)="onClicks()" [hidden]="color==='green'"  class="btn btn-outline-success"> -->
+    </div>
+</div>
+               
+</div>
+
+   
+
+
+
+
+
+
+
+
+</div>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">Close</button>
+
+</div>
+</div>
+</div>
+</div>
+<!--fin otro modal-->
+

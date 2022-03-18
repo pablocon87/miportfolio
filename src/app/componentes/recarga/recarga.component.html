@@ -1,0 +1,19 @@
+
+<div *ngIf="autenticacionService.logIn ">
+  
+<app-encabezado></app-encabezado>
+<app-acerca-de></app-acerca-de>
+<app-experiencia-y-educacion></app-experiencia-y-educacion>
+<app-logros></app-logros>
+</div>
+<!-- <h1>Angular Router App</h1> -->
+<!-- This nav gives you links to click, which tells the router which route to use (defined in the routes constant in  AppRoutingModule) -->
+<!-- <nav>
+  <ul>
+    <li><a routerLink="/Inic" routerLinkActive="active">First Component</a></li>
+    <li><a routerLink="/PortFolio" routerLinkActive="active">Second Component</a></li>
+  </ul>
+</nav> -->
+<button type="submit" class="btn btn-primary" (click)="autenticacionService.logout()" *ngIf="autenticacionService.logIn==true">salir</button>
+
+ <!-- {{this.compro()}} -->

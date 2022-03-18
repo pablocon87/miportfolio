@@ -1,1 +1,37 @@
 /* You can add global styles to this file, and also import other style files */
+.head{
+    height:200px;
+    width:100%;
+    border-radius: 10px;
+}
+.me{
+   
+    margin-top:-50px;
+    width: 100px;
+    height: 100px;
+    border-radius:50px;
+    border: 2px ;
+     text-decoration: none;
+     background-repeat: no-repeat;background-size: cover;
+}
+.logo{
+    width: 50px;
+    height: 50px;
+}
+.task{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.fic{
+    margin-right:400px important;
+}
+.ic{
+    margin-left: 100%;
+}
+.ic1{
+    margin-left:80%;
+}
+.ic2{
+    margin-left: 88%;
+}

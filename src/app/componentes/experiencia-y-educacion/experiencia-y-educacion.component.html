@@ -1,0 +1,215 @@
+
+
+<div class="container">
+<div class="mb-3 row" >
+    <div class="row">
+    <h1 class="col-sm-10">Experiencia</h1><div class="col-sm-2"><fa-icon  data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="addExp()" [icon]="faPlus" [ngStyle]="{'color':'green'}" ></fa-icon></div>
+    </div>
+
+<!---------------Modaleee-------------------------------------->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="input-group " style="margin: 5px;padding: 5px; font-size:small">
+        
+                   
+                <div class="card">
+               <div class="card-body" style="text-align: center;">
+               <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span> 
+               </button> -->
+                   <h4 class="modal-title" id="exampleModalLabel">Modificar<br></h4>
+            
+                   <h6 class="text-muted card-subtitle mb-2">Escriba su dato&nbsp;</h6>
+                   <p class="card-text"></p>
+                   <div class="input-group">
+
+    <form class="add-form" (ngSubmit)="onSubmit()"   >
+      <div class="input-group">
+      <div class="input-group-prepend"><span class="input-group-text" style="width: 110px;margin: 2px 0px 0px 0px;">Fecha Inicio:<br></span></div>
+        <input type="date" class="form-control" id ="fechainicio" name="fechainicio"  [(ngModel)]="fechainicio" placeholder="Coloque la Fecha de Inicio"/>
+        </div>
+        <div class="input-group">
+          <div class="input-group-prepend"><span class="input-group-text" style="width: 110px;margin: 2px 0px 0px 0px;">Fecha Fin:<br></span></div>
+        <input type="date" class="form-control" id ="fechafin" name ="fechafin"   [(ngModel)]="fechafin" placeholder="Coloque la Fecha Fin" />
+        </div>
+        <div class="input-group">
+          <div class="input-group-prepend"><span class="input-group-text" style="width: 110px;margin: 2px 0px 0px 0px;">Empresa:<br></span></div>
+        <input type="text"  class="form-control" id ="nombreEmpresa" name ="nombreEmpresa"  [(ngModel)]="nombreEmpresa" placeholder="Coloque El nombre de La empresa" />
+        </div>
+        <div class="input-group">
+          <div class="input-group-prepend"><span class="input-group-text" style="width: 110px;margin: 2px 0px 0px 0px;">Descripcion:<br></span></div>
+        <input type="textarea" class="form-control" id ="descripcion" name="descripcion" [(ngModel)]="descripcion" placeholder="Coloque una breve descripcion"/>
+        </div>
+        
+        <!-- <input type="checkbox" style="ali"  id ="esTrabajoActual" name="esTrabajoActual"  [(ngModel)]="esTrabajoActual"  /> -->
+        
+        <input type="checkbox" class="btn-check" id ="btncheck1" name="esTrabajoActual"  [(ngModel)]="estrabajoactual" autocomplete="off"  >
+            <label class="btn btn-outline-primary" for="btncheck1">Es trabajo Actual</label>
+        <input type="hidden"  id =" persona_id"  name=" persona_id" [(ngModel)]="persona_id" />
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupSelect01">Tipo de Empleo</label>
+        <select   class="form-control" id="tipo_empleo_id" name="tipo_empleo_id"  [(ngModel)]="tipo_empleo_id">
+            
+            <option  *ngFor="let ti of tipem" value="{{ti.id}}">{{ti.nombre_tipo}}</option>
+           
+          </select>
+        </div>
+        <input type="submit" class="form-control" id="Save" data-bs-dismiss="modal" (click)="addExp()" value="Guardar Cambios" class="btn btn-outline-primary" >
+          </form>
+
+       
+          <!-- <input type="submit" id="valor" value="Volver" (click)="onClicks()" [hidden]="color==='green'"  class="btn btn-outline-success"> -->
+        </div>
+                 
+    </div>
+    
+         
+
+
+
+
+
+  
+
+     
+    </div>
+ </div>
+ <div class="modal-footer">
+   <button type="button" class="btn btn-secondary" (click)="onClicks()" data-bs-dismiss="modal">Close</button>
+  
+ </div>
+</div>
+</div>
+</div>
+<!--fin otro modal-->
+
+</div>
+
+
+<!----------------------------fin M odale---------------------------------------------------------->
+          
+    <!-- <br/>------------------------------------------------------------------------<br/> -->
+    <div class="taskt row"></div>
+    <div class=" task row" *ngFor="let el of exp" [hidden]="el.nombreEmpresa==='' ">
+        
+    <p  class="col-sm-4">Desde: {{el.fechainicio| date:'dd-MM-yyyy'}}    </p><p class="col-sm-6"  [hidden]="el.estrabajoactual===1"> Hasta: {{el.fechafin| date:'dd-MM-yyyy'}}</p> <p class="col-sm-6" [hidden]="el.estrabajoactual!==1" >  Hasta: La Actualidad</p>
+    
+    <div class="row" *ngFor="let te of tipem" ><p class="col-sm-10" *ngIf="el.tipo_empleo_id===te.id"><span class="h4">Jornada:</span> {{te.nombre_tipo}}</p><span *ngIf="el.tipo_empleo_id===te.id" class="col-sm-2"><fa-icon  class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="Modif(el,te)" [icon]="faEdit" [ngStyle]="{'color':'green'}"></fa-icon><fa-icon  class="btn btn-outline-secondary " [icon]="faTrash" (click)="Borrar(el)" [ngStyle]="{'color':'red'}" ></fa-icon></span></div>
+    <p><span class="h4">Empresa:</span> {{el.nombreEmpresa}}</p>
+    <p><span class="h4">Tarea a Realizar:</span> {{el.descripcion}}</p>
+    <div class="taskt"></div>
+    <!-- <br/>------------------------------------------------------------------------<br/> -->
+    </div> 
+    <div class="row">
+    <h1 class="col-sm-10">Educacion</h1><span class="col-sm-2"><fa-icon data-bs-toggle="modal" data-bs-target="#exampleModal1" (click)="addEdu()"  [icon]="faPlus" [ngStyle]="{'color':'green'}" ></fa-icon></span>
+    </div>
+   
+    <!-- <form [hidden]="!this.showadd" (ngSubmit)="envEd()">
+        <li  class="col-sm-6"><input type="text"      class="form-control"  id="urllogo" name="urllogo" [(ngModel)]="url_logo"/><input type="text"      class="form-control"  id="principal" name="principal" [(ngModel)]="principal"/> :<input type="text"        class="form-control"  id="segunda" name="segunda" [(ngModel)]="segunda"/></li>
+        <input type="submit"  class="form-control" id="Sapve" value="Guardar" class="btn btn-outline-primary" >
+        <input type="button" id="valor" value="Volver" (click)="addEdu()"   class="btn btn-outline-success">   
+    </form> -->
+    <div class="row" *ngFor="let ed of edu" >
+       
+        <div class="col-sm-10"></div><span *ngIf="ed.id!==null" class="col-sm-2"><fa-icon  class="btn btn-outline-secondary " type="button" data-bs-toggle="modal" data-bs-target="#exampleModal1" [icon]="faEdit"  (click)="educCl(ed)" [ngStyle]="{'color':'green'}"></fa-icon><fa-icon (click)="deleT(ed)"  class="btn btn-outline-secondary " [icon]="faTrash" [ngStyle]="{'color':'red'}" ></fa-icon></span>
+   
+        <div [hidden]="ed.url_logo===null || ed.url_logo===''" class="col-sm-2"><img  src="{{ed.url_logo}}" alt="" class="logo"></div><li class="col-sm-10" *ngIf="ed.id!==null" ><strong   [hidden]="this.show" >{{ed.principal}}</strong> :<p   class="col-sm-5" [hidden]="this.show"> {{ed.segunda}}</p></li>
+    
+    <input [hidden]="true" [value]="ed.id" id="ided" name="ided" >
+    
+    
+    </div>
+    <!--otro modal-->
+    <!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Launch demo modal
+  </button> -->
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="input-group " style="margin: 5px;padding: 5px; font-size:small">
+        
+                   
+                <div class="card">
+               <div class="card-body" style="text-align: center;">
+               <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span> 
+               </button> -->
+                   <h4 class="modal-title" id="exampleModalLabel">Modificar<br></h4>
+            
+                   <h6 class="text-muted card-subtitle mb-2">Escriba su nuevo dato &nbsp;</h6>
+                   <p class="card-text"></p>
+                   
+       
+                    <form (ngSubmit)="envEd()"> 
+                      <div class="input-group"> 
+                       <div class="input-group-prepend"><span class="input-group-text" style="width: 110px;margin: 2px 0px 0px 0px;">Url del Logo:<br></span></div>
+                       <input class="form-control" type="text" style="margin: 2px 0px 0px 0px;" id="urllogo" name="urllogo" [(ngModel)]="url_logo">
+                       </div>
+                       <!-- <div class="input-group-append">
+                         <button class="btn btn-primary" type="submit" style="margin: 2px 0px 0px 0px;background-color:#ffff"><i class="far fa-edit ifona"></i></button></div>
+                   </form>
+                   </div>
+                   <div class="input-group"> -->
+                   <!-- <form  (ngSubmit)="envEd()">   -->
+                   
+                    <div class="input-group">
+                       <div class="input-group-prepend"><span class="input-group-text" style="width: 110px;margin: 2px 0px 0px 0px;">Nivel:<br></span></div>
+                       <input class="form-control" type="text" style="margin: 2px 0px 0px 0px;" type="text" id="principal" name="principal" [(ngModel)]="principal">
+                    </div>
+                       <!-- <div class="input-group-append">
+                         <button class="btn btn-primary" type="submit" style="margin: 2px 0px 0px 0px;background-color:#ffff "><i class="far fa-edit ifona"></i></button></div>
+                   </form>
+                   </div>
+                   <div class="input-group">
+                   <form  (ngSubmit)="envEd()">   -->
+                    <div class="input-group">
+                       <div class="input-group-prepend"><span class="input-group-text" style="width: 110px;margin: 2px 0px 0px 0px;">Establecimiento<br></span></div>
+                      
+                       <input class="form-control" type="text" style="margin: 2px 0px 0px 0px;" type="text" id="segunda" name="segunda" [(ngModel)]="segunda">
+                       </div>
+                       <!-- <div class="input-group-append">
+                         <button class="btn btn-primary" type="submit" style="margin: 2px 0px 0px 0px;background-color:#ffff"><i class="far fa-edit ifona"></i></button></div> -->
+                         <!-- <button type="button" class="btn btn-primary" id="sapve">Guardar</button>
+                                    -->
+                                    <input type="submit"  class="form-control" id="Sapve" data-bs-dismiss="modal" value="Guardar" class="btn btn-outline-primary" >
+                        </form>
+                   
+                 
+           </div>
+           
+                
+       
+       
+       
+       
+       
+         
+       
+            
+           </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+         
+        </div>
+      </div>
+    </div>
+  </div>
+    <!--fin otro modal-->
+    
+</div>
+</div>

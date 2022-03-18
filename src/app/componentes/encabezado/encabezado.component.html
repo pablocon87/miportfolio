@@ -1,0 +1,116 @@
+<div class="container">
+<div class="footer-dark">
+  
+      
+          <div class="row">
+            
+             
+              <div class="col-sm-12 item social"><a href="#"><i class="fab fa-facebook"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-twitter"></i></a></div>
+          </div>
+           
+  
+</div>
+</div>
+
+
+<div class="container">
+ <img src="../../../assets/images/headers.jpg" alt="" class="head">
+<div *ngFor="let tas of tasks" class="card mat-card" id="fist-card" [hidden]="color==='red'">
+   
+    <div >  
+      <img src="{{tas.url_foto}}" alt="" class="me"><fa-icon [icon]="faEdit" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="onClick(tas)" [ngStyle]="{'color':'green'}" ></fa-icon>
+    </div>
+    <h1>{{tas.nombre+" " + tas.apellido}}</h1>
+    <p>Fecha de Nacimiento : {{tas.fechanac | date:'dd-MM-yyyy'}}</p>
+    <p>{{tas.sobre_mi}}</p>
+    <p>{{tas.domicilio}} <a href="#">Informacion del Contacto</a><p>
+    <p>Telefono : {{tas.telefono}}</p>
+    <p>E-Mail : {{tas.correo}}</p>
+</div>
+
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <div class="input-group " style="margin: 5px;padding: 5px; font-size:small">
+      
+                 
+              <div class="card">
+             <div class="card-body" style="text-align: center;">
+             <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span> 
+             </button> -->
+                 <h4 class="modal-title" id="exampleModalLabel">Modificar<br></h4>
+          
+                 <h6 class="text-muted card-subtitle mb-2">Escriba su dato&nbsp;</h6>
+                 <p class="card-text"></p>
+                 <div class="input-group">
+<form class="add-form" (ngSubmit)="onSubmit()"   >
+  <div class="input-group">
+    <div class="input-group-prepend"><span class="input-group-text" style="width: 110px;margin: 2px 0px 0px 0px;">Url Logo:<br></span></div>
+    <input type="text" class="form-control" id ="url_foto" name="url_foto" [(ngModel)]="url_foto" placeholder="coloque la url de la foto" />
+    </div>
+    <div class="input-group">
+      <div class="input-group-prepend"><span class="input-group-text" style="width: 110px;margin: 2px 0px 0px 0px;">Nombre:<br></span></div>
+    <input type="text" class="form-control" id ="nombre" name ="nombre"   [(ngModel)]="nombre" placeholder="Coloque su Nombre" />
+    </div>
+    <div class="input-group">
+      <div class="input-group-prepend"><span class="input-group-text" style="width: 110px;margin: 2px 0px 0px 0px;">Apellido:<br></span></div>
+    <input type="text"  class="form-control" id ="apellido" name ="apellido"  [(ngModel)]="apellido" placeholder="Coloque su Apellido"/>
+    </div>
+    <div class="input-group">
+      <div class="input-group-prepend"><span class="input-group-text" style="width: 110px;margin: 2px 0px 0px 0px;">Nacimiento:<br></span></div>
+    <input type="date" class="form-control" id ="fechanac" name="fechanac" [(ngModel)]="fechanac" placeholder="Fecha de Nacimiento" />
+    </div>
+    <div class="input-group">
+      <div class="input-group-prepend"><span class="input-group-text" style="width: 110px;margin: 2px 0px 0px 0px;">Sobre mi:<br></span></div>
+    <input type="textare" class="form-control"  id ="sobre_mi" name="sobre_mi"  [(ngModel)]="sobre_mi" placeholder="una breve descripcion de usted" />
+    </div>
+    <div class="input-group">
+      <div class="input-group-prepend"><span class="input-group-text" style="width: 110px;margin: 2px 0px 0px 0px;">Comicilio:<br></span></div>
+    <input type="text" class="form-control" id ="domicilio"  name="domicilio" [(ngModel)]="domicilio" placeholder="Coloque su Domicilio"/>
+    </div>
+    <div class="input-group">
+      <div class="input-group-prepend"><span class="input-group-text" style="width: 110px;margin: 2px 0px 0px 0px;">Telefono:<br></span></div>
+    <input type="text" class="form-control" id ="telefono" name="telefono" [(ngModel)]="telefono" placeholder="Su telefono"/>
+    </div>
+    <div class="input-group">
+      <div class="input-group-prepend"><span class="input-group-text" style="width: 110px;margin: 2px 0px 0px 0px;">Correo:<br></span></div>
+    <input type="text" class="form-control" id ="correo" name="correo" [(ngModel)]="correo" placeholder="Su E-mail" /> 
+    </div>
+    <input type="submit" class="form-control" id="valor" value="Guardar Cambios" class="btn btn-outline-primary" >
+      </form>
+      <!-- <input type="submit" id="valor" value="Volver" (click)="onClicks()" [hidden]="color==='green'"  class="btn btn-outline-success"> -->
+    </div>
+  </div>
+                 
+</div>
+
+     
+
+
+
+
+
+
+
+ 
+</div>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">Close</button>
+
+</div>
+</div>
+</div>
+</div>
+<!--fin otro modal-->
+
+</div>
