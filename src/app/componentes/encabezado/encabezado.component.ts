@@ -199,7 +199,7 @@ export class EncabezadoComponent implements OnInit {
         ;
     
         
-        alert("este es "+ formData.get("id"))
+       
       //  let md =[modiFi];
       if(this.nombre===""){
         alert ("vacio");
@@ -215,6 +215,8 @@ export class EncabezadoComponent implements OnInit {
         );*/
         this.t.updateTask(modiFi).subscribe(
           data => {
+            this.ngOnInit();
+            alert('Se modifico Correctamente');
           console.log("PUT Request is successful ", data);
           },
           error => {
@@ -227,7 +229,7 @@ export class EncabezadoComponent implements OnInit {
     
     //this.onAddTask.prototype._maxListeners = 100;
       
-      alert('Se modifico Correctamente');
+      
       }else{
         this.color='green';
       }
