@@ -223,6 +223,9 @@ return this.http.put<Task>(url+'?acerca_de='+task.acerca_de
 +'&correo='+task.correo
 +'&sobre_mi='+task.sobre_mi
 +'&url_foto='+task.url_foto
++'&facebook='+task.facebook
++'&twiter='+task.twiter
++'&instagram='+task.instagram
 
 , body, option);
 }

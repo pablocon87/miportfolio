@@ -9,4 +9,7 @@ export interface Task{
       sobre_mi:String;
      url_foto:String;
      acerca_de:String;
+     facebook:String;
+     twiter:String;
+     instagram:String;
 }

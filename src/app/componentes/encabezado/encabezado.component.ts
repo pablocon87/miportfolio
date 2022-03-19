@@ -46,6 +46,9 @@ export class EncabezadoComponent implements OnInit {
       sobre_mi:String="";
      url_foto:String="";
      acerca_de:String="";
+     facebook:String="";
+     twiter:String="";
+     instagram:String="";
   constructor(public t:AutenticacionService,public http:HttpClient) {
   
    }
@@ -150,6 +153,9 @@ export class EncabezadoComponent implements OnInit {
      (<HTMLInputElement>document.getElementById("sobre_mi")).value = task.sobre_mi.toString();
       (<HTMLInputElement>document.getElementById("telefono")).value = task.telefono.toString();
     (<HTMLInputElement>document.getElementById("correo")).value = task.correo.toString();
+    (<HTMLInputElement>document.getElementById("facebook")).value = task.facebook.toString();
+    (<HTMLInputElement>document.getElementById("twiter")).value = task.twiter.toString();
+    (<HTMLInputElement>document.getElementById("instagram")).value = task.instagram.toString();
       //(<HTMLInputElement>document.getElementById("valor")).value = "Modificar";
     }
     onSubmit(){
@@ -163,6 +169,9 @@ export class EncabezadoComponent implements OnInit {
     this.sobre_mi= (<HTMLInputElement>document.getElementById("sobre_mi")).value ;
     this.telefono= (<HTMLInputElement>document.getElementById("telefono")).value;
     this.correo=(<HTMLInputElement>document.getElementById("correo")).value ;
+    this.facebook=(<HTMLInputElement>document.getElementById("facebook")).value ;
+    this.twiter=(<HTMLInputElement>document.getElementById("twiter")).value ;
+    this.instagram=(<HTMLInputElement>document.getElementById("instagram")).value ;
     var formData = new FormData();
    
     formData.append("id", this.id!.toString());
@@ -175,8 +184,8 @@ export class EncabezadoComponent implements OnInit {
   formData.append("telefono", this.telefono.toString());
   formData.append("correo", this.correo.toString());
 
-        const {id,nombre,apellido,url_foto,fechanac,domicilio,sobre_mi,telefono,correo,acerca_de}=this;
-        const modiFi={id,nombre,apellido,url_foto,fechanac,domicilio,sobre_mi,telefono,correo,acerca_de};
+        const {id,nombre,apellido,url_foto,fechanac,domicilio,sobre_mi,telefono,correo,acerca_de,facebook,twiter,instagram}=this;
+        const modiFi={id,nombre,apellido,url_foto,fechanac,domicilio,sobre_mi,telefono,correo,acerca_de,facebook,twiter,instagram};
         const body = new HttpParams()
         .set('nombre', nombre.toString())
         .set('apellido', apellido.toString())

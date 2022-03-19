@@ -5,7 +5,7 @@
           <div class="row">
             
              
-              <div class="col-sm-12 item social"><a href="#"><i class="fab fa-facebook"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-twitter"></i></a></div>
+              <div *ngFor="let tas of tasks"  class="col-sm-12 item social"><a href="{{tas.facebook}}"><i class="fab fa-facebook"></i></a><a href="{{tas.instagram}}"><i class="fab fa-instagram"></i></a><a href="{{tas.twiter}}"><i class="fab fa-twitter"></i></a></div>
           </div>
            
   
@@ -85,6 +85,20 @@
       <div class="input-group-prepend"><span class="input-group-text" style="width: 110px;margin: 2px 0px 0px 0px;">Correo:<br></span></div>
     <input type="text" class="form-control" id ="correo" name="correo" [(ngModel)]="correo" placeholder="Su E-mail" /> 
     </div>
+    <div class="input-group">
+      <div class="input-group-prepend"><span class="input-group-text" style="width: 110px;margin: 2px 0px 0px 0px;">Facebook:<br></span></div>
+    <input type="text" class="form-control" id ="facebook" name="facebook" [(ngModel)]="facebook" placeholder="Su Facebook" /> 
+    </div>
+
+    <div class="input-group">
+      <div class="input-group-prepend"><span class="input-group-text" style="width: 110px;margin: 2px 0px 0px 0px;">Correo:<br></span></div>
+    <input type="text" class="form-control" id ="twiter" name="twiter" [(ngModel)]="twiter" placeholder="Su Twitter" /> 
+    </div>
+
+    <div class="input-group">
+      <div class="input-group-prepend"><span class="input-group-text" style="width: 110px;margin: 2px 0px 0px 0px;">Correo:<br></span></div>
+    <input type="text" class="form-control" id ="instagram" name="instagram" [(ngModel)]="instagram" placeholder="Su Instagram" /> 
+    </div> 
     <input type="submit" class="form-control" id="valor" value="Guardar Cambios" class="btn btn-outline-primary" >
       </form>
       <!-- <input type="submit" id="valor" value="Volver" (click)="onClicks()" [hidden]="color==='green'"  class="btn btn-outline-success"> -->
