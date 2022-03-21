@@ -244,7 +244,7 @@ let val =  (<HTMLInputElement>document.getElementById("tipo_empleo_id")).value;
       //((<HTMLInputElement>document.getElementById("ided")).value)=ed.id?;
       this.id=ed.id; 
       this.id_persona=ed.id_persona;
-       (<HTMLInputElement>document.getElementById("Sapve")).value="Modificar";
+       (<HTMLInputElement>document.getElementById("Sapves")).value="Modificar";
   
   // }else{this.showadd=false;
   //   (<HTMLInputElement>document.getElementById("Sapve")).value="Guardar Cambios";
@@ -255,7 +255,7 @@ let val =  (<HTMLInputElement>document.getElementById("tipo_empleo_id")).value;
       (<HTMLInputElement>document.getElementById("urllogo")).value="";
       (<HTMLInputElement>document.getElementById("principal")).value="";
       (<HTMLInputElement>document.getElementById("segunda")).value="";
-      (<HTMLInputElement>document.getElementById("Sapve")).value="Guardar Cambios";
+      (<HTMLInputElement>document.getElementById("Sapves")).value="Guardar Cambios";
       this.showadd=true;    
   // }else{this.showadd=false}
    }
