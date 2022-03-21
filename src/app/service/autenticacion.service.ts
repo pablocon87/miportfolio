@@ -67,7 +67,7 @@ export class AutenticacionService {
       localStorage.removeItem('id');
       var titon=new Date();
       localStorage.setItem('data',titon.getMinutes()!.toString())
-      localStorage.setItem('timeps','5');
+      localStorage.setItem('timeps','8');
       
       localStorage.setItem('passw',password);
       if(resp.token !==null){
@@ -104,13 +104,13 @@ export class AutenticacionService {
       // localStorage.setItem('timeps',t.toString());
       // }
       
-      console.log("este es Limite"+" "+ this.limite)
+      //console.log("este es Limite"+" "+ this.limite)
        if (this.limite>=parseInt(localStorage.getItem('timeps')!)){
          if(this.conta===0){
            clearInterval(this.cl);
            this.conta=2;
            localStorage.removeItem('tip');
-           localStorage.setItem('timeps','6')
+           localStorage.setItem('timeps','9')
            this.secc();
           this.tiempos();
          }else{
@@ -231,7 +231,7 @@ export class AutenticacionService {
      }else{
       clearInterval(this.cl);
       this.conta=1;
-      localStorage.setItem('timeps','6')
+      localStorage.setItem('timeps','9')
       this.secc();
       // localStorage.setItem('time','10100');
       // //localStorage.setItem('timedm','9999');
