@@ -97,7 +97,7 @@
     <!-- <br/>------------------------------------------------------------------------<br/> -->
     <div class="taskt row"></div>
     <div class="task row" *ngFor="let el of exp" [hidden]="el.nombreEmpresa==='' ">
-      <div class="col-sm-10"></div><div  *ngFor="let tes of tipem" class="col-sm-2"><span *ngIf="el.tipo_empleo_id===tes.id" ><fa-icon  class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal4" (click)="Modif(el,tes)" [icon]="faEdit" [ngStyle]="{'color':'green'}"></fa-icon><fa-icon  class="btn btn-outline-secondary " [icon]="faTrash" (click)="Borrar(el)" [ngStyle]="{'color':'red'}" ></fa-icon></span></div>     
+       <div  *ngFor="let tes of tipem" class="row"><div class="col-sm-10"></div><div class="col-sm-2"><span  *ngIf="el.tipo_empleo_id===tes.id" ><fa-icon  class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal4" (click)="Modif(el,tes)" [icon]="faEdit" [ngStyle]="{'color':'green'}"></fa-icon><fa-icon  class="btn btn-outline-secondary " [icon]="faTrash" (click)="Borrar(el)" [ngStyle]="{'color':'red'}" ></fa-icon></span></div></div>     
      
     <p><span class="h4">Empresa:</span> {{el.nombreEmpresa}}</p>
     <div class="row" *ngFor="let te of tipem" ><p class="col-sm-10" *ngIf="el.tipo_empleo_id===te.id"><span class="h4">Jornada:</span> {{te.nombre_tipo}}</p></div>    
@@ -117,7 +117,7 @@
     </form> -->
     <div class="row" *ngFor="let ed of edu" >
        
-        <div class="col-sm-10"></div><span *ngIf="ed.id!==null" class="col-sm-2"><fa-icon  class="btn btn-outline-secondary " type="button" data-bs-toggle="modal" data-bs-target="#exampleModal1" [icon]="faEdit"  (click)="educCl(ed)" [ngStyle]="{'color':'green'}"></fa-icon><fa-icon (click)="deleT(ed)"  class="btn btn-outline-secondary " [icon]="faTrash" [ngStyle]="{'color':'red'}" ></fa-icon></span>
+       <div class="row"> <div class="col-sm-10"></div ><div class="col-sm-2"><span *ngIf="ed.id!==null" ><fa-icon  class="btn btn-outline-secondary " type="button" data-bs-toggle="modal" data-bs-target="#exampleModal1" [icon]="faEdit"  (click)="educCl(ed)" [ngStyle]="{'color':'green'}"></fa-icon><fa-icon (click)="deleT(ed)"  class="btn btn-outline-secondary " [icon]="faTrash" [ngStyle]="{'color':'red'}" ></fa-icon></span></div></div>
    
         <div [hidden]="ed.url_logo===null || ed.url_logo===''" class="col-sm-2"><img  src="{{ed.url_logo}}" alt="" class="logo"></div><li class="col-sm-10" *ngIf="ed.id!==null" ><strong   [hidden]="this.show" >{{ed.principal}}</strong> :<p   class="col-sm-5" [hidden]="this.show"> {{ed.segunda}}</p></li>
     

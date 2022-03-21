@@ -142,7 +142,12 @@ this.password=this.form.get('passwords')!.value;
         if(ver.text==='Succes'){
           localStorage.setItem("testJSON", '');
           alert("Se Agrego Correctamente")
-        };
+        }
+        if(ver.text==="nSucces"){
+          localStorage.setItem("testJSON", '');
+          alert("Ese email ya se encuentra registrado");
+        }
+        ;
       }
     });
    }
