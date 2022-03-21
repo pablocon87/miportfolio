@@ -5,6 +5,6 @@ export interface Exp{
      fechainicio?:Date;
      fechafin?:Date;
    descripcion:String;
-     persona_id:String;
+     persona_id?:number;
      tipo_empleo_id?:number;
 }

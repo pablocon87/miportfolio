@@ -1,4 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+.containert{
+    max-width: 500px;
+    margin:30px auto;
+    overflow:auto ;
+    min-height:300px;
+    border:1px solid steelblue;
+    border-radius:5px;
+    }
 .head{
     height:200px;
     width:100%;

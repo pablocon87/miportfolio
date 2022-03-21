@@ -12,4 +12,5 @@ export interface Task{
      facebook:String;
      twiter:String;
      instagram:String;
+     infcont:String;
 }

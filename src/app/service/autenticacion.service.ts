@@ -3,6 +3,7 @@ import {HttpClient,HttpHeaders, HttpParams ,HttpResponse} from '@angular/common/
 import {RouterModule, Routes,Router} from '@angular/router';
 import {Observable, of} from 'rxjs';
 import{Task} from '../../Task';
+import{Reg} from '../../Reg'
 import Swal from 'sweetalert2';
 
 import { Location } from '@angular/common';
@@ -12,13 +13,28 @@ import { Location } from '@angular/common';
 })
 export class AutenticacionService {
   times:number=10600;
+  fech?:Date;
+  today = new Date();
+  num:number=20;
+  limite?:number;
   timdm:number=0;
   cl:any;
   cl2:any;
+  tt= new Date();
+  conta:number=0;
   pepito:boolean=false;
-  apiUrl = 'https://porfoarp.herokuapp.com';
+  apiUrl = 'http://localhost:7000';
   constructor(private http: HttpClient,public router:Router,public _location:Location) { }
   login(user: string, password: string){
+    if(user==="" && password===""){
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Tiene que iniciar seción!!',
+        footer: ''
+      })
+      return;
+    }
     const headers = { 'content-type': 'application/x-www-form-urlencoded'};
    // const headers = { 'content-type': 'application/json'};
     
@@ -41,22 +57,87 @@ export class AutenticacionService {
   // });
     this.http.post(this.apiUrl + '/user',params,{headers})
     .subscribe((resp: any)=>{
-      this.clinT();
+      //this.clinT();
+      //this.sesionEsp();
+      
+      this.limite=0;
+    
       localStorage.setItem('auth_token', resp.token);
       localStorage.setItem('usr',user);
-      localStorage.setItem('time','10500');
-      localStorage.setItem('passw',password);
+      localStorage.removeItem('id');
+      var titon=new Date();
+      localStorage.setItem('data',titon.getMinutes()!.toString())
+      localStorage.setItem('timeps','5');
       
-      this.router.navigate(['/PortFolio']);
+      localStorage.setItem('passw',password);
+      if(resp.token !==null){
+        this.secc();
+        this.router.navigate(['/PortFolio']);
+      }else{
+        this.logout();
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'usuario o contraseña invalido!',
+          footer: 'Registrarse!'
+        })
+      }
+      
       
     } )
 
   };
+  secc(){
+    
+    this.cl=  setInterval(() => {
+      
+      var fifi =new Date()
+      fifi.getMinutes();
+      console.log("este es fifi "+" "+fifi);
+      this.limite=0;
+      this.limite=fifi.getMinutes()-parseInt(localStorage.getItem('data')!);
+
+     
+      // if(this.limite !== parseInt(localStorage.getItem('tip')!) ){
+      //   localStorage.setItem('tip',this.limite?.toString());
+      //   let t=parseInt(localStorage.getItem('timeps')!)-parseInt(localStorage.getItem('tip')!);
+      // localStorage.setItem('timeps',t.toString());
+      // }
+      
+      console.log("este es Limite"+" "+ this.limite)
+       if (this.limite>=parseInt(localStorage.getItem('timeps')!)){
+         if(this.conta===0){
+           clearInterval(this.cl);
+           this.conta=2;
+           localStorage.removeItem('tip');
+           localStorage.setItem('timeps','6')
+           this.secc();
+          this.tiempos();
+         }else{
+          if(this.conta===2){
+            this.logout();
+          }
+          if(this.conta===1){
+            this.logout();
+          }
+         }
+         
+          
+          //this.logout();
+       }
+    }, 1000);
+  }
   sesionEsp(){
     setTimeout(() => {
         this.tiempos();
   
-      },10000)
+      },500000)
+  }
+  cerrSesi(){
+    setTimeout(() => {
+      this.logout();
+
+    },90000)
   }
   refresh(): void {
     this.router.navigateByUrl("/refresh", { skipLocationChange: true }).then(() => {
@@ -137,26 +218,40 @@ export class AutenticacionService {
      cancelButtonColor: '#d33',
      confirmButtonText: 'Si, extender!'
    }).then((result) => {
-    localStorage.setItem('timedm','10100');
-    this.clinT2();
+    //localStorage.setItem('timedm','10100');
+    //this.clinT2();
      if (result.isConfirmed) {
+       clearInterval(this.cl);
+       this.limite=0;
+      
+       localStorage.removeItem('data');
+       this.secc;
+       
        this.login(localStorage.getItem('usr')!,localStorage.getItem('passw')!);
      }else{
-      
-      localStorage.setItem('time','10100');
-      localStorage.setItem('timedm','9999');
-      this.clinT();
+      clearInterval(this.cl);
+      this.conta=1;
+      localStorage.setItem('timeps','6')
+      this.secc();
+      // localStorage.setItem('time','10100');
+      // //localStorage.setItem('timedm','9999');
+      // this.clinT();
      }
    })
   }
    logout(){
      clearInterval(this.cl);
+     this.conta=0;
+     this.limite=0;
+     localStorage.removeItem('data');
      localStorage.removeItem('timedm');
      localStorage.removeItem('time');
      localStorage.removeItem('usr');
      localStorage.removeItem('passw');
     localStorage.removeItem('auth_token');
-    //this.router.navigate(['/Inic']);
+    localStorage.removeItem('tip');
+    localStorage.removeItem('timeps');
+    this.router.navigate(['/Inic']);
 
   }
   public get logIn(): boolean {
@@ -226,7 +321,7 @@ return this.http.put<Task>(url+'?acerca_de='+task.acerca_de
 +'&facebook='+task.facebook
 +'&twiter='+task.twiter
 +'&instagram='+task.instagram
-
++'&infcont='+task.infcont
 , body, option);
 }
 addTask(task:Task): Observable<Task>{
@@ -243,6 +338,22 @@ addTask(task:Task): Observable<Task>{
   
   }
   return this.http.post<Task>(this.apiUrl, task, httpOptions);
+
+}
+addTaskReg(reg:Reg): Observable<Reg>{
+  const httpOptions = {
+
+    headers: new HttpHeaders(
+      {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Authorization': localStorage.getItem('auth_token')!
+      }
+     )//,
+    //    head: new HttpParams()
+    //    .set('Content-Type', 'application/json')
+  
+  }
+  return this.http.post<Reg>(this.apiUrl+'/user/crear', reg);
 
 }
 }

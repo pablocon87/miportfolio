@@ -3,11 +3,11 @@
 <div class="container">
 <div class="mb-3 row" >
     <div class="row">
-    <h1 class="col-sm-10">Experiencia</h1><div class="col-sm-2"><fa-icon  data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="addExp()" [icon]="faPlus" [ngStyle]="{'color':'green'}" ></fa-icon></div>
+    <h1 class="col-sm-10">Experiencia</h1><div class="col-sm-2"><div ><fa-icon  data-bs-toggle="modal" data-bs-target="#exampleModal4"  [icon]="faPlus" [ngStyle]="{'color':'green'}" ></fa-icon></div></div>
     </div>
 
 <!---------------Modaleee-------------------------------------->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -51,7 +51,7 @@
         
         <input type="checkbox" class="btn-check" id ="btncheck1" name="esTrabajoActual"  [(ngModel)]="estrabajoactual" autocomplete="off"  >
             <label class="btn btn-outline-primary" for="btncheck1">Es trabajo Actual</label>
-        <input type="hidden"  id =" persona_id"  name=" persona_id" [(ngModel)]="persona_id" />
+        <input type="hidden"  id ="persona_id"  name=" persona_id" [(ngModel)]="persona_id" />
         <div class="input-group mb-3">
             <label class="input-group-text" for="inputGroupSelect01">Tipo de Empleo</label>
         <select   class="form-control" id="tipo_empleo_id" name="tipo_empleo_id"  [(ngModel)]="tipo_empleo_id">
@@ -60,7 +60,7 @@
            
           </select>
         </div>
-        <input type="submit" class="form-control" id="Save" data-bs-dismiss="modal" (click)="addExp()" value="Guardar Cambios" class="btn btn-outline-primary" >
+        <input type="submit" class="form-control" id="Save" data-bs-dismiss="modal"  value="Guardar Cambios" class="btn btn-outline-primary" >
           </form>
 
        
@@ -100,7 +100,7 @@
         
     <p  class="col-sm-4">Desde: {{el.fechainicio| date:'dd-MM-yyyy'}}    </p><p class="col-sm-6"  [hidden]="el.estrabajoactual===1"> Hasta: {{el.fechafin| date:'dd-MM-yyyy'}}</p> <p class="col-sm-6" [hidden]="el.estrabajoactual!==1" >  Hasta: La Actualidad</p>
     
-    <div class="row" *ngFor="let te of tipem" ><p class="col-sm-10" *ngIf="el.tipo_empleo_id===te.id"><span class="h4">Jornada:</span> {{te.nombre_tipo}}</p><span *ngIf="el.tipo_empleo_id===te.id" class="col-sm-2"><fa-icon  class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="Modif(el,te)" [icon]="faEdit" [ngStyle]="{'color':'green'}"></fa-icon><fa-icon  class="btn btn-outline-secondary " [icon]="faTrash" (click)="Borrar(el)" [ngStyle]="{'color':'red'}" ></fa-icon></span></div>
+    <div class="row" *ngFor="let te of tipem" ><p class="col-sm-10" *ngIf="el.tipo_empleo_id===te.id"><span class="h4">Jornada:</span> {{te.nombre_tipo}}</p><span *ngIf="el.tipo_empleo_id===te.id" class="col-sm-2"><fa-icon  class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal4" (click)="Modif(el,te)" [icon]="faEdit" [ngStyle]="{'color':'green'}"></fa-icon><fa-icon  class="btn btn-outline-secondary " [icon]="faTrash" (click)="Borrar(el)" [ngStyle]="{'color':'red'}" ></fa-icon></span></div>
     <p><span class="h4">Empresa:</span> {{el.nombreEmpresa}}</p>
     <p><span class="h4">Tarea a Realizar:</span> {{el.descripcion}}</p>
     <div class="taskt"></div>
@@ -122,7 +122,7 @@
         <div [hidden]="ed.url_logo===null || ed.url_logo===''" class="col-sm-2"><img  src="{{ed.url_logo}}" alt="" class="logo"></div><li class="col-sm-10" *ngIf="ed.id!==null" ><strong   [hidden]="this.show" >{{ed.principal}}</strong> :<p   class="col-sm-5" [hidden]="this.show"> {{ed.segunda}}</p></li>
     
     <input [hidden]="true" [value]="ed.id" id="ided" name="ided" >
-    
+    <input [hidden]="true" [value]="ed.id_persona" id="idper" name="idper" >
     
     </div>
     <!--otro modal-->

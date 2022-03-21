@@ -25,6 +25,7 @@ export class AcercaDeComponent implements OnInit {
    facebook:String="";
    twiter:String="";
    instagram:String="";
+   infcont:String="";
   constructor(public t:AutenticacionService) { }
 
   ngOnInit(): void {
@@ -48,14 +49,15 @@ export class AcercaDeComponent implements OnInit {
     this.facebook=task.facebook;
     this.twiter=task.twiter;
     this.instagram=task.instagram;
+    this.infcont=task.infcont;
     (<HTMLInputElement>document.getElementById("acerca_de")).value = task.acerca_de.toString();
 
   }
   onSubmit(){
 
     this.acerca_de= (<HTMLInputElement>document.getElementById("acerca_de")).value ;
-    const {id,nombre,apellido,url_foto,fechanac,domicilio,sobre_mi,telefono,correo,acerca_de,facebook,twiter,instagram}=this;
-        const modiFi={id,nombre,apellido,url_foto,fechanac,domicilio,sobre_mi,telefono,correo,acerca_de,facebook,twiter,instagram};
+    const {id,nombre,apellido,url_foto,fechanac,domicilio,sobre_mi,telefono,correo,acerca_de,facebook,twiter,instagram,infcont}=this;
+        const modiFi={id,nombre,apellido,url_foto,fechanac,domicilio,sobre_mi,telefono,correo,acerca_de,facebook,twiter,instagram,infcont};
     this.t.updateTask(modiFi).subscribe(
       data => {
         this.ngOnInit();

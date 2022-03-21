@@ -8,7 +8,7 @@ import {Educ} from '../../Educ'
   providedIn: 'root'
 })
 export class EducacionService {
-  apiUrl = 'https://porfoarp.herokuapp.com';
+  apiUrl = 'http://localhost:7000';
   
   
   constructor(private http: HttpClient) { }

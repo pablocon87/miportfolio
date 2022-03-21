@@ -23,7 +23,7 @@
     <h1>{{tas.nombre+" " + tas.apellido}}</h1>
     <p>Fecha de Nacimiento : {{tas.fechanac | date:'dd-MM-yyyy'}}</p>
     <p>{{tas.sobre_mi}}</p>
-    <p>{{tas.domicilio}} <a href="#">Informacion del Contacto</a><p>
+    <p>{{tas.domicilio}} <a href="{{tas.infcont}}">Informacion del Contacto</a><p>
     <p>Telefono : {{tas.telefono}}</p>
     <p>E-Mail : {{tas.correo}}</p>
 </div>
@@ -96,10 +96,14 @@
     </div>
 
     <div class="input-group">
-      <div class="input-group-prepend"><span class="input-group-text" style="width: 110px;margin: 2px 0px 0px 0px;">Correo:<br></span></div>
+      <div class="input-group-prepend"><span class="input-group-text" style="width: 110px;margin: 2px 0px 0px 0px;">Instagram:<br></span></div>
     <input type="text" class="form-control" id ="instagram" name="instagram" [(ngModel)]="instagram" placeholder="Su Instagram" /> 
     </div> 
-    <input type="submit" class="form-control" id="valor" value="Guardar Cambios" class="btn btn-outline-primary" >
+    <div class="input-group">
+      <div class="input-group-prepend"><span class="input-group-text" style="width: 110px;margin: 2px 0px 0px 0px;">Contacto:<br></span></div>
+    <input type="text" class="form-control" id ="infcont" name="infcont" [(ngModel)]="infcont" placeholder="Su url de Contacto" /> 
+    </div>
+    <input type="submit" class="form-control" id="valore" value="Guardar Cambios" class="btn btn-outline-primary" >
       </form>
       <!-- <input type="submit" id="valor" value="Volver" (click)="onClicks()" [hidden]="color==='green'"  class="btn btn-outline-success"> -->
     </div>

@@ -1,12 +1,12 @@
-<div *ngIf="!autenticacionService.logIn">
+<div class="containert" *ngIf="!autenticacionService.logIn" [hidden]="this.show">
     <h1 class="m-5">Iniciar Sesion</h1>
     <form [formGroup]="form" class="m-5" (ngSubmit)="onEnviar($event)">
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">Email</label>
           <input formControlName="email" type="email"
           [ngClass]="{'is-invalid':Email?.errors && Email?.touched, 'is-valid':!Email?.errors && Email?.touched}"
-          class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-          <div *ngIf="Email?.errors && Email?.touched">
+          class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required> 
+          <div *ngIf="Email?.errors && Email?.touched" >
             <p *ngIf="Email?.hasError('required')" class="text-danger">
                     El email es requerido.
             </p>
@@ -19,7 +19,7 @@
           <label for="exampleInputPassword1" class="form-label">Contraseña</label>
           <input formControlName="password" type="password"
           [ngClass]="{'is-invalid':Password?.errors && Password?.touched, 'is-valid':!Password?.errors && Password?.touched}"
-          class="form-control" id="exampleInputPassword1">
+          class="form-control" id="exampleInputPassword1" required>
           <div *ngIf="Password?.errors && Email?.touched">
             <p *ngIf="Password?.hasError('required')" class="text-danger">
                     La contraseña es requerida.
@@ -31,7 +31,7 @@
         </div>
        
         <button type="submit" class="btn btn-primary">Enviar</button>
-        
+        <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal3" (click)="clickMe(true)" class="btn btn-success">Registrarse</button>
       </form>
     </div>
     <!-- <h1>Angular Router App</h1> -->
@@ -42,7 +42,101 @@
     <li><a routerLink="/PortFolio" routerLinkActive="active">Second Component</a></li>
   </ul>
 </nav> -->
-      <router-outlet>
+<div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <div class="input-group " style="margin: 5px;padding: 5px; font-size:small">
+      
+                 
+              <div class="card">
+             <div class="card-body" style="text-align: center;">
+             <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span> 
+             </button> -->
+                 <h4 class="modal-title" id="exampleModalLabel">Registro<br></h4>
+          
+                 <h6 class="text-muted card-subtitle mb-2">Escriba sus datos&nbsp;</h6>
+                 <p class="card-text"></p>
+                 <div class="input-group">
+                  <form [formGroup]="form" class="m-5" (ngSubmit)="onReg($event)">
+<div class="input-group">
+ <div class="input-group-prepend"><span class="input-group-text" style="width: 180px;margin: 2px 0px 0px 0px;">Su email:<br></span></div>
+  <!-- <input formControlName="users"  type="email"  [ngClass]="{'is-invalid':Users?.errors && Users?.touched, 'is-valid':!Users?.errors && Users?.touched}" class="form-control" id="users" name="users"  placeholder="Coloque su email" /> -->
+  <input formControlName="users" type="email"
+          [ngClass]="{'is-invalid':Users?.errors && Users?.touched, 'is-valid':!Users?.errors && Users?.touched}"
+          class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required> 
+</div>
+<div *ngIf="Users?.errors && Users?.touched">
+  <p *ngIf="Users?.hasError('required')" class="text-danger">
+          El email es requerido.
+  </p>
+  <p *ngIf="Users?.hasError('email')" class="text-danger">
+    El formato de email debe ser valido.
+</p>
+</div>
+  <div class="input-group">
+    <div class="input-group-prepend"><span class="input-group-text" style="width: 180px;margin: 2px 0px 0px 0px;">Contraseña:<br></span></div>
+  <input formControlName="passwords" type="password"  [ngClass]="{'is-invalid':Passwords?.errors && Passwords?.touched, 'is-valid':!Passwords?.errors && Password?.touched}" class="form-control" id="passwords" name="passwords" />
+</div>
+<div *ngIf="Passwords?.errors && Users?.touched">
+  <p *ngIf="Passwords?.hasError('required')" class="text-danger">
+          La contraseña es requerida.
+  </p>
+  <p *ngIf="Passwords?.errors?.['minlength']" class="text-danger">
+      La contraseña debe ser de 8 caracteres.
+</p>
+</div>
+  <div class="input-group">
+  <div class="input-group-prepend"><span class="input-group-text" style="width: 180px;margin: 2px 0px 0px 0px;">Repita su Contraseña:<br></span></div>
+  <input formControlName="pass" type="password" [ngClass]="{'is-invalid':Pass?.errors && Pass?.touched, 'is-valid':!Pass?.errors && Password?.touched}" class="form-control" id="pass" name="pass"  />
+  
+</div>
+<div *ngIf="Pass?.errors && Email?.touched">
+  <p *ngIf="Pass?.hasError('required')" class="text-danger">
+          La contraseña es requerida.
+  </p>
+  <p *ngIf="Password?.errors?.['minlength']" class="text-danger">
+      La contraseña debe ser de 8 caracteres.
+</p>
+
+</div>
+<p id="error" class="{{this.color}}"></p>
+<input type="submit" class="form-control" id="valor" value="Registrarse" class="btn btn-outline-primary" >
+<!-- <input type="submit" id="valor" value="Volver" (click)="onClicks()" [hidden]="color==='green'"  class="btn btn-outline-success"> -->
+          </form>          
+                    
+                    
+                      </div>
+                    </div>
+                                   
+                    </div>
+                    
+                       
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    </div>
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" (click)="clickMe(false)"  data-bs-dismiss="modal">Close</button>
+                    
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    <!--fin otro modal-->
+               <div [hidden]="!autenticacionService.logIn">     
+      <router-outlet >
       
       </router-outlet>
-  
+      </div>

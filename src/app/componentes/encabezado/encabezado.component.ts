@@ -36,7 +36,7 @@ export class EncabezadoComponent implements OnInit {
     tasks:Task[]=[];
     id?:number;
     feca?:Date|'dd-mm-yyyy';
-    
+    clin:any;
       nombre:String="";
       apellido:String="";
       domicilio:String="";
@@ -49,6 +49,9 @@ export class EncabezadoComponent implements OnInit {
      facebook:String="";
      twiter:String="";
      instagram:String="";
+     infcont:String="";
+     limite?:number=0;
+     tin?:number=0;
   constructor(public t:AutenticacionService,public http:HttpClient) {
   
    }
@@ -61,11 +64,48 @@ export class EncabezadoComponent implements OnInit {
   }
   
   ngOnInit(): void {
-    clearInterval(this.t.cl);
-     setTimeout(() => {
-         this.funca();
+    this.tin=0;
+   
     
-     },1000)
+    if(localStorage.getItem('timeps') !==""){
+      clearInterval(this.t.cl);
+        this.t.secc();
+      // this.clin=  setInterval(() => {
+        
+      //   var tt= new Date();
+       
+      //   tt.getMinutes();
+      //   clearInterval(this.t.cl);
+      // //  if(this.tin===0){
+      // //   clearInterval(this.t.cl);
+      // //   this.tin=parseInt(localStorage.getItem('timeps')!);
+      // //   localStorage.setItem('timeps',this.tin.toString())
+      // //   console.log("ESTE ES TIN" +" "+this.tin);
+        
+      // //  }
+      // //  if(this.tin!==parseInt(localStorage.getItem('timeps')!)){
+      // //   this.tin=parseInt(localStorage.getItem('timeps')!)-parseInt(localStorage.getItem('tip')!)
+
+      // //  }
+      
+      //   console.log("este es tt en Carga"+tt);
+       
+        
+      //   this.limite=tt.getMinutes()-parseInt(localStorage.getItem('data')!);
+      //   console.log("localsto"+" "+localStorage.getItem('timeps'))
+      //   console.log("este es Limite en Carga"+" "+ this.limite);
+      //   localStorage.setItem('tip',this.limite.toString())
+      //    if (this.limite>= (this.limite-parseInt(localStorage.getItem('timeps')!))){
+      //      clearInterval(this.clin);
+      //       this.t.logout();
+      //    }
+      // }, 10000);
+    }
+    // clearInterval(this.t.cl);
+    //  setTimeout(() => {
+    //      this.funca();
+    
+    //  },1000)
   //  if (this.tutu>this.times){
     
   // }
@@ -156,10 +196,11 @@ export class EncabezadoComponent implements OnInit {
     (<HTMLInputElement>document.getElementById("facebook")).value = task.facebook.toString();
     (<HTMLInputElement>document.getElementById("twiter")).value = task.twiter.toString();
     (<HTMLInputElement>document.getElementById("instagram")).value = task.instagram.toString();
+    (<HTMLInputElement>document.getElementById("infcont")).value = task.infcont.toString();
       //(<HTMLInputElement>document.getElementById("valor")).value = "Modificar";
     }
     onSubmit(){
-    if((<HTMLInputElement>document.getElementById("valor")).value === "Guardar Cambios"){
+    if((<HTMLInputElement>document.getElementById("valore")).value === "Guardar Cambios"){
     this.nombre=    (<HTMLInputElement>document.getElementById("nombre")).value;
     this.apellido=  (<HTMLInputElement>document.getElementById("apellido")).value ;
     this.url_foto=(<HTMLInputElement>document.getElementById("url_foto")).value ;
@@ -172,6 +213,7 @@ export class EncabezadoComponent implements OnInit {
     this.facebook=(<HTMLInputElement>document.getElementById("facebook")).value ;
     this.twiter=(<HTMLInputElement>document.getElementById("twiter")).value ;
     this.instagram=(<HTMLInputElement>document.getElementById("instagram")).value ;
+    this.infcont=(<HTMLInputElement>document.getElementById("infcont")).value;
     var formData = new FormData();
    
     formData.append("id", this.id!.toString());
@@ -184,8 +226,8 @@ export class EncabezadoComponent implements OnInit {
   formData.append("telefono", this.telefono.toString());
   formData.append("correo", this.correo.toString());
 
-        const {id,nombre,apellido,url_foto,fechanac,domicilio,sobre_mi,telefono,correo,acerca_de,facebook,twiter,instagram}=this;
-        const modiFi={id,nombre,apellido,url_foto,fechanac,domicilio,sobre_mi,telefono,correo,acerca_de,facebook,twiter,instagram};
+        const {id,nombre,apellido,url_foto,fechanac,domicilio,sobre_mi,telefono,correo,acerca_de,facebook,twiter,instagram,infcont}=this;
+        const modiFi={id,nombre,apellido,url_foto,fechanac,domicilio,sobre_mi,telefono,correo,acerca_de,facebook,twiter,instagram,infcont};
         const body = new HttpParams()
         .set('nombre', nombre.toString())
         .set('apellido', apellido.toString())
@@ -231,6 +273,7 @@ export class EncabezadoComponent implements OnInit {
       
       
       }else{
+        alert("no anda")
         this.color='green';
       }
       

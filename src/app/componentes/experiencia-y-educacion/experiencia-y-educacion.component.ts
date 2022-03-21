@@ -31,7 +31,7 @@ nombreEmpresa:String="";
     fechainicio?:Date;
     fechafin?:Date;
   descripcion:String="";
-   persona_id:String=localStorage.getItem("id")!;
+   persona_id?:number;
    tipo_empleo_id?:number;
    id_persona?:number=parseFloat(localStorage.getItem("id")!);
     principal:String="";
@@ -50,7 +50,10 @@ exp:Exp[]=[];
     this.e.getTasks().subscribe(
       data => {
         this.exp=data;
-     
+        for(let l of this.exp ){
+          this.persona_id=l.persona_id;
+          this.id_persona=l.persona_id;
+        }
       console.log("PUT Request is successful ", data);
       },
       error => {
@@ -74,7 +77,8 @@ exp:Exp[]=[];
       }
       );
   }
-  addExp(){
+  addExp(ex:Exp){
+    this.persona_id=ex.persona_id;
     if (this.color==='green'){
       this.color="red";
     
@@ -87,6 +91,7 @@ exp:Exp[]=[];
     if(  (<HTMLInputElement>document.getElementById("btncheck1")).checked===true){
       this.estrabajoactual=1;
     }
+    this.persona_id;
     const {id,nombreEmpresa,estrabajoactual,fechainicio,fechafin,descripcion,persona_id,tipo_empleo_id}=this;
     const modiFi={id,nombreEmpresa,estrabajoactual,fechainicio,fechafin,descripcion,persona_id,tipo_empleo_id};
     let datas={ responseType: 'text'};
@@ -129,7 +134,7 @@ exp:Exp[]=[];
   // })
   }else{
     this.id;
-
+    this.persona_id;
   this.nombreEmpresa=  (<HTMLInputElement>document.getElementById("nombreEmpresa")).value;
   var fini:any =  (<HTMLInputElement>document.getElementById("fechainicio")).value;
   this.fechainicio=fini;
@@ -142,7 +147,7 @@ let val =  (<HTMLInputElement>document.getElementById("tipo_empleo_id")).value;
     if( (<HTMLInputElement>document.getElementById("btncheck1")).checked===true){
       this.estrabajoactual=1;
     }else{this.estrabajoactual=0}
-  
+    this.persona_id;
     const {id,nombreEmpresa,estrabajoactual,fechainicio,fechafin,descripcion,persona_id,tipo_empleo_id}=this;
     const modiFi={id,nombreEmpresa,estrabajoactual,fechainicio,fechafin,descripcion,persona_id,tipo_empleo_id};
     this.e.updateTaskReminder(modiFi).subscribe(
@@ -177,9 +182,10 @@ let val =  (<HTMLInputElement>document.getElementById("tipo_empleo_id")).value;
 
   }
   Modif(exp:Exp,tipem:Tipem){
-    this.addExp();
+    //this.addExp();
     this.id=exp.id;
     this.tipo_empleo_id=tipem.id;
+    this.persona_id=exp.persona_id;
    
     (<HTMLInputElement>document.getElementById("nombreEmpresa")).value=exp.nombreEmpresa.toString();
     (<HTMLInputElement>document.getElementById("fechainicio")).value=exp.fechainicio!.toString();
@@ -237,7 +243,7 @@ let val =  (<HTMLInputElement>document.getElementById("tipo_empleo_id")).value;
       //this.id= parseFloat((<HTMLInputElement>document.getElementById("ided")).value);
       //((<HTMLInputElement>document.getElementById("ided")).value)=ed.id?;
       this.id=ed.id; 
-    
+      this.id_persona=ed.id_persona;
       (<HTMLInputElement>document.getElementById("Sapve")).value="Modificar";
   
   }else{this.showadd=false;
@@ -259,6 +265,7 @@ let val =  (<HTMLInputElement>document.getElementById("tipo_empleo_id")).value;
     alert("Debe llenar los campos al agregar");
     return;
   }
+  
     const {principal,segunda,id_persona,url_logo}=this;
     const modiFi={principal,segunda,id_persona,url_logo}
     this.educ.addTask(modiFi).subscribe(
