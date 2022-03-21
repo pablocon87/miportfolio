@@ -93,7 +93,7 @@ export class AutenticacionService {
       
       var fifi =new Date()
       fifi.getMinutes();
-      console.log("este es fifi "+" "+fifi);
+      //console.log("este es fifi "+" "+fifi);
       this.limite=0;
       this.limite=fifi.getMinutes()-parseInt(localStorage.getItem('data')!);
 
