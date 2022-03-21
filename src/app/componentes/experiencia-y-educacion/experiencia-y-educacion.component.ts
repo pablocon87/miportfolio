@@ -244,7 +244,7 @@ let val =  (<HTMLInputElement>document.getElementById("tipo_empleo_id")).value;
       //((<HTMLInputElement>document.getElementById("ided")).value)=ed.id?;
       this.id=ed.id; 
       this.id_persona=ed.id_persona;
-      // (<HTMLInputElement>document.getElementById("Sapve")).value="Modificar";
+       (<HTMLInputElement>document.getElementById("Sapve")).value="Modificar";
   
   // }else{this.showadd=false;
   //   (<HTMLInputElement>document.getElementById("Sapve")).value="Guardar Cambios";
