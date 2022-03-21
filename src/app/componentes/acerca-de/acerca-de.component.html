@@ -1,3 +1,4 @@
+<div class="container">
 <div *ngFor="let tas of tasks" class="card mat-card" >
 <h1>Acerca de</h1>
 <p class="task">{{tas.acerca_de}}<fa-icon data-bs-toggle="modal" data-bs-target="#exampleModal2" [icon]="faEdit" (click)="moDific(tas)" [ngStyle]="{'color':'green'}" class="fic"></fa-icon></p>
@@ -57,4 +58,4 @@
 </div>
 </div>
 <!--fin otro modal-->
-
+</div>
