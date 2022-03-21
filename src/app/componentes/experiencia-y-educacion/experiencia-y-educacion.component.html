@@ -97,11 +97,11 @@
     <!-- <br/>------------------------------------------------------------------------<br/> -->
     <div class="taskt row"></div>
     <div class=" task row" *ngFor="let el of exp" [hidden]="el.nombreEmpresa==='' ">
-        
-    <p  class="col-sm-4">Desde: {{el.fechainicio| date:'dd-MM-yyyy'}}    </p><p class="col-sm-6"  [hidden]="el.estrabajoactual===1"> Hasta: {{el.fechafin| date:'dd-MM-yyyy'}}</p> <p class="col-sm-6" [hidden]="el.estrabajoactual!==1" >  Hasta: La Actualidad</p>
-    
-    <div class="row" *ngFor="let te of tipem" ><p class="col-sm-10" *ngIf="el.tipo_empleo_id===te.id"><span class="h4">Jornada:</span> {{te.nombre_tipo}}</p><span *ngIf="el.tipo_empleo_id===te.id" class="col-sm-2"><fa-icon  class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal4" (click)="Modif(el,te)" [icon]="faEdit" [ngStyle]="{'color':'green'}"></fa-icon><fa-icon  class="btn btn-outline-secondary " [icon]="faTrash" (click)="Borrar(el)" [ngStyle]="{'color':'red'}" ></fa-icon></span></div>
+    <div *ngFor="let tes of tipem"><span *ngIf="el.tipo_empleo_id===tes.id" class="col-sm-2"><fa-icon  class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal4" (click)="Modif(el,tes)" [icon]="faEdit" [ngStyle]="{'color':'green'}"></fa-icon><fa-icon  class="btn btn-outline-secondary " [icon]="faTrash" (click)="Borrar(el)" [ngStyle]="{'color':'red'}" ></fa-icon></span></div>     
+     
     <p><span class="h4">Empresa:</span> {{el.nombreEmpresa}}</p>
+    <div class="row" *ngFor="let te of tipem" ><p class="col-sm-10" *ngIf="el.tipo_empleo_id===te.id"><span class="h4">Jornada:</span> {{te.nombre_tipo}}</p></div>    
+    <p  class="col-sm-4"><span class="h4">Desde:</span> {{el.fechainicio| date:'dd-MM-yyyy'}}    </p><p class="col-sm-6"  [hidden]="el.estrabajoactual===1"><span class="h4"> Hasta:</span> {{el.fechafin| date:'dd-MM-yyyy'}}</p> <p class="col-sm-6" [hidden]="el.estrabajoactual!==1" >  Hasta: La Actualidad</p>
     <p><span class="h4">Tarea a Realizar:</span> {{el.descripcion}}</p>
     <div class="taskt"></div>
     <!-- <br/>------------------------------------------------------------------------<br/> -->
