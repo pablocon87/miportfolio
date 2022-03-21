@@ -251,14 +251,14 @@ let val =  (<HTMLInputElement>document.getElementById("tipo_empleo_id")).value;
   // }
   }
   addEdu(){
-    if(this.showadd===false){
+    // if(this.showadd===false){
       (<HTMLInputElement>document.getElementById("urllogo")).value="";
       (<HTMLInputElement>document.getElementById("principal")).value="";
       (<HTMLInputElement>document.getElementById("segunda")).value="";
       (<HTMLInputElement>document.getElementById("Sapve")).value="Guardar Cambios";
       this.showadd=true;    
-  }else{this.showadd=false}
-  }
+  // }else{this.showadd=false}
+   }
   envEd(){
   if( (<HTMLInputElement>document.getElementById("Sapve")).value!=="Modificar"){
   if(this.principal==="" || this.segunda===""){
