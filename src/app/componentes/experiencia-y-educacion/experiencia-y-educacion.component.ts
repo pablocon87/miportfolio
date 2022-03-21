@@ -234,7 +234,7 @@ let val =  (<HTMLInputElement>document.getElementById("tipo_empleo_id")).value;
   }
   educCl(ed:Educ){
   
-    if(this.showadd===false){
+    // if(this.showadd===false){
      
       this.showadd=true;  
       (<HTMLInputElement>document.getElementById("urllogo")).value=ed.url_logo.toString();
@@ -244,11 +244,11 @@ let val =  (<HTMLInputElement>document.getElementById("tipo_empleo_id")).value;
       //((<HTMLInputElement>document.getElementById("ided")).value)=ed.id?;
       this.id=ed.id; 
       this.id_persona=ed.id_persona;
-      (<HTMLInputElement>document.getElementById("Sapve")).value="Modificar";
+      // (<HTMLInputElement>document.getElementById("Sapve")).value="Modificar";
   
-  }else{this.showadd=false;
-    (<HTMLInputElement>document.getElementById("Sapve")).value="Guardar Cambios";
-  }
+  // }else{this.showadd=false;
+  //   (<HTMLInputElement>document.getElementById("Sapve")).value="Guardar Cambios";
+  // }
   }
   addEdu(){
     if(this.showadd===false){
