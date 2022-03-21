@@ -12,6 +12,7 @@ import { map } from 'rxjs/operators';
 })
 export class ExperienciaService {
   apiUrl = 'https://porfoarp.herokuapp.com';
+  //apiUrl = 'http://localhost:8080';
   constructor(private http: HttpClient) { }
 
   getTasks():Observable<Exp[]>{

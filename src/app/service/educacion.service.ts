@@ -10,7 +10,7 @@ import {Educ} from '../../Educ'
 export class EducacionService {
   apiUrl = 'https://porfoarp.herokuapp.com';
   
-  
+  //apiUrl = 'http://localhost:8080';
   constructor(private http: HttpClient) { }
 
   getTasks():Observable<Educ[]>{

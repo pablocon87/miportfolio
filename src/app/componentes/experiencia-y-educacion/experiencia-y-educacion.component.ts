@@ -260,7 +260,7 @@ let val =  (<HTMLInputElement>document.getElementById("tipo_empleo_id")).value;
   // }else{this.showadd=false}
    }
   envEd(){
-  if( (<HTMLInputElement>document.getElementById("Sapve")).value!=="Modificar"){
+  if( (<HTMLInputElement>document.getElementById("Sapves")).value!=="Modificar"){
   if(this.principal==="" || this.segunda===""){
     alert("Debe llenar los campos al agregar");
     return;
