@@ -252,7 +252,7 @@ export class AutenticacionService {
     localStorage.removeItem('auth_token');
     localStorage.removeItem('tip');
     localStorage.removeItem('timeps');
-    this.router.navigate(['/Inic']);
+    this.router.navigate(['']);
 
   }
   public get logIn(): boolean {

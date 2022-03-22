@@ -20,7 +20,7 @@ export class AppComponent {
     if(localStorage.getItem('pepito')==='false'){
       this.auten.pepito=false;
     }
-    this.auten.router.navigate(['/Inic'])
+    this.auten.router.navigate([''])
           
     
   }

@@ -69,7 +69,7 @@
   <!-- <input formControlName="users"  type="email"  [ngClass]="{'is-invalid':Users?.errors && Users?.touched, 'is-valid':!Users?.errors && Users?.touched}" class="form-control" id="users" name="users"  placeholder="Coloque su email" /> -->
   <input formControlName="users" type="email"
           [ngClass]="{'is-invalid':Users?.errors && Users?.touched, 'is-valid':!Users?.errors && Users?.touched}"
-          class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required> 
+          class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp" required> 
 </div>
 <div *ngIf="Users?.errors && Users?.touched">
   <p *ngIf="Users?.hasError('required')" class="text-danger">
@@ -136,7 +136,7 @@
                     </div>
                     <!--fin otro modal-->
                <div [hidden]="!autenticacionService.logIn">     
-      <router-outlet >
+      <!-- <router-outlet >
       
-      </router-outlet>
+      </router-outlet> -->
       </div>

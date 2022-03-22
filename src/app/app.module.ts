@@ -16,8 +16,9 @@ import { AutenticacionService } from './service/autenticacion.service';
 import { EducacionService } from './service/educacion.service';
 import { RecargaComponent } from './componentes/recarga/recarga.component';
 const appRoutes:Routes =[
-  //{path:'Inic', component: IniciarSesionComponent,pathMatch:'full'},
-  {path:'Inic', component: IniciarSesionComponent},
+  {path:'Inic', component: IniciarSesionComponent/*,pathMatch:'full'*/},
+  { path: '', redirectTo: 'Inic', pathMatch: 'full' },
+ // {path:'Inic', component: IniciarSesionComponent},
  {path:'PortFolio', component: RecargaComponent},
  
 ]
@@ -43,6 +44,6 @@ const appRoutes:Routes =[
   ],
   exports:[RouterModule],
   providers: [AutenticacionService,EducacionService],//{provide:HTTP_INTERCEPTORS,useClass:InterceptorService,multi:true}],
-  bootstrap: [AppComponent,IniciarSesionComponent]
+  bootstrap: [AppComponent/*,IniciarSesionComponent*/]
 })
 export class AppModule { }
