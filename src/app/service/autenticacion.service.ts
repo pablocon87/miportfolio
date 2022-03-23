@@ -23,8 +23,8 @@ export class AutenticacionService {
   tt= new Date();
   conta:number=0;
   pepito:boolean=false;
-  //apiUrl = 'https://porfoarp.herokuapp.com';
-  apiUrl = 'http://localhost:8080';
+  apiUrl = 'https://porfoarp.herokuapp.com';
+  //apiUrl = 'http://localhost:8080';
   constructor(private http: HttpClient,public router:Router,public _location:Location) { }
   login(user: string, password: string){
     if(user==="" && password===""){
