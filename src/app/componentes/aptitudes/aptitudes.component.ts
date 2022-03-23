@@ -100,11 +100,11 @@ id?:number;
             this.ingav=l.inavanzado;
             this.showall=true;
             this.showrang=true;
-            (<HTMLInputElement>document.getElementById("demo1")).innerHTML=this.inescrip!.toString();
-            (<HTMLInputElement>document.getElementById("demo2")).innerHTML=this.inoral!.toString();
-            (<HTMLInputElement>document.getElementById("demo")).innerHTML=this.intecnico!.toString();
-            (<HTMLInputElement>document.getElementById("demo3")).innerHTML=this.inbasico!.toString();
-            (<HTMLInputElement>document.getElementById("demo4")).innerHTML=this.inavanzado!.toString();
+            (<HTMLInputElement>document.getElementById("demo1")).innerHTML=l.inescrip!.toString();
+            (<HTMLInputElement>document.getElementById("demo2")).innerHTML=l.inoral!.toString();
+            (<HTMLInputElement>document.getElementById("demo")).innerHTML=l.intecnico!.toString();
+            (<HTMLInputElement>document.getElementById("demo3")).innerHTML=l.inbasico!.toString();
+            (<HTMLInputElement>document.getElementById("demo4")).innerHTML=l.inavanzado!.toString();
             this.InglesC();
             
           }
