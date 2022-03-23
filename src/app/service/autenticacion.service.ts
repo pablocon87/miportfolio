@@ -357,4 +357,33 @@ addTaskReg(reg:Reg): Observable<Reg>{
   return this.http.post<Reg>(this.apiUrl+'/user/crear', reg);
 
 }
+addmiSwet(){
+  Swal.fire(
+    'Buen Trabajo!',
+    'Te Registraste!',
+    'success'
+  )
+}
+addmiSwetER(){
+  Swal.fire(
+    'Sorry!',
+    'Ese email ya se encuentra Registrado!',
+    'error'
+  )
+}
+addmiSwetTasm(){
+  Swal.fire(
+    'Muy Bien!',
+    'Se Modifico Correctamente!',
+    'success'
+  )
+
+}
+addmiSwetTasadd(){
+  Swal.fire(
+    'Muy Bien!',
+    'Se Agrego Correctamente!',
+    'success'
+  )
+}
 }

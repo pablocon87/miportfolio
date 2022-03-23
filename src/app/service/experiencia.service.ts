@@ -5,6 +5,7 @@ import{Exp} from '../../Exp';
 import { Tipem } from 'src/Tipem';
 import {Task} from 'src/Task'
 import { map } from 'rxjs/operators';
+import Swal from 'sweetalert2';
 
 
 @Injectable({
@@ -95,5 +96,26 @@ addTask(task:Exp): Observable<Exp>{
   };
   return this.http.post<Exp>(this.apiUrl+'/experiencia/crear', task ,options);
 
+}
+addmiSwetEx(){
+  Swal.fire(
+    'Muy Bien!',
+    'Se Agrego Correctamente!',
+    'success'
+  )
+}
+addmiSwetExm(){
+  Swal.fire(
+    'Muy Bien!',
+    'Se Modifico Correctamente!',
+    'success'
+  )
+}
+addmiSwetExb(){
+  Swal.fire(
+    'Muy Bien!',
+    'Se Borro Correctamente!',
+    'success'
+  )
 }
 }

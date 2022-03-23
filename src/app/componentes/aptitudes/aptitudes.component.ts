@@ -100,6 +100,11 @@ id?:number;
             this.ingav=l.inavanzado;
             this.showall=true;
             this.showrang=true;
+            (<HTMLInputElement>document.getElementById("demo1")).innerHTML=this.inescrip!.toString();
+            (<HTMLInputElement>document.getElementById("demo2")).innerHTML=this.inoral!.toString();
+            (<HTMLInputElement>document.getElementById("demo")).innerHTML=this.intecnico!.toString();
+            (<HTMLInputElement>document.getElementById("demo3")).innerHTML=this.inbasico!.toString();
+            (<HTMLInputElement>document.getElementById("demo4")).innerHTML=this.inavanzado!.toString();
             this.InglesC();
             
           }
@@ -124,7 +129,13 @@ id?:number;
               this.otros=l.otros;
               this.showalllen=true;
               this.showalller=true;
-              
+              (<HTMLInputElement>document.getElementById("phpdemo")).innerHTML=this.php!.toString();
+              (<HTMLInputElement>document.getElementById("javademo")).innerHTML=this.java!.toString();
+              (<HTMLInputElement>document.getElementById("javascriptdemo")).innerHTML=this.javascript!.toString();
+              (<HTMLInputElement>document.getElementById("typescriptdemo")).innerHTML=this.typescript!.toString();
+              (<HTMLInputElement>document.getElementById("pythondemo")).innerHTML=this.python!.toString();
+              (<HTMLInputElement>document.getElementById("rubydemo")).innerHTML=this.ruby!.toString();
+              (<HTMLInputElement>document.getElementById("otrosdemo")).innerHTML=this.otros!.toString();
               this.progrC();
               
             }
@@ -146,6 +157,10 @@ id?:number;
                 this.otross=l.otros;
                 this.showsop=true;
                 this.showsopr=true;
+                (<HTMLInputElement>document.getElementById("windowsdemo")).innerHTML=this.windows!.toString();
+                (<HTMLInputElement>document.getElementById("linuxdemo")).innerHTML=this.linux!.toString();
+                (<HTMLInputElement>document.getElementById("macosdemo")).innerHTML=this.macos!.toString();
+                (<HTMLInputElement>document.getElementById("otrossdemo")).innerHTML=this.otross!.toString();
                 this.SisopC();
                 
               }
@@ -169,6 +184,10 @@ id?:number;
                   this.showbd=true;
                   this.showbdr=true;
                   this.showsubm=true;
+                  (<HTMLInputElement>document.getElementById("mysqldemo")).innerHTML=this.mysql!.toString();
+                  (<HTMLInputElement>document.getElementById("postgresqldemo")).innerHTML=this.postgresql!.toString();
+                  (<HTMLInputElement>document.getElementById("sqlserverdemo")).innerHTML=this.sqlserver!.toString();
+                  (<HTMLInputElement>document.getElementById("otrosbddemo")).innerHTML=this.otrosbd!.toString();
                   this.BasdaC();
                   
                 }
@@ -426,7 +445,7 @@ ValorRanBd(){
         console.log("andaaaaa "+ ver.text);
         if(ver.text==='Success'){
           localStorage.setItem("testJSON", '');
-          alert("Se Agrego Correctamente")
+          this.per.addmiSwetTasadd();
           this.ngOnInit();
         }
         this.ngOnInit();
@@ -453,7 +472,7 @@ ValorRanBd(){
   this.ing.updateTaskReminder(ModiFi).subscribe(
     data => {
       this.ngOnInit();
-      alert("Se Modifco Correctamente")
+      this.per.addmiSwetTasm();
     console.log("PUT Request is successful ", data);
     },
     error => {
@@ -504,7 +523,7 @@ ValorRanBd(){
           console.log("andaaaaa "+ ver.text);
           if(ver.text==='Success'){
             localStorage.setItem("testJSON", '');
-            alert("Se Agrego Correctamente")
+            this.per.addmiSwetTasadd();
             this.ngOnInit();
           }
           this.ngOnInit();
@@ -530,7 +549,7 @@ ValorRanBd(){
     this.lenp.updateTaskReminder(ModiFi).subscribe(
       data => {
         this.ngOnInit();
-        alert("Se Modifco Correctamente")
+        this.per.addmiSwetTasm();
       console.log("PUT Request is successful ", data);
       },
       error => {
@@ -580,7 +599,7 @@ ValorRanBd(){
           console.log("andaaaaa "+ ver.text);
           if(ver.text==='Success'){
             localStorage.setItem("testJSON", '');
-            alert("Se Agrego Correctamente")
+            this.per.addmiSwetTasadd();
             this.ngOnInit();
           }
           this.ngOnInit();
@@ -610,7 +629,7 @@ ValorRanBd(){
     this.sip.updateTaskReminder(ModiFi).subscribe(
       data => {
         this.ngOnInit();
-        alert("Se Modifco Correctamente")
+        this.per.addmiSwetTasm();
       console.log("PUT Request is successful ", data);
       },
       error => {
@@ -656,7 +675,7 @@ ValorRanBd(){
           console.log("andaaaaa "+ ver.text);
           if(ver.text==='Success'){
             localStorage.setItem("testJSON", '');
-            alert("Se Agrego Correctamente")
+            this.per.addmiSwetTasadd();
             this.ngOnInit();
           }
           this.ngOnInit();
@@ -680,7 +699,7 @@ ValorRanBd(){
     this.bd.updateTaskReminder(ModiFi).subscribe(
       data => {
         this.ngOnInit();
-        alert("Se Modifco Correctamente")
+        this.per.addmiSwetTasm();
       console.log("PUT Request is successful ", data);
       },
       error => {

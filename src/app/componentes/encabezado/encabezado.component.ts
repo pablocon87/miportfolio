@@ -258,7 +258,7 @@ export class EncabezadoComponent implements OnInit {
         this.t.updateTask(modiFi).subscribe(
           data => {
             this.ngOnInit();
-            alert('Se modifico Correctamente');
+            this.t.addmiSwetTasm();
           console.log("PUT Request is successful ", data);
           },
           error => {

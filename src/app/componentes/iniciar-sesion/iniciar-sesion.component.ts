@@ -141,11 +141,11 @@ this.password=this.form.get('passwords')!.value;
         console.log("andaaaaa "+ ver.text);
         if(ver.text==='Succes'){
           localStorage.setItem("testJSON", '');
-          alert("Se Agrego Correctamente")
+          this.autenticacionService.addmiSwet();
         }
         if(ver.text==="nSucces"){
           localStorage.setItem("testJSON", '');
-          alert("Ese email ya se encuentra registrado");
+          this.autenticacionService.addmiSwetER();
         }
         ;
       }

@@ -184,7 +184,7 @@ i?:number;
         console.log("andaaaaa "+ ver.text);
         if(ver.text==='Succes'){
           localStorage.setItem("testJSON", '');
-          alert("Se Agrego Correctamente")
+          this.e.addmiSwetEx();
         }
         this.ngOnInit();
          
@@ -223,7 +223,7 @@ let val =  (<HTMLInputElement>document.getElementById("tipo_empleo_id")).value;
       data => {
       
         this.ngOnInit();
-      alert("Se Guardo correctamente "+ data);
+      this.e.addmiSwetExm();
       
       },
       error => {
@@ -283,7 +283,7 @@ let val =  (<HTMLInputElement>document.getElementById("tipo_empleo_id")).value;
         console.log("andaaaaa "+ ver.text);
         if(ver.text==='Succes'){
           localStorage.setItem("testJSON", '');
-          alert("Se Borro Correctamente")
+          this.e.addmiSwetExb();
         }
         this.ngOnInit();
       }
@@ -351,7 +351,7 @@ let val =  (<HTMLInputElement>document.getElementById("tipo_empleo_id")).value;
         this.showadd=false;    
         this.ngOnInit();
       
-      alert("Se Agrego Correctamente "+ data);
+      this.e.addmiSwetEx();
       },
       error => {
         const myJSON = JSON.stringify(error);
@@ -362,7 +362,7 @@ let val =  (<HTMLInputElement>document.getElementById("tipo_empleo_id")).value;
         console.log("andaaaaa "+ ver.text);
         if(ver.text==='Succes'){
           localStorage.setItem("testJSON", '');
-          alert("Se Agrego Correctamente")
+          this.e.addmiSwetEx();
         }
         this.ngOnInit();
       }
@@ -401,7 +401,7 @@ let val =  (<HTMLInputElement>document.getElementById("tipo_empleo_id")).value;
       this.showadd=false;    
       this.ngOnInit();
     
-    alert("Se Modifico Correctamente "+ data);
+      this.e.addmiSwetExm();
     },
     error => {
       this.showadd=false;    
@@ -418,7 +418,7 @@ let val =  (<HTMLInputElement>document.getElementById("tipo_empleo_id")).value;
       
         this.showadd=false;    
         this.ngOnInit();
-      alert("Se Modifico Correctamente "+ data);
+        this.e.addmiSwetExb();
       },
       error => {
         const myJSON = JSON.stringify(error);
@@ -429,7 +429,7 @@ let val =  (<HTMLInputElement>document.getElementById("tipo_empleo_id")).value;
         console.log("andaaaaa "+ ver.text);
         if(ver.text==='Succes'){
           localStorage.setItem("testJSON", '');
-          alert("Se Borro Correctamente")
+          this.e.addmiSwetExb();
         }
         this.ngOnInit();
       }
