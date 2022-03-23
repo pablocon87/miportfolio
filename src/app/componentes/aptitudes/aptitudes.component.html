@@ -1,3 +1,173 @@
-<div class="card mat-card" >
-    <h1>Aptitudes</h1>
+
+<div class="container">
+    <div class="row"><div class="col-sm-10"></div><h1 class="co-sm-2">Conocimientos</h1></div>
+    <h5>Conocimientos de Ingles</h5>
+    <form (ngSubmit)="submit()">
+    <div class="input-group">
+    <label for="customRange2" class="form-label">Ingles Técnico</label> 
+    <input id="ex1" data-id='ex1RangePicker' (input)="ValorRan()"  type="range" data-min="0" data-max="20" data-step="1" data-value="{{this.ingtec}}" [disabled]="this.showrang"/>
+    <p id="demo"></p>
+
+    </div>
+    <div class="input-group">
+        <label for="customRange2" class="form-label">Ingles Escrito</label> 
+        <input id="ex2" data-id='ex1RangePicker'  (input)="ValorRan()" type="range" data-min="0" data-max="20" data-step="1" data-value="{{this.ingescr}}" [disabled]="this.showrang"/>
+        <p id="demo1"></p>
+        </div>
+        <div class="input-group">
+            <label for="customRange2" class="form-label">Ingles Oral</label> 
+            <input id="ex3" data-id='ex1RangePicker'  (input)="ValorRan()" type="range" data-min="0" data-max="20" data-step="1" data-value="{{this.ingoral}}"[disabled]="this.showrang"/>
+            <p id="demo2"></p>
+        </div>
+        <div class="input-group">
+            <label for="customRange2" class="form-label">Ingles Basico</label> 
+            <input id="ex4" data-id='ex1RangePicker'  (input)="ValorRan()" type="range" data-min="0" data-max="20" data-step="1" data-value="{{this.ingbas}}"[disabled]="this.showrang"/>
+            <p id="demo3"></p>
+        </div>
+        <div class="input-group">
+            <label for="customRange2" class="form-label">Ingles Avanzado</label> 
+            <input id="ex5" data-id='ex1RangePicker'  (input)="ValorRan()" type="range" data-min="0" data-max="20" data-step="1" data-value="{{this.ingav}}"[disabled]="this.showrang"/>
+            <p id="demo4"></p>
+        </div>
+        <button type="submit" class="btn btn-primary" (click)="this.showall=true" [hidden]="this.showall">Aplicar</button>
+        <button type="submit" class="btn btn-primary"  [hidden]="this.showrang">Aplicar cambios</button>
+        
+    </form>
+    <button type="submit" class="btn btn-primary" (click)="this.showrang=true" [hidden]="this.showrang">Volver</button>
+        <button type="submit" class="btn btn-primary" (click)="this.showrang=false" [hidden]="!this.showrang">Modificar</button>
+<div id="chartContainer" style="height: 370px; width: 100%;"></div>
+
+
+<h5>Conocimientos de Lenguajes de Programación</h5>
+<form (ngSubmit)="submitLen()">
+    <div class="input-group">
+    <label for="customRange2" class="form-label">PHP</label> 
+    <input id="php" data-id='ex1RangePicker'  (input)="ValorLen()" type="range" data-min="0" data-max="20" data-step="1" data-value="{{this.php}}" [disabled]="this.showalller"/>
+    <p id="phpdemo"></p>
+
+    </div>
+    <div class="input-group">
+        <label for="customRange2" class="form-label">Java</label> 
+        <input id="java" data-id='ex1RangePicker'  (input)="ValorLen()" type="range" data-min="0" data-max="20" data-step="1" data-value="{{this.java}}" [disabled]="this.showalller"/>
+        <p id="javademo"></p>
+        </div>
+        <div class="input-group">
+            <label for="customRange2" class="form-label">Ruby</label> 
+            <input id="ruby" data-id='ex1RangePicker'  (input)="ValorLen()" type="range" data-min="0" data-max="20" data-step="1" data-value="{{this.ruby}}"[disabled]="this.showalller"/>
+            <p id="rubydemo"></p>
+        </div>
+        <div class="input-group">
+            <label for="customRange2" class="form-label">Javascript</label> 
+            <input id="javascript" data-id='ex1RangePicker'  (input)="ValorLen()" type="range" data-min="0" data-max="20" data-step="1" data-value="{{this.javascript}}"[disabled]="this.showalller"/>
+            <p id="javascriptdemo"></p>
+        </div>
+        <div class="input-group">
+            <label for="customRange2" class="form-label">Typescript</label> 
+            <input id="typescript" data-id='ex1RangePicker'  (input)="ValorLen()" type="range" data-min="0" data-max="20" data-step="1" data-value="{{this.typescript}}"[disabled]="this.showalller"/>
+            <p id="typescriptdemo"></p>
+        </div>
+        <div class="input-group">
+            <label for="customRange2" class="form-label">Python</label> 
+            <input id="python" data-id='ex1RangePicker'  (input)="ValorLen()" type="range" data-min="0" data-max="20" data-step="1" data-value="{{this.python}}"[disabled]="this.showalller"/>
+            <p id="pythondemo"></p>
+        </div>
+        <div class="input-group">
+            <label for="customRange2" class="form-label">Otros</label> 
+            <input id="otros" data-id='ex1RangePicker'  (input)="ValorLen()" type="range" data-min="0" data-max="20" data-step="1" data-value="{{this.otros}}"[disabled]="this.showalller"/>
+            <p id="otrosdemo"></p>
+        </div>
+        <button type="submit" class="btn btn-primary" (click)="this.showalllen=true" [hidden]="this.showalllen">Aplicar</button>
+        <button type="submit" class="btn btn-primary"  [hidden]="this.showalller">Aplicar cambios</button>
+        
+    </form>
+    <button type="submit" class="btn btn-primary" (click)="this.showalller=true" [hidden]="this.showalller">Volver</button>
+        <button type="submit" class="btn btn-primary" (click)="this.showalller=false" [hidden]="!this.showalller">Modificar</button>
+<div id="chartContainer2" style="height: 370px; width: 100%;"></div>
+
+
+<h5>Conocimientos de Sistemas Operativos</h5>
+
+<form (ngSubmit)="submitSop()">
+    <div class="input-group">
+    <label for="customRange2" class="form-label">Windows</label> 
+    <input id="windows" data-id='ex1RangePicker' (input)="ValorRanSop()"  type="range" data-min="0" data-max="20" data-step="1" data-value="{{this.windows}}" [disabled]="this.showsopr"/>
+    <p id="windowsdemo"></p>
+
+    </div>
+    <div class="input-group">
+        <label for="customRange2" class="form-label">Linux</label> 
+        <input id="linux" data-id='ex1RangePicker'  (input)="ValorRanSop()" type="range" data-min="0" data-max="20" data-step="1" data-value="{{this.linux}}" [disabled]="this.showsopr"/>
+        <p id="linuxdemo"></p>
+        </div>
+        <div class="input-group">
+            <label for="customRange2" class="form-label">MacOs</label> 
+            <input id="macos" data-id='ex1RangePicker'  (input)="ValorRanSop()" type="range" data-min="0" data-max="20" data-step="1" data-value="{{this.macos}}"[disabled]="this.showsopr"/>
+            <p id="macosdemo"></p>
+        </div>
+        <div class="input-group">
+            <label for="customRange2" class="form-label">Otros</label> 
+            <input id="otross" data-id='ex1RangePicker'  (input)="ValorRanSop()" type="range" data-min="0" data-max="20" data-step="1" data-value="{{this.otross}}"[disabled]="this.showsopr"/>
+            <p id="otrossdemo"></p>
+        </div>
+       
+        <button type="submit" class="btn btn-primary" (click)="this.showsop=true;this.showrelo=true;" [hidden]="this.showsop">Aplicar</button>
+        <button type="submit" class="btn btn-primary"  [hidden]="this.showsopr || !this.showrelo">Aplicar cambios</button>
+        
+    </form>
+    <button type="submit" class="btn btn-primary" (click)="this.showsopr=true" [hidden]="this.showsopr || !this.showrelo">Volver</button>
+        <button type="submit" class="btn btn-primary" (click)="this.showsopr=false;this.showrelo=true;" [hidden]="!this.showsopr">Modificar</button>
+
+<div id="chartContainer3" style="height: 370px; width: 100%;"></div>
+
+
+<h5>Conocimientos de Base de Datos</h5>
+<form (ngSubmit)="submitBd()">
+    <div class="input-group">
+    <label for="customRange2" class="form-label">Mysql</label> 
+    <input id="mysql" data-id='ex1RangePicker' (input)="ValorRanBd()"  type="range" data-min="0" data-max="20" data-step="1" data-value="{{this.mysql}}" [disabled]="this.showbdr"/>
+    <p id="mysqldemo"></p>
+
+    </div>
+    <div class="input-group">
+        <label for="customRange2" class="form-label">PostgreSQL</label> 
+        <input id="postgresql" data-id='ex1RangePicker'  (input)="ValorRanBd()" type="range" data-min="0" data-max="20" data-step="1" data-value="{{this.postgresql}}" [disabled]="this.showbdr"/>
+        <p id="postgresqldemo"></p>
+        </div>
+        <div class="input-group">
+            <label for="customRange2" class="form-label">SqlServer</label> 
+            <input id="sqlserver" data-id='ex1RangePicker'  (input)="ValorRanBd()" type="range" data-min="0" data-max="20" data-step="1" data-value="{{this.sqlserver}}"[disabled]="this.showbdr"/>
+            <p id="sqlserverdemo"></p>
+        </div>
+        <div class="input-group">
+            <label for="customRange2" class="form-label">Otros</label> 
+            <input id="otrosbd" data-id='ex1RangePicker'  (input)="ValorRanBd()" type="range" data-min="0" data-max="20" data-step="1" data-value="{{this.otrosbd}}" [disabled]="this.showbdr"/>
+            <p id="otrosbddemo"></p>
+        </div>
+       
+        <button type="submit" class="btn btn-primary" (click)="this.showbasd=true;this.showbd=true;" [hidden]="this.showbasd">Aplicar</button>
+        <button type="submit" class="btn btn-primary"  [hidden]="this.showbdr || !this.showbd">Aplicar cambios</button>
+        
+    </form>
+    <button type="submit" class="btn btn-primary" (click)="this.showbdr=true" [hidden]="this.showbdr || !this.showbd">Volver</button>
+        <button type="submit" class="btn btn-primary" (click)="this.showbdr=false;this.showbd=true;" [hidden]="!this.showbdr">Modificar</button>
+
+<div id="chartContainer4" style="height: 370px; width: 100%;"></div>
 </div>
+<script>
+    
+</script>
+<!-- <script type='text/javascript'>
+    $(document).ready(function() {
+      /* Example 1 */
+      $('#ex1').rangepicker({
+      formatter: function(value) {
+      return 'Current value: ' + value;
+      }
+      });
+      $('#ex1').rangepicker({
+      formatter: function(value) {
+      return 'Current value: ' + value;
+      }
+      });}
+              
+  </script> -->

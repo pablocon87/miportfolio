@@ -1,19 +1,17 @@
 import { Injectable } from '@angular/core';
 import {HttpClient,HttpHeaders, HttpParams ,HttpResponse} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
-import {Educ} from '../../Educ'
-
-
+import {Ingl} from '../../Ingl'
 @Injectable({
   providedIn: 'root'
 })
-export class EducacionService {
+export class ConoinglesService {
  //apiUrl = 'https://porfoarp.herokuapp.com';
   
  apiUrl = 'http://localhost:8080';
   constructor(private http: HttpClient) { }
 
-  getTasks():Observable<Educ[]>{
+  getTasks():Observable<Ingl[]>{
     const httpOptions = {
 
       headers: new HttpHeaders(
@@ -28,17 +26,17 @@ export class EducacionService {
     };
     /*const tasks =of(TASKS);
     return tasks;*/
-    return this.http.get<Educ[]> (this.apiUrl+'/educacion/traer',httpOptions)
+    return this.http.get<Ingl[]> (this.apiUrl+'/ingles/traer',httpOptions)
   }
-  deleteTask(task:Educ):  Observable<Educ> {
+  deleteTask(task:Ingl):  Observable<Ingl> {
     const body={title: 'Angular POST Request Example'};
     const headers = { 'Authorization': localStorage.getItem('auth_token')!, 'Content-Type': 'application/json' };
-const url = `${this.apiUrl}/educacion/borrar/${task.id}`;
-return this.http.delete<Educ>(url,{headers});
+const url = `${this.apiUrl}/ingles/borrar/${task.id}`;
+return this.http.delete<Ingl>(url,{headers});
 
   }
-  updateTaskReminder(task:Educ): Observable<Educ>{
-    alert(task.id);
+  updateTaskReminder(task:Ingl): Observable<Ingl>{
+  
     const option ={
       headers: new HttpHeaders(
         {
@@ -48,21 +46,18 @@ return this.http.delete<Educ>(url,{headers});
         })
     };
     const body={title: 'Angular POST Request Example'};
-  const url = `${this.apiUrl}/educacion/editar/${task.id}`;
-  return this.http.put<Educ>(url+'?principal='+task.principal
-  +'&segunda='+task.segunda
-  +'&personaid='+task.id_persona
-  +'&urllogo='+task.url_logo
-  +'&urlinst='+task.urlinst
-  +'&anoinic='+task.anoinic
-  +'&anofin='+task.anofin
-  +'&titulo='+task.titulo
-  +'&persona_id='+task.persona_id
+  const url = `${this.apiUrl}/ingles/editar/${task.id}`;
+  return this.http.put<Ingl>(url+'?inescrip='+task.inescrip
+  +'&inoral='+task.inoral
+  +'&intecnico='+task.intecnico
+  +'&inbasico='+task.inbasico
+  +'&inavanzado='+task.inavanzado
+  +'&personaid='+task.persona_id
 
   
   , body, option);
 }
-addTask(task:Educ): Observable<Educ>{
+addTask(task:Ingl): Observable<Ingl>{
   const option ={
     headers: new HttpHeaders(
       {
@@ -74,7 +69,7 @@ addTask(task:Educ): Observable<Educ>{
   // const params = new URLSearchParams()
   // params.set('user', user)
   // params.set('password',password)
-  return this.http.post<Educ>(this.apiUrl+'/educacion/crear', task, option);
+  return this.http.post<Ingl>(this.apiUrl+'/ingles/crear', task, option);
 
 }
 }

@@ -119,8 +119,13 @@
        
        <div class="row"> <div class="col-sm-10"></div ><div class="col-sm-2"><span *ngIf="ed.id!==null" ><fa-icon  class="btn btn-outline-secondary " type="button" data-bs-toggle="modal" data-bs-target="#exampleModal1" [icon]="faEdit"  (click)="educCl(ed)" [ngStyle]="{'color':'green'}"></fa-icon><fa-icon (click)="deleT(ed)"  class="btn btn-outline-secondary " [icon]="faTrash" [ngStyle]="{'color':'red'}" ></fa-icon></span></div></div>
    
-        <div [hidden]="ed.url_logo===null || ed.url_logo===''" class="col-sm-2"><img  src="{{ed.url_logo}}" alt="" class="logo"></div><li class="col-sm-10" *ngIf="ed.id!==null" ><strong   [hidden]="this.show" >{{ed.principal}}</strong> :<p   class="col-sm-5" [hidden]="this.show"> {{ed.segunda}}</p></li>
-    
+        <div [hidden]="ed.url_logo===null || ed.url_logo===''" class="col-sm-2"><a href="{{ed.urlinst}}"><img  src="{{ed.url_logo}}" alt="" class="logo"></a></div><li class="col-sm-10" *ngIf="ed.id!==null" ><strong   [hidden]="this.show" >{{ed.principal}}</strong> :<p   class="col-sm-5" [hidden]="this.show"> {{ed.segunda}}</p></li>
+        <div class="row"><div class="col-sm-2"></div ><p class="col-sm-10"><strong>Año de Inicio:</strong> </p></div>
+        <div class="row"><div class="col-sm-2"></div >  <p class="col-sm-10">{{ed.anoinic}}</p></div>
+        <div class="row"><div class="col-sm-2"></div >  <p class="col-sm-10"><strong>Año de Finalización: </strong></p></div>
+        <div class="row"><div class="col-sm-2"></div > <p class="col-sm-10">{{ed.anofin}}</p></div>
+        <div class="row"><div class="col-sm-2"></div ><p class="col-sm-10"><strong> Titulo:</strong> </p></div>
+          <div class="row"><div class="col-sm-2"></div > <p class="col-sm-10">{{ed.titulo}}</p></div>
     <input [hidden]="true" [value]="ed.id" id="ided" name="ided" >
     <input [hidden]="true" [value]="ed.id_persona" id="idper" name="idper" >
     
@@ -159,6 +164,11 @@
                        <div class="input-group-prepend"><span class="input-group-text" style="width: 110px;margin: 2px 0px 0px 0px;">Url del Logo:<br></span></div>
                        <input class="form-control" type="text" style="margin: 2px 0px 0px 0px;" id="urllogo" name="urllogo" [(ngModel)]="url_logo">
                        </div>
+                       <div class="input-group">
+                        <div class="input-group-prepend"><span class="input-group-text" style="width: 110px;margin: 2px 0px 0px 0px;">Url del Lugar<br></span></div>
+                       
+                        <input class="form-control" type="text" style="margin: 2px 0px 0px 0px;" type="text" id="urlinst" name="urlinst" [(ngModel)]="urlinst">
+                        </div>
                        <!-- <div class="input-group-append">
                          <button class="btn btn-primary" type="submit" style="margin: 2px 0px 0px 0px;background-color:#ffff"><i class="far fa-edit ifona"></i></button></div>
                    </form>
@@ -170,6 +180,11 @@
                        <div class="input-group-prepend"><span class="input-group-text" style="width: 110px;margin: 2px 0px 0px 0px;">Nivel:<br></span></div>
                        <input class="form-control" type="text" style="margin: 2px 0px 0px 0px;" type="text" id="principal" name="principal" [(ngModel)]="principal">
                     </div>
+                    <div class="input-group">
+                      <div class="input-group-prepend"><span class="input-group-text" style="width: 110px;margin: 2px 0px 0px 0px;">Titulo<br></span></div>
+                     
+                      <input class="form-control" type="text" style="margin: 2px 0px 0px 0px;" type="text" id="titulo" name="titulo" [(ngModel)]="titulo">
+                      </div>
                        <!-- <div class="input-group-append">
                          <button class="btn btn-primary" type="submit" style="margin: 2px 0px 0px 0px;background-color:#ffff "><i class="far fa-edit ifona"></i></button></div>
                    </form>
@@ -181,6 +196,39 @@
                       
                        <input class="form-control" type="text" style="margin: 2px 0px 0px 0px;" type="text" id="segunda" name="segunda" [(ngModel)]="segunda">
                        </div>
+
+                       <div class="input-group">
+                        <div class="input-group-prepend"><span class="input-group-text" style="width: 110px;margin: 2px 0px 0px 0px;" >Año de Inicio<br></span></div>
+                         
+                           
+                          <select  class="form-select" aria-label="Default select example"  id="anoinic" name="anoinic" [(ngModel)]="anoinic">
+                       <option  ></option> 
+                            
+                                
+                              <option *ngFor="let popo of io"  id="op" value="{{popo[1]}}">{{popo[1]}}</option>  
+                            
+                          </select>
+                        
+                          <!-- <select *ngFor="this.io of this.tee" id="anoinic" name="anoinic" [(ngModel)]="anoinic" >
+                        <option id="op"   value="1">1</option>
+                         {{this.Selec()}} 
+                          
+                          </select> -->
+                        
+                          <!-- <input class="form-control" type="month" style="margin: 2px 0px 0px 0px;" type="text" id="anoinic" name="anoinic" [(ngModel)]="anoinic"> -->
+                        </div>
+                        <div class="input-group">
+                          <div class="input-group-prepend"><span class="input-group-text" style="width: 110px;margin: 2px 0px 0px 0px;" for="year">Año Fin<br></span></div>
+                          <select  class="form-select" aria-label="Default select example"  id="anofin" name="anofin" [(ngModel)]="anofin">
+                            <option  ></option> 
+                                 
+                                     
+                                   <option *ngFor="let popo of io"  id="op" value="{{popo[1]}}">{{popo[1]}}</option>  
+                                 
+                               </select>
+                           
+                          <!-- <input class="form-control" type="month" style="margin: 2px 0px 0px 0px;" type="text" id="anofin" name="anofin" [(ngModel)]="anofin">  -->
+                          </div>
                        <!-- <div class="input-group-append">
                          <button class="btn btn-primary" type="submit" style="margin: 2px 0px 0px 0px;background-color:#ffff"><i class="far fa-edit ifona"></i></button></div> -->
                          <!-- <button type="button" class="btn btn-primary" id="sapve">Guardar</button>

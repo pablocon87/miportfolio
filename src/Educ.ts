@@ -4,5 +4,9 @@ export interface Educ{
     principal:String;
     segunda:String;
     url_logo:String;
-    
+    urlinst:String;
+    anoinic?:Date;
+    anofin?:Date;
+    titulo:String;
+    persona_id?:number;
 }

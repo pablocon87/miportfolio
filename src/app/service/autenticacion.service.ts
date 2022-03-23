@@ -23,8 +23,8 @@ export class AutenticacionService {
   tt= new Date();
   conta:number=0;
   pepito:boolean=false;
-  apiUrl = 'https://porfoarp.herokuapp.com';
-  //apiUrl = 'http://localhost:8080';
+  //apiUrl = 'https://porfoarp.herokuapp.com';
+  apiUrl = 'http://localhost:8080';
   constructor(private http: HttpClient,public router:Router,public _location:Location) { }
   login(user: string, password: string){
     if(user==="" && password===""){
@@ -68,7 +68,7 @@ export class AutenticacionService {
       localStorage.removeItem('id');
       var titon=new Date();
       localStorage.setItem('data',titon.getMinutes()!.toString())
-      localStorage.setItem('timeps','8');
+      localStorage.setItem('timeps','28');
       
       localStorage.setItem('passw',password);
       if(resp.token !==null){
@@ -111,7 +111,7 @@ export class AutenticacionService {
            clearInterval(this.cl);
            this.conta=2;
            localStorage.removeItem('tip');
-           localStorage.setItem('timeps','9')
+           localStorage.setItem('timeps','29')
            this.secc();
           this.tiempos();
          }else{
@@ -232,7 +232,7 @@ export class AutenticacionService {
      }else{
       clearInterval(this.cl);
       this.conta=1;
-      localStorage.setItem('timeps','9')
+      localStorage.setItem('timeps','29')
       this.secc();
       // localStorage.setItem('time','10100');
       // //localStorage.setItem('timedm','9999');

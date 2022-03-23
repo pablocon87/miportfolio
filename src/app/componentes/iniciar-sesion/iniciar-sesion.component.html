@@ -31,7 +31,7 @@
         </div>
        
         <button type="submit" class="btn btn-primary">Enviar</button>
-        <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal3" (click)="clickMe(true)" class="btn btn-success">Registrarse</button>
+        <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal3"  class="btn btn-success">Registrarse</button>
       </form>
     </div>
     <!-- <h1>Angular Router App</h1> -->
@@ -69,7 +69,7 @@
   <!-- <input formControlName="users"  type="email"  [ngClass]="{'is-invalid':Users?.errors && Users?.touched, 'is-valid':!Users?.errors && Users?.touched}" class="form-control" id="users" name="users"  placeholder="Coloque su email" /> -->
   <input formControlName="users" type="email"
           [ngClass]="{'is-invalid':Users?.errors && Users?.touched, 'is-valid':!Users?.errors && Users?.touched}"
-          class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp" required> 
+          class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp" style="width: 280px;margin: 2px 0px 0px 0px;" required> 
 </div>
 <div *ngIf="Users?.errors && Users?.touched">
   <p *ngIf="Users?.hasError('required')" class="text-danger">
@@ -81,7 +81,7 @@
 </div>
   <div class="input-group">
     <div class="input-group-prepend"><span class="input-group-text" style="width: 180px;margin: 2px 0px 0px 0px;">Contraseña:<br></span></div>
-  <input formControlName="passwords" type="password"  [ngClass]="{'is-invalid':Passwords?.errors && Passwords?.touched, 'is-valid':!Passwords?.errors && Password?.touched}" class="form-control" id="passwords" name="passwords" />
+  <input formControlName="passwords" type="password"  [ngClass]="{'is-invalid':Passwords?.errors && Passwords?.touched, 'is-valid':!Passwords?.errors && Password?.touched}" class="form-control" id="passwords" name="passwords" style="width: 280px;margin: 2px 0px 0px 0px;"/>
 </div>
 <div *ngIf="Passwords?.errors && Users?.touched">
   <p *ngIf="Passwords?.hasError('required')" class="text-danger">
@@ -93,7 +93,7 @@
 </div>
   <div class="input-group">
   <div class="input-group-prepend"><span class="input-group-text" style="width: 180px;margin: 2px 0px 0px 0px;">Repita su Contraseña:<br></span></div>
-  <input formControlName="pass" type="password" [ngClass]="{'is-invalid':Pass?.errors && Pass?.touched, 'is-valid':!Pass?.errors && Password?.touched}" class="form-control" id="pass" name="pass"  />
+  <input formControlName="pass" type="password" [ngClass]="{'is-invalid':Pass?.errors && Pass?.touched, 'is-valid':!Pass?.errors && Password?.touched}" class="form-control" id="pass" name="pass" style="width: 280px;margin: 2px 0px 0px 0px;" />
   
 </div>
 <div *ngIf="Pass?.errors && Email?.touched">
@@ -128,7 +128,7 @@
                     </div>
                     </div>
                     <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" (click)="clickMe(false)"  data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary"   data-bs-dismiss="modal">Close</button>
                     
                     </div>
                     </div>

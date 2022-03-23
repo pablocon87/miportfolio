@@ -3,10 +3,12 @@ import {faTimes,faEdit,faPlus,faTrash} from '@fortawesome/free-solid-svg-icons';
 import {Exp} from '../../../Exp';
 import {Tipem} from '../../../Tipem';
 import {Educ} from '../../../Educ'
+import {Task} from '../../../Task'
 import {ExperienciaService} from '../../service/experiencia.service';
 import { AutenticacionService } from 'src/app/service/autenticacion.service';
 import { EducacionService } from 'src/app/service/educacion.service';
 import { map } from 'rxjs/operators';
+
 @Component({
   selector: 'app-experiencia-y-educacion',
   templateUrl: './experiencia-y-educacion.component.html',
@@ -37,23 +39,82 @@ nombreEmpresa:String="";
     principal:String="";
     segunda:String="";
     url_logo:String="";
+    urlinst:String="";
+    anoinic?:Date;
+    anofin?:Date;
+    titulo:String="";
 exp:Exp[]=[];
   tipem:Tipem[]=[];
   edu:Educ[]=[];
+  pers:Task[]=[];
+  anio?:Date|'yyyy' ;
+i?:number;
+ myDates = new Date();
+ years = this.myDates.getFullYear();
+ personas_ids?:number;
+ ii?:any;
+ aa:any=[];
+ io:any=[];
+ tee:any[]=[];
+ conta:number=0;
   constructor(public e:ExperienciaService,public per:AutenticacionService,public educ:EducacionService) { }
 
   ngOnInit(): void {
+    type MyArrayType = Array<any>;
+    for(var i = 1900; i < this.years+1; i++){
+    
+      const arr: MyArrayType = [
+        "ida",i
+        
+    ];
+    this.aa.push(arr);
+    
+    
+
+     
+      }
+      for (this.tee of this.aa){
+        
+         
+        for ( let ioa of this.tee){
+          
+            this.io.push(this.tee)
+          
+         }
+        
+  }
+  
+      //alert(JSON.stringify(this.ii))
+    //console.log("ESTE THIS"+JSON.stringify(this.aa))
+        
+       
       this.Recarga();
    
   }
+  OpRe(){
+    let opt;
+   
+  }
   Recarga(){
+    this.per.getTasks().subscribe(
+      data => {
+        this.pers=data;
+        for(let l of this.pers ){
+          this.persona_id=l.id;
+          this.id_persona=l.id;
+          this.personas_ids=l.id;
+        }
+      console.log("PUT Request is successful ", data);
+      },
+      error => {
+        this.exp;
+      console.log("Rrror", error);
+      }
+      );
     this.e.getTasks().subscribe(
       data => {
         this.exp=data;
-        for(let l of this.exp ){
-          this.persona_id=l.persona_id;
-          this.id_persona=l.persona_id;
-        }
+       
       console.log("PUT Request is successful ", data);
       },
       error => {
@@ -85,6 +146,14 @@ exp:Exp[]=[];
      }else{this.color="green";
     
    }
+  }
+  Selec(){
+    var myDate = new Date();
+    var year = myDate.getFullYear();
+    for( this.i = 1900; this.i < year+1; this.i++){
+      document.write("<option></option>");
+    // document.write('<option value="'+this.i+'">'+this.i+'</option>');
+    }
   }
   onSubmit(){
     if((<HTMLInputElement>document.getElementById("Save")).value!=="Guardar"){
@@ -235,16 +304,21 @@ let val =  (<HTMLInputElement>document.getElementById("tipo_empleo_id")).value;
   educCl(ed:Educ){
   
     // if(this.showadd===false){
-     
+      this.id=ed.id; 
+      this.id_persona=ed.id_persona;
       this.showadd=true;  
+      (<HTMLInputElement>document.getElementById("Sapves")).value="Modificar";
       (<HTMLInputElement>document.getElementById("urllogo")).value=ed.url_logo.toString();
     (<HTMLInputElement>document.getElementById("principal")).value=ed.principal.toString();
       (<HTMLInputElement>document.getElementById("segunda")).value=ed.segunda.toString();
+       (<HTMLInputElement>document.getElementById("urlinst")).value=ed.urlinst.toString();
+       (<HTMLInputElement>document.getElementById("anoinic")).value=ed.anoinic!.toString();
+       (<HTMLInputElement>document.getElementById("anofin")).value=ed.anofin!.toString();
+       (<HTMLInputElement>document.getElementById("titulo")).value=ed.titulo.toString();
       //this.id= parseFloat((<HTMLInputElement>document.getElementById("ided")).value);
       //((<HTMLInputElement>document.getElementById("ided")).value)=ed.id?;
-      this.id=ed.id; 
-      this.id_persona=ed.id_persona;
-       (<HTMLInputElement>document.getElementById("Sapves")).value="Modificar";
+      
+       
   
   // }else{this.showadd=false;
   //   (<HTMLInputElement>document.getElementById("Sapve")).value="Guardar Cambios";
@@ -255,6 +329,10 @@ let val =  (<HTMLInputElement>document.getElementById("tipo_empleo_id")).value;
       (<HTMLInputElement>document.getElementById("urllogo")).value="";
       (<HTMLInputElement>document.getElementById("principal")).value="";
       (<HTMLInputElement>document.getElementById("segunda")).value="";
+      (<HTMLInputElement>document.getElementById("urlinst")).value="";
+      (<HTMLInputElement>document.getElementById("anoinic")).value="";
+      (<HTMLInputElement>document.getElementById("anofin")).value="";
+      (<HTMLInputElement>document.getElementById("titulo")).value="";
       (<HTMLInputElement>document.getElementById("Sapves")).value="Guardar Cambios";
       this.showadd=true;    
   // }else{this.showadd=false}
@@ -266,8 +344,8 @@ let val =  (<HTMLInputElement>document.getElementById("tipo_empleo_id")).value;
     return;
   }
   
-    const {principal,segunda,id_persona,url_logo}=this;
-    const modiFi={principal,segunda,id_persona,url_logo}
+    const {principal,segunda,id_persona,url_logo,urlinst,anoinic,anofin,titulo,persona_id}=this;
+    const modiFi={principal,segunda,id_persona,url_logo,urlinst,anoinic,anofin,titulo,persona_id}
     this.educ.addTask(modiFi).subscribe(
       data => {
         this.showadd=false;    
@@ -300,14 +378,20 @@ let val =  (<HTMLInputElement>document.getElementById("tipo_empleo_id")).value;
    this.url_logo= (<HTMLInputElement>document.getElementById("urllogo")).value;
      this.principal= (<HTMLInputElement>document.getElementById("principal")).value;
  this.segunda= (<HTMLInputElement>document.getElementById("segunda")).value;
+ this.urlinst=(<HTMLInputElement>document.getElementById("urlinst")).value;
+ var x:any=     (<HTMLInputElement>document.getElementById("anoinic")).value;
+ this.anoinic=x;
+   var xx:any=   (<HTMLInputElement>document.getElementById("anofin")).value;
+   this.anofin=xx;   
+   this.titulo=(<HTMLInputElement>document.getElementById("titulo")).value;
  //this.id=  parseFloat((<HTMLInputElement>document.getElementById("ided")).value);
 //  alert(this.principal);
 //  alert(this.segunda);
 // alert(this.id);
 // alert(this.id_persona)
 // return;
-  const {principal,segunda,id_persona,id,url_logo}=this;
-  const modiFi={principal,segunda,id_persona,id,url_logo}
+  const {principal,segunda,id_persona,id,url_logo,urlinst,anoinic,anofin,titulo,persona_id}=this;
+  const modiFi={principal,segunda,id_persona,id,url_logo,urlinst,anoinic,anofin,titulo,persona_id}
   if(this.principal==="" || this.segunda==="" || this.id===null){
     alert("Debe llenar los campos de la Modificacion");
     return;
