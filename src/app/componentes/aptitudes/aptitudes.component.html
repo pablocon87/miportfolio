@@ -1,7 +1,11 @@
 
 <div class="container">
+    
     <div class="row"><div class="col-sm-10"></div><h1 class="co-sm-2">Conocimientos</h1></div>
+    <div class="taskt row"></div>
+    <div class="task">
     <h5>Conocimientos de Ingles</h5>
+    
     <form (ngSubmit)="submit()">
     <div class="input-group">
     <label for="customRange2" class="form-label">Ingles Técnico</label> 
@@ -36,9 +40,12 @@
     <button type="submit" class="btn btn-primary" (click)="this.showrang=true" [hidden]="this.showrang">Volver</button>
         <button type="submit" class="btn btn-primary" (click)="this.showrang=false" [hidden]="!this.showrang">Modificar</button>
 <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+</div>
 
-
+<div class="taskt row"></div>
+<div class="task">
 <h5>Conocimientos de Lenguajes de Programación</h5>
+
 <form (ngSubmit)="submitLen()">
     <div class="input-group">
     <label for="customRange2" class="form-label">PHP</label> 
@@ -83,8 +90,9 @@
     <button type="submit" class="btn btn-primary" (click)="this.showalller=true" [hidden]="this.showalller">Volver</button>
         <button type="submit" class="btn btn-primary" (click)="this.showalller=false" [hidden]="!this.showalller">Modificar</button>
 <div id="chartContainer2" style="height: 370px; width: 100%;"></div>
-
-
+</div>
+<div class="taskt row"></div>
+<div class="task">
 <h5>Conocimientos de Sistemas Operativos</h5>
 
 <form (ngSubmit)="submitSop()">
@@ -118,9 +126,11 @@
         <button type="submit" class="btn btn-primary" (click)="this.showsopr=false;this.showrelo=true;" [hidden]="!this.showsopr">Modificar</button>
 
 <div id="chartContainer3" style="height: 370px; width: 100%;"></div>
-
-
+</div>
+<div class="taskt row"></div>
+<div class="task">
 <h5>Conocimientos de Base de Datos</h5>
+
 <form (ngSubmit)="submitBd()">
     <div class="input-group">
     <label for="customRange2" class="form-label">Mysql</label> 
@@ -152,6 +162,8 @@
         <button type="submit" class="btn btn-primary" (click)="this.showbdr=false;this.showbd=true;" [hidden]="!this.showbdr">Modificar</button>
 
 <div id="chartContainer4" style="height: 370px; width: 100%;"></div>
+</div>
+<div class="taskt row"></div>
 </div>
 
 <!-- <script type='text/javascript'>

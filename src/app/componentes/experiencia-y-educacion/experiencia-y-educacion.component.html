@@ -115,7 +115,8 @@
         <input type="submit"  class="form-control" id="Sapve" value="Guardar" class="btn btn-outline-primary" >
         <input type="button" id="valor" value="Volver" (click)="addEdu()"   class="btn btn-outline-success">   
     </form> -->
-    <div class="row" *ngFor="let ed of edu" >
+    <div class="taskt row"></div>
+    <div class="task row" *ngFor="let ed of edu" >
        
        <div class="row"> <div class="col-sm-10"></div ><div class="col-sm-2"><span *ngIf="ed.id!==null" ><fa-icon  class="btn btn-outline-secondary " type="button" data-bs-toggle="modal" data-bs-target="#exampleModal1" [icon]="faEdit"  (click)="educCl(ed)" [ngStyle]="{'color':'green'}"></fa-icon><fa-icon (click)="deleT(ed)"  class="btn btn-outline-secondary " [icon]="faTrash" [ngStyle]="{'color':'red'}" ></fa-icon></span></div></div>
    
@@ -128,7 +129,7 @@
           <div class="row"><div class="col-sm-2"></div > <p class="col-sm-10">{{ed.titulo}}</p></div>
     <input [hidden]="true" [value]="ed.id" id="ided" name="ided" >
     <input [hidden]="true" [value]="ed.id_persona" id="idper" name="idper" >
-    
+    <div class="taskt"></div>
     </div>
     <!--otro modal-->
     <!-- Button trigger modal -->
