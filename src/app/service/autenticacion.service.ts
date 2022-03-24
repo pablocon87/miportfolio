@@ -386,4 +386,19 @@ addmiSwetTasadd(){
     'success'
   )
 }
+addmiSwetTasbor(){
+  Swal.fire(
+    'Muy Bien!',
+    'Se borro Correctamente!',
+    'success'
+  )
+}
+addmiSwetERadd(){
+
+  Swal.fire(
+    'Info!',
+    'No tiene que dejar campos en 0 !',
+    'error'
+  )
+}
 }

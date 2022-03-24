@@ -1,9 +1,9 @@
 
 <div class="container">
-    
+    <div class="mb-3 row" >  
     <div class="row"><div class="col-sm-10"></div><h1 class="co-sm-2">Conocimientos</h1></div>
     <div class="taskt row"></div>
-    <div class="task">
+    <div class="task row">
     <h5>Conocimientos de Ingles</h5>
     
     <form (ngSubmit)="submit()">
@@ -20,30 +20,32 @@
         </div>
         <div class="input-group">
             <label for="customRange2" class="form-label">Ingles Oral</label> 
-            <input id="ex3" data-id='ex1RangePicker'  (input)="ValorRan()" type="range" data-min="0" data-max="20" data-step="1" data-value="{{this.ingoral}}"[disabled]="this.showrang"/>
+            <input id="ex3" data-id='ex1RangePicker'  (input)="ValorRan()" type="range" data-min="0" data-max="20" data-step="1" data-value="{{this.ingoral}}" [disabled]="this.showrang"/>
             <p id="demo2"></p>
         </div>
         <div class="input-group">
             <label for="customRange2" class="form-label">Ingles Basico</label> 
-            <input id="ex4" data-id='ex1RangePicker'  (input)="ValorRan()" type="range" data-min="0" data-max="20" data-step="1" data-value="{{this.ingbas}}"[disabled]="this.showrang"/>
+            <input id="ex4" data-id='ex1RangePicker'  (input)="ValorRan()" type="range" data-min="0" data-max="20" data-step="1" data-value="{{this.ingbas}}" [disabled]="this.showrang"/>
             <p id="demo3"></p>
         </div>
         <div class="input-group">
             <label for="customRange2" class="form-label">Ingles Avanzado</label> 
-            <input id="ex5" data-id='ex1RangePicker'  (input)="ValorRan()" type="range" data-min="0" data-max="20" data-step="1" data-value="{{this.ingav}}"[disabled]="this.showrang"/>
+            <input id="ex5" data-id='ex1RangePicker'  (input)="ValorRan()" type="range" data-min="0" data-max="20" data-step="1" data-value="{{this.ingav}}" [disabled]="this.showrang"/>
             <p id="demo4"></p>
         </div>
         <button type="submit" class="btn btn-primary" (click)="this.showall=true" [hidden]="this.showall">Aplicar</button>
-        <button type="submit" class="btn btn-primary"  [hidden]="this.showrang">Aplicar cambios</button>
-        
+        <button type="submit" class="btn btn-primary"  [hidden]="!this.showingle ">Aplicar cambios</button>
+        <button type="button" class="btn btn-primary" (click)="this.showrang=true;this.showingle=false;" [hidden]="!this.showingle">Volver</button>
+        <button type="button" class="btn btn-primary" (click)="this.showrang=false;this.showingle=true" [hidden]="!this.showrang">Modificar</button>
+        <button type="button" class="btn btn-primary" *ngFor="let ig of this.ingle" (click)="this.borrarIng(ig);this.showrang=false;this.showall=false" [hidden]="!this.showrang">Borrar Datos</button>
     </form>
-    <button type="submit" class="btn btn-primary" (click)="this.showrang=true" [hidden]="this.showrang">Volver</button>
-        <button type="submit" class="btn btn-primary" (click)="this.showrang=false" [hidden]="!this.showrang">Modificar</button>
+   
 <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+<div class="taskt"></div>
 </div>
 
-<div class="taskt row"></div>
-<div class="task">
+
+<div class="task row">
 <h5>Conocimientos de Lenguajes de Programación</h5>
 
 <form (ngSubmit)="submitLen()">
@@ -83,16 +85,18 @@
             <input id="otros" data-id='ex1RangePicker'  (input)="ValorLen()" type="range" data-min="0" data-max="20" data-step="1" data-value="{{this.otros}}"[disabled]="this.showalller"/>
             <p id="otrosdemo"></p>
         </div>
-        <button type="submit" class="btn btn-primary" (click)="this.showalllen=true" [hidden]="this.showalllen">Aplicar</button>
-        <button type="submit" class="btn btn-primary"  [hidden]="this.showalller">Aplicar cambios</button>
-        
+        <button type="submit" class="btn btn-primary" (click)="this.showalengu=true"  [hidden]="this.showalengu">Aplicar</button>
+        <button type="submit" class="btn btn-primary"  [hidden]="!this.showbuton">Aplicar cambios</button>
+        <button type="button" class="btn btn-primary" (click)="this.showalller=true;this.showbuton=false;" [hidden]="!this.showbuton">Volver</button>
+        <button type="button" class="btn btn-primary" (click)="this.showalller=false;this.showbuton=true" [hidden]="!this.showalller">Modificar</button>
+        <button type="button" class="btn btn-primary" *ngFor="let lp of this.lengp" (click)="this.showalller=false;this.showalengu=false;this.borrarLeng(lp);" [hidden]="!this.showalller">Borrar Datos</button>
     </form>
-    <button type="submit" class="btn btn-primary" (click)="this.showalller=true" [hidden]="this.showalller">Volver</button>
-        <button type="submit" class="btn btn-primary" (click)="this.showalller=false" [hidden]="!this.showalller">Modificar</button>
+   
 <div id="chartContainer2" style="height: 370px; width: 100%;"></div>
+<div class="taskt"></div>
 </div>
-<div class="taskt row"></div>
-<div class="task">
+
+<div class="task row">
 <h5>Conocimientos de Sistemas Operativos</h5>
 
 <form (ngSubmit)="submitSop()">
@@ -118,17 +122,19 @@
             <p id="otrossdemo"></p>
         </div>
        
-        <button type="submit" class="btn btn-primary" (click)="this.showsop=true;this.showrelo=true;" [hidden]="this.showsop">Aplicar</button>
-        <button type="submit" class="btn btn-primary"  [hidden]="this.showsopr || !this.showrelo">Aplicar cambios</button>
-        
+        <button type="submit" class="btn btn-primary" (click)="this.showsop=true;" [hidden]="this.showsop">Aplicar</button>
+        <button type="submit" class="btn btn-primary"  [hidden]="!this.showrelo">Aplicar cambios</button>
+        <button type="button" class="btn btn-primary" (click)="this.showsopr=true;this.showrelo=false;" [hidden]="!this.showrelo">Volver</button>
+        <button type="button" class="btn btn-primary" (click)="this.showsopr=false;this.showrelo=true;" [hidden]="!this.showsopr">Modificar</button>
+        <button type="button" class="btn btn-primary" *ngFor="let osp of this.sisop" (click)="this.showsopr=false;this.showsop=false;this.borrarSip(osp)" [hidden]="!this.showsopr">Borrar Datos</button>
     </form>
-    <button type="submit" class="btn btn-primary" (click)="this.showsopr=true" [hidden]="this.showsopr || !this.showrelo">Volver</button>
-        <button type="submit" class="btn btn-primary" (click)="this.showsopr=false;this.showrelo=true;" [hidden]="!this.showsopr">Modificar</button>
+   
 
 <div id="chartContainer3" style="height: 370px; width: 100%;"></div>
+<div class="taskt"></div>
 </div>
-<div class="taskt row"></div>
-<div class="task">
+
+<div class="task row">
 <h5>Conocimientos de Base de Datos</h5>
 
 <form (ngSubmit)="submitBd()">
@@ -154,16 +160,18 @@
             <p id="otrosbddemo"></p>
         </div>
        
-        <button type="submit" class="btn btn-primary" (click)="this.showbasd=true;this.showbd=true;" [hidden]="this.showbasd">Aplicar</button>
-        <button type="submit" class="btn btn-primary"  [hidden]="this.showbdr || !this.showbd">Aplicar cambios</button>
-        
+        <button type="submit" class="btn btn-primary" (click)="this.showbasd=true;" [hidden]="this.showbasd">Aplicar</button>
+        <button type="submit" class="btn btn-primary"  [hidden]="!this.showbd">Aplicar cambios</button>
+        <button type="button" class="btn btn-primary" (click)="this.showbdr=true" [hidden]=" !this.showbd">Volver</button>
+        <button type="button" class="btn btn-primary" (click)="this.showbdr=false;this.showbd=true;" [hidden]="!this.showbdr">Modificar</button>
+        <button type="button" class="btn btn-primary" *ngFor="let bds of this.basdat" (click)="this.showbdr=false;this.showbasd=false;this.borrarBd(bds);" [hidden]="!this.showbdr">Borrar Datos</button>
     </form>
-    <button type="submit" class="btn btn-primary" (click)="this.showbdr=true" [hidden]="this.showbdr || !this.showbd">Volver</button>
-        <button type="submit" class="btn btn-primary" (click)="this.showbdr=false;this.showbd=true;" [hidden]="!this.showbdr">Modificar</button>
+    
 
 <div id="chartContainer4" style="height: 370px; width: 100%;"></div>
+<div class="taskt"></div>
 </div>
-<div class="taskt row"></div>
+</div>
 </div>
 
 <!-- <script type='text/javascript'>

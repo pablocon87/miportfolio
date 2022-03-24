@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
-import {faTimes,faEdit } from '@fortawesome/free-solid-svg-icons';
+import {faTimes,faEdit,faDoorClosed } from '@fortawesome/free-solid-svg-icons';
 import { AutenticacionService } from 'src/app/service/autenticacion.service';
 import {Task} from '../../../Task'
 import {HttpClient,HttpHeaders, HttpParams ,HttpResponse} from '@angular/common/http';
@@ -32,6 +32,7 @@ export class EncabezadoComponent implements OnInit {
   @Output() onAddTask : EventEmitter <Task>= new EventEmitter()
   @Output() btnClick = new EventEmitter();
   faEdit=faEdit;
+  faDoorClosed=faDoorClosed;
   color:String="green";
     tasks:Task[]=[];
     id?:number;

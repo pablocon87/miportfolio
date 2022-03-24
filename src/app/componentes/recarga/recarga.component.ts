@@ -12,9 +12,10 @@ local: string="";
   constructor(public autenticacionService:AutenticacionService,public _router: Router, public _location: Location) { }
 
   ngOnInit(): void {
-   if(localStorage.getItem('auth_token') !==''){
+   if(localStorage.getItem('auth_token') !==null){
       this.local=localStorage.getItem('auth_token')!.toString();
-   }else{this.local="";}
+   }else{this._router.navigate(['']);}
+   
   }
 compro(){
 
@@ -25,10 +26,5 @@ this.autenticacionService.router.navigate(['/Inic'])
 }
 
 }
-refresh(): void {
-  this._router.navigateByUrl("/refresh", { skipLocationChange: true }).then(() => {
-  console.log(decodeURI(this._location.path()));
-  this._router.navigate([decodeURI(this._location.path())]);
-  });
-}
+
 }

@@ -108,6 +108,9 @@ i?:number;
       },
       error => {
         this.exp;
+        
+        this.per.logout();
+        
       console.log("Rrror", error);
       }
       );

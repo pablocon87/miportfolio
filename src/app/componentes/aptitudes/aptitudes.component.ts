@@ -32,7 +32,10 @@ idl?:number;
      otros?:number=0;
      persona_idl?:number=0;
      showalllen:boolean=false;
+     showbuton:boolean=false;
      showalller:boolean=false;
+     showalengu:boolean=false;
+     showsubmlen:boolean=false;
      lengp:Lnp[]=[];
 /** */
 /**SisOp */
@@ -46,6 +49,7 @@ sisop:Sop[]=[];
 showsop:boolean=false;
 showsopr:boolean=false;
 showrelo:boolean=false;
+showsubmsop:boolean=false
 /** */
 /**Basdat */
 idbd?:number;
@@ -58,12 +62,15 @@ showbasd:boolean=false;
 showbd:boolean=false;
 showbdr:boolean=false;
 showsubm:boolean=false
+basdat:Bdt[]=[];
 /** */
 pers:Task[]=[];
 ingle:Ingl[]=[];
 showall:boolean=false;
 showrang:boolean=false;
+showingle:boolean=false;
 showlen:boolean=false;
+showlesubm:boolean=false;
 id?:number;
     inescrip?:number;
     inoral?:number;
@@ -74,6 +81,50 @@ id?:number;
   constructor(public ing:ConoinglesService,public per:AutenticacionService,public lenp:ConlenprogService,public sip:ConsisopService,public bd:ConbasdatService) { }
 
   ngOnInit(): void {
+    this.ingtec=0;
+    this.ingescr=0;
+    this.ingoral=0;
+    this.ingbas=0;
+     this.ingav=0;
+     (<HTMLInputElement>document.getElementById("demo1")).innerHTML=this.ingtec!.toString();
+            (<HTMLInputElement>document.getElementById("demo2")).innerHTML=this.ingescr!.toString();
+            (<HTMLInputElement>document.getElementById("demo")).innerHTML=this.ingoral!.toString();
+            (<HTMLInputElement>document.getElementById("demo3")).innerHTML=this.ingbas!.toString();
+            (<HTMLInputElement>document.getElementById("demo4")).innerHTML=this.ingav!.toString();
+    this.InglesC();
+    this.mysql=0;
+    this.postgresql=0;
+    this.sqlserver=0;
+    this.otrosbd=0;
+    (<HTMLInputElement>document.getElementById("mysqldemo")).innerHTML=this.mysql!.toString();
+    (<HTMLInputElement>document.getElementById("postgresqldemo")).innerHTML=this.postgresql!.toString();
+    (<HTMLInputElement>document.getElementById("sqlserverdemo")).innerHTML=this.sqlserver!.toString();
+    (<HTMLInputElement>document.getElementById("otrosbddemo")).innerHTML=this.otrosbd!.toString();
+    this.BasdaC();
+    this.windows=0;
+    this.linux=0;
+    this.macos=0;
+    this.otross=0;
+    (<HTMLInputElement>document.getElementById("windowsdemo")).innerHTML=this.windows!.toString();
+    (<HTMLInputElement>document.getElementById("linuxdemo")).innerHTML=this.linux!.toString();
+    (<HTMLInputElement>document.getElementById("macosdemo")).innerHTML=this.macos!.toString();
+    (<HTMLInputElement>document.getElementById("otrossdemo")).innerHTML=this.otross!.toString();
+    this.SisopC();
+    this.php=0;
+    this.java=0;
+    this.ruby=0;
+    this.javascript=0;
+    this.typescript=0;
+    this.python=0;
+    this.otros=0;
+    (<HTMLInputElement>document.getElementById("phpdemo")).innerHTML=this.php!.toString();
+              (<HTMLInputElement>document.getElementById("javademo")).innerHTML=this.java!.toString();
+              (<HTMLInputElement>document.getElementById("javascriptdemo")).innerHTML=this.javascript!.toString();
+              (<HTMLInputElement>document.getElementById("typescriptdemo")).innerHTML=this.typescript!.toString();
+              (<HTMLInputElement>document.getElementById("pythondemo")).innerHTML=this.python!.toString();
+              (<HTMLInputElement>document.getElementById("rubydemo")).innerHTML=this.ruby!.toString();
+              (<HTMLInputElement>document.getElementById("otrosdemo")).innerHTML=this.otros!.toString();
+    this.progrC();
     this.per.getTasks().subscribe(
       data => {
         this.pers=data;
@@ -100,6 +151,7 @@ id?:number;
             this.ingav=l.inavanzado;
             this.showall=true;
             this.showrang=true;
+            this.showlesubm=true;
             (<HTMLInputElement>document.getElementById("demo1")).innerHTML=l.inescrip!.toString();
             (<HTMLInputElement>document.getElementById("demo2")).innerHTML=l.inoral!.toString();
             (<HTMLInputElement>document.getElementById("demo")).innerHTML=l.intecnico!.toString();
@@ -117,7 +169,7 @@ id?:number;
         );
         this.lenp.getTasks().subscribe(
           data => {
-            data;
+            this.lengp=data;
             for(let l of data ){
               this.idl=l.id;
               this.php=l.php;
@@ -129,6 +181,9 @@ id?:number;
               this.otros=l.otros;
               this.showalllen=true;
               this.showalller=true;
+              
+              this.showalengu=true;
+              this.showsubmlen=true;
               (<HTMLInputElement>document.getElementById("phpdemo")).innerHTML=this.php!.toString();
               (<HTMLInputElement>document.getElementById("javademo")).innerHTML=this.java!.toString();
               (<HTMLInputElement>document.getElementById("javascriptdemo")).innerHTML=this.javascript!.toString();
@@ -148,7 +203,7 @@ id?:number;
           );
           this.sip.getTasks().subscribe(
             data => {
-              data;
+              this.sisop=data;
               for(let l of data ){
                 this.ids=l.id;
                 this.windows=l.windows;
@@ -157,6 +212,7 @@ id?:number;
                 this.otross=l.otros;
                 this.showsop=true;
                 this.showsopr=true;
+                this.showsubmsop=true;
                 (<HTMLInputElement>document.getElementById("windowsdemo")).innerHTML=this.windows!.toString();
                 (<HTMLInputElement>document.getElementById("linuxdemo")).innerHTML=this.linux!.toString();
                 (<HTMLInputElement>document.getElementById("macosdemo")).innerHTML=this.macos!.toString();
@@ -173,7 +229,7 @@ id?:number;
             );
             this.bd.getTasks().subscribe(
               data => {
-                data;
+               this.basdat= data;
                 for(let l of data ){
                   this.idbd=l.id;
                   this.mysql=l.mysql;
@@ -181,7 +237,7 @@ id?:number;
                   this.sqlserver=l.sqlserver;
                   this.otrosbd=l.otros;
                   this.showbasd=true;
-                  this.showbd=true;
+                  
                   this.showbdr=true;
                   this.showsubm=true;
                   (<HTMLInputElement>document.getElementById("mysqldemo")).innerHTML=this.mysql!.toString();
@@ -408,7 +464,7 @@ ValorRanBd(){
   chartersa.render();
  }
   submit(){
-    if(this.showall===false){
+    if(this.showlesubm===false){
 
     
     this.id;
@@ -419,9 +475,9 @@ ValorRanBd(){
     this.inavanzado=parseInt((<HTMLInputElement>document.getElementById("demo4")).innerHTML);
     this.persona_id;
     //alert(this.inoral)
-    if (this.inoral===null || this.intecnico===null){
-      
-      alert("no ahy nada");
+    if (this.inoral===0 || this.intecnico===0 || this.intecnico===0 || this.inbasico===0 || this.inavanzado===0){
+      this.showall=false;
+      this.per.addmiSwetERadd();
       return;
     }
     const {id,inescrip,inoral,intecnico,inbasico,inavanzado,persona_id}=this
@@ -444,6 +500,7 @@ ValorRanBd(){
         let ver =obj.error;
         console.log("andaaaaa "+ ver.text);
         if(ver.text==='Success'){
+          this.ngOnInit();
           localStorage.setItem("testJSON", '');
           this.per.addmiSwetTasadd();
           this.ngOnInit();
@@ -453,7 +510,7 @@ ValorRanBd(){
       }
   });
 }else{
-
+  this.showrang=true;this.showingle=false;
   this.id;
   this.inescrip=parseInt((<HTMLInputElement>document.getElementById("demo1")).innerHTML);
   this.inoral=parseInt((<HTMLInputElement>document.getElementById("demo2")).innerHTML);
@@ -462,9 +519,9 @@ ValorRanBd(){
   this.inavanzado=parseInt((<HTMLInputElement>document.getElementById("demo4")).innerHTML);
   this.persona_id;
   //alert(this.inoral)
-  if (this.inoral===null || this.intecnico===null){
-    
-    alert("no ahy nada");
+  if (this.inoral===0 || this.intecnico===0 || this.intecnico===0 || this.inbasico===0 || this.inavanzado===0){
+    this.ngOnInit();
+    this.per.addmiSwetERadd();
     return;
   }
   const {id,inescrip,inoral,intecnico,inbasico,inavanzado,persona_id}=this
@@ -483,8 +540,37 @@ ValorRanBd(){
 
 }
   }
+  borrarIng(igl:Ingl){
+    this.ing.deleteTask(igl).subscribe({
+      next: resp => {
+        const myJSON = JSON.stringify(resp);
+        localStorage.setItem("testJSON", myJSON);
+        let texts = localStorage.getItem("testJSON");
+        let obj = JSON.parse(texts!);
+        let ver =obj.error;
+        console.log("Se Cargo "+ ver.text);
+        this.ngOnInit();
+      },
+      error: error => {
+        const myJSON = JSON.stringify(error);
+        localStorage.setItem("testJSON", myJSON);
+        let texts = localStorage.getItem("testJSON");
+        let obj = JSON.parse(texts!);
+        let ver =obj.error;
+        console.log("andaaaaa "+ ver.text);
+        if(ver.text==='Succes'){
+          this.ngOnInit();
+          localStorage.setItem("testJSON", '');
+          this.per.addmiSwetTasbor();
+          this.ngOnInit();
+        }
+        this.ngOnInit();
+      }
+  });
+  }
   submitLen(){
-    if(this.showalller===true){
+    
+    if(this.showsubmlen===false){
 
     
       this.id;
@@ -497,9 +583,9 @@ ValorRanBd(){
       this.otros=parseInt((<HTMLInputElement>document.getElementById("otrosdemo")).innerHTML);
       this.persona_id;
       //alert(this.inoral)
-      if (this.php===null || this.java===null){
-        
-        alert("no ahy nada");
+      if (this.php===0 || this.java===0 || this.javascript===0 || this.typescript===0 || this.python===0 || this.ruby===0 || this.otros===0){
+        this.showalengu=false;
+    this.per.addmiSwetERadd();
         return;
       }
       const {id,php,java,javascript,typescript,python,ruby,otros,persona_id}=this
@@ -531,7 +617,7 @@ ValorRanBd(){
         }
     });
   }else{
-  
+    this.showalller=true;this.showbuton=false;
     this.id=this.idl;
       this.php=parseInt((<HTMLInputElement>document.getElementById("phpdemo")).innerHTML);
       this.java=parseInt((<HTMLInputElement>document.getElementById("javademo")).innerHTML);
@@ -543,7 +629,11 @@ ValorRanBd(){
       
       this.persona_id;
     //alert(this.inoral)
-    
+    if (this.php===0 || this.java===0 || this.javascript===0 || this.typescript===0 || this.python===0 || this.ruby===0 || this.otros===0){
+      this.ngOnInit();
+  this.per.addmiSwetERadd();
+      return;
+    }
     const {id,php,java,javascript,typescript,python,ruby,otros,persona_id}=this
     const ModiFi={id,php,java,javascript,typescript,python,ruby,otros,persona_id}
     this.lenp.updateTaskReminder(ModiFi).subscribe(
@@ -561,8 +651,35 @@ ValorRanBd(){
   }
 
   }
+  borrarLeng(lg:Lnp){
+    this.lenp.deleteTask(lg).subscribe({
+      next: resp => {
+        const myJSON = JSON.stringify(resp);
+        localStorage.setItem("testJSON", myJSON);
+        let texts = localStorage.getItem("testJSON");
+        let obj = JSON.parse(texts!);
+        let ver =obj.error;
+        console.log("Se Cargo "+ ver.text);
+        this.ngOnInit();
+      },
+      error: error => {
+        const myJSON = JSON.stringify(error);
+        localStorage.setItem("testJSON", myJSON);
+        let texts = localStorage.getItem("testJSON");
+        let obj = JSON.parse(texts!);
+        let ver =obj.error;
+        console.log("andaaaaa "+ ver.text);
+        if(ver.text==='Succes'){
+          this.ngOnInit();
+          localStorage.setItem("testJSON", '');
+          this.per.addmiSwetTasbor();
+          this.ngOnInit();
+        }
+        this.ngOnInit();
+      }});
+  }
   submitSop(){
-    if(this.showsop===false){
+    if(this.showsubmsop===false){
 
     
       this.id;
@@ -573,9 +690,9 @@ ValorRanBd(){
       this.otros=this.otross;
       this.persona_id;
       //alert(this.inoral)
-      if (this.php===null || this.java===null){
-        
-        alert("no ahy nada");
+      if (this.windows===0 || this.linux===0 || this.macos===0 || this.otross===0){
+        this.showsop=false;
+        this.per.addmiSwetERadd();
         return;
       }
       const {id,windows,linux,macos,otros,persona_id}=this
@@ -607,7 +724,7 @@ ValorRanBd(){
         }
     });
   }else{
-  
+    this.showsopr=true;this.showrelo=false;
     this.id=this.ids;
   
     this.windows=parseInt((<HTMLInputElement>document.getElementById("windowsdemo")).innerHTML);
@@ -619,9 +736,9 @@ ValorRanBd(){
       
       this.persona_id;
     //alert(this.inoral)
-    if (this.windows===null || this.linux===null){
-      
-      alert("no ahy nada");
+    if (this.windows===0 || this.linux===0 || this.macos===0 || this.otross===0){
+      this.ngOnInit();
+      this.per.addmiSwetERadd();
       return;
     }
     const {id,windows,linux,macos,otros,persona_id}=this
@@ -641,6 +758,33 @@ ValorRanBd(){
   }
 
   }
+  borrarSip(os:Sop){
+    this.sip.deleteTask(os).subscribe({
+      next: resp => {
+        const myJSON = JSON.stringify(resp);
+        localStorage.setItem("testJSON", myJSON);
+        let texts = localStorage.getItem("testJSON");
+        let obj = JSON.parse(texts!);
+        let ver =obj.error;
+        console.log("Se Cargo "+ ver.text);
+        this.ngOnInit();
+      },
+      error: error => {
+        const myJSON = JSON.stringify(error);
+        localStorage.setItem("testJSON", myJSON);
+        let texts = localStorage.getItem("testJSON");
+        let obj = JSON.parse(texts!);
+        let ver =obj.error;
+        console.log("andaaaaa "+ ver.text);
+        if(ver.text==='Succes'){
+          this.ngOnInit();
+          localStorage.setItem("testJSON", '');
+          this.per.addmiSwetTasbor();
+          this.ngOnInit();
+        }
+        this.ngOnInit();
+      }});
+  }
   submitBd(){
     if(this.showsubm===false){
 
@@ -653,6 +797,12 @@ ValorRanBd(){
       this.otros=this.otrosbd;
       this.persona_id;
       //alert(this.inoral)
+      if(this.mysql===0 || this.postgresql===0 || this.sqlserver===0 || this.otrosbd===0){
+        this.showbasd=false;
+        this.showbd=false;
+        this.per.addmiSwetERadd();
+        return;
+      }
       
       const {id,mysql,postgresql,sqlserver,otros,persona_id}=this
       const ModiFi={id,mysql,postgresql,sqlserver,otros,persona_id}
@@ -683,7 +833,7 @@ ValorRanBd(){
         }
     });
   }else{
-  
+    this.showbdr=true;this.showbd=false;
     this.id=this.idbd;
 
     this.mysql=parseInt((<HTMLInputElement>document.getElementById("mysqldemo")).innerHTML);
@@ -693,7 +843,11 @@ ValorRanBd(){
     this.otros=this.otrosbd;
     this.persona_id;
     //alert(this.inoral)
-    
+    if(this.mysql===0 || this.postgresql===0 || this.sqlserver===0 || this.otrosbd===0){
+      this.ngOnInit();
+      this.per.addmiSwetERadd();
+      return;
+    }
     const {id,mysql,postgresql,sqlserver,otros,persona_id}=this
     const ModiFi={id,mysql,postgresql,sqlserver,otros,persona_id}
     this.bd.updateTaskReminder(ModiFi).subscribe(
@@ -709,6 +863,35 @@ ValorRanBd(){
       );
   
   }
+  }
+  borrarBd(bd:Bdt){
+
+    this.bd.deleteTask(bd).subscribe({
+      next: resp => {
+        const myJSON = JSON.stringify(resp);
+        localStorage.setItem("testJSON", myJSON);
+        let texts = localStorage.getItem("testJSON");
+        let obj = JSON.parse(texts!);
+        let ver =obj.error;
+        console.log("Se Cargo "+ ver.text);
+        this.ngOnInit();
+      },
+      error: error => {
+        const myJSON = JSON.stringify(error);
+        localStorage.setItem("testJSON", myJSON);
+        let texts = localStorage.getItem("testJSON");
+        let obj = JSON.parse(texts!);
+        let ver =obj.error;
+        console.log("andaaaaa "+ ver.text);
+        this.showbd=false;
+        if(ver.text==='Succes'){
+          this.ngOnInit();
+          localStorage.setItem("testJSON", '');
+          this.per.addmiSwetTasbor();
+          
+        }
+        this.ngOnInit();
+      }});
   }
 }
 

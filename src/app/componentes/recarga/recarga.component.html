@@ -1,5 +1,5 @@
 
-<div *ngIf="autenticacionService.logIn ">
+<div *ngIf="autenticacionService.logIn">
   
 <app-encabezado></app-encabezado>
 <app-acerca-de></app-acerca-de>
@@ -15,6 +15,6 @@
     <li><a routerLink="/PortFolio" routerLinkActive="active">Second Component</a></li>
   </ul>
 </nav> -->
-<button type="submit" class="btn btn-primary" (click)="autenticacionService.logout()" *ngIf="autenticacionService.logIn==true">salir</button>
+<!-- <button type="submit" class="btn btn-primary" (click)="autenticacionService.logout()" *ngIf="autenticacionService.logIn==true">salir</button> -->
 
  <!-- {{this.compro()}} -->
