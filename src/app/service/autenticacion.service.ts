@@ -201,6 +201,8 @@ export class AutenticacionService {
     if (this.jwtHelper.isTokenExpired(localStorage.getItem('auth_token')!)) {
       clearInterval(this.inter);
       this.sesionEsp();
+      this.auten=0;
+      this.updat();
       this.tiempos();
     }
   }
