@@ -85,7 +85,7 @@ export class AutenticacionService {
       localStorage.setItem('auth_token', resp.token);
       localStorage.setItem('usr',user);
       
-      localStorage.setItem('id',resp.id);
+      localStorage.setItem('ids',resp.id);
       var titon=new Date();
       localStorage.setItem('data',titon.getMinutes()!.toString())
       localStorage.setItem('timeps','28');
@@ -360,7 +360,7 @@ export class AutenticacionService {
    if(this.id!==null){
      
   
-    this.id;  
+    this.id=parseInt(localStorage.getItem('ids')!);  
     this.user=localStorage.getItem('usr')!.toString();
     this.password=localStorage.getItem('passw')!.toString();
     this.token="";
@@ -396,6 +396,7 @@ export class AutenticacionService {
      localStorage.removeItem('passw');
     localStorage.removeItem('auth_token');
     localStorage.removeItem('tip');
+    localStorage.removeItem('ids');
     localStorage.removeItem('timeps');
     this.router.navigate(['']);
 
