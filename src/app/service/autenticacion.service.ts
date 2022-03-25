@@ -99,8 +99,8 @@ export class AutenticacionService {
         this.router.navigate(['/PortFolio']);
       }else{
         this.numb=parseInt(localStorage.getItem('conec')!);
-        console.log("este es num"+this.numb);
-        console.log(JSON.stringify(resp));
+        //console.log("este es num"+this.numb);
+        //console.log(JSON.stringify(resp));
         if(this.numb===1){
           this.logout();
           Swal.fire({
