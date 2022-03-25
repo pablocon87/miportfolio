@@ -1,4 +1,7 @@
-<div class="containert" *ngIf="!autenticacionService.logIn" [hidden]="this.show">
+<div class="containert" *ngIf="!autenticacionService.logIn" [hidden]="!this.show">
+  <div class="alert alert-danger" role="alert" [hidden]="!this.showdanger">
+  {{this.cuenta}} Intento
+  </div>
     <h1 class="m-5">Iniciar Sesion</h1>
     <form [formGroup]="form" class="m-5" (ngSubmit)="onEnviar($event)">
         <div class="mb-3">
@@ -32,6 +35,37 @@
        
         <button type="submit" class="btn btn-primary">Enviar</button>
         <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal3"  class="btn btn-success">Registrarse</button>
+      </form>
+      
+    </div>
+    <div class="containert alino" [hidden]="this.show">
+      <div class="alert alert-success" role="alert" [hidden]="!this.showsucces">
+        
+        Bien echo, aguarde unos segundos
+      </div>
+      <div class="alert alert-danger" role="alert" [hidden]="!this.showdanger">
+        Coloque bien el codigo
+      </div>
+    <form (ngSubmit)="checkform();" class="formmargin">
+      <div class="mb-3">
+      <div class="capbox" style="margin-top: 100px;">
+      
+      <div id="CaptchaDiv"></div>
+      
+      <div class="capbox-inner">
+      Coloque el numero:<br>
+      
+      <input type="hidden" id="txtCaptcha">
+      <input type="text" name="CaptchaInput" id="CaptchaInput" size="15"><br>
+      
+      </div>
+      </div>
+      <br>
+      
+      <br>
+    </div>
+      <input type="submit" value="Enviar numero" class="subbutx3"><br>
+      
       </form>
     </div>
     <!-- <h1>Angular Router App</h1> -->
@@ -139,4 +173,8 @@
       <!-- <router-outlet >
       
       </router-outlet> -->
+      
+
       </div>
+      
+        

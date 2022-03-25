@@ -3,6 +3,7 @@ import {faTimes,faEdit,faDoorClosed } from '@fortawesome/free-solid-svg-icons';
 import { AutenticacionService } from 'src/app/service/autenticacion.service';
 import {Task} from '../../../Task'
 import {HttpClient,HttpHeaders, HttpParams ,HttpResponse} from '@angular/common/http';
+import {JwtHelperService,JWT_OPTIONS} from '@auth0/angular-jwt';
 import Swal from 'sweetalert2'
 const httpOptions = {
 
@@ -21,7 +22,11 @@ const httpOptions = {
 @Component({
   selector: 'app-encabezado',
   templateUrl: './encabezado.component.html',
-  styleUrls: ['./encabezado.component.css']
+  styleUrls: ['./encabezado.component.css'],
+  providers: [
+    { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+    JwtHelperService
+]
 })
 export class EncabezadoComponent implements OnInit {
   fechaHora = new Date();
@@ -53,7 +58,8 @@ export class EncabezadoComponent implements OnInit {
      infcont:String="";
      limite?:number=0;
      tin?:number=0;
-  constructor(public t:AutenticacionService,public http:HttpClient) {
+     inter:any;
+  constructor(public t:AutenticacionService,public http:HttpClient,private jwtHelper: JwtHelperService) {
   
    }
    tiempo(){
@@ -64,13 +70,31 @@ export class EncabezadoComponent implements OnInit {
     }
   }
   
+  tokenVal(){
+    if (this.jwtHelper.isTokenExpired(localStorage.getItem('auth_token')!)) {
+      clearInterval(this.inter);
+      this.t.tiempos();
+    } else {
+      console.log("el token es valido")
+    }
+  }
+  sesionEsp(){
+    this.inter=  setInterval(() => {this.tokenVal();},10000)
+  }
   ngOnInit(): void {
+    clearInterval(this.t.inter);
+    this.t.sesionEspi();
+    // if (this.jwtHelper.isTokenExpired(localStorage.getItem('auth_token')!)) {
+    //   alert("el token expiro")
+    // } else {
+    //   console.log("el token es valido")
+    // }
     this.tin=0;
    
     
-    if(localStorage.getItem('timeps') !==""){
-      clearInterval(this.t.cl);
-        this.t.secc();
+    // if(localStorage.getItem('timeps') !==""){
+    //   clearInterval(this.t.cl);
+    //     this.t.secc();
       // this.clin=  setInterval(() => {
         
       //   var tt= new Date();
@@ -101,7 +125,7 @@ export class EncabezadoComponent implements OnInit {
       //       this.t.logout();
       //    }
       // }, 10000);
-    }
+    // }
     // clearInterval(this.t.cl);
     //  setTimeout(() => {
     //      this.funca();

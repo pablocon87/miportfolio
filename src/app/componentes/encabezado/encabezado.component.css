@@ -82,7 +82,18 @@
     color: #fff;
     opacity: 0.75;
   }
-  
+  .as {
+    position: relative;
+    display: inline-block;
+    margin-top: 20px;
+  }
+  .as[title]:hover::after {
+    content: attr(title);
+    position: absolute;
+    color:rgb(125, 158, 228);
+    top: 100%;
+    left: 0;
+  }
   .header-dark .item.social > a:hover {
     opacity: 0.9;
   }

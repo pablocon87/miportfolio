@@ -4,28 +4,43 @@ import {RouterModule, Routes,Router} from '@angular/router';
 import {Observable, of} from 'rxjs';
 import{Task} from '../../Task';
 import{Reg} from '../../Reg'
+import {Usr} from '../../Usr'
 import Swal from 'sweetalert2';
-
+import {JwtHelperService,JWT_OPTIONS} from '@auth0/angular-jwt';
 import { Location } from '@angular/common';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
+  
 })
 export class AutenticacionService {
+  id?:number;
+  user:String="";
+  password:String="";
+  token:String="";
+  expired?:number;
+  conec?:number=0;
+  auten?:number=1;
+  timelim?:number=0;
   times:number=10600;
   fech?:Date;
   today = new Date();
   num:number=20;
   limite?:number;
   timdm:number=0;
+  inter:any;
+  tim:any;
   cl:any;
   cl2:any;
+  showdanger:boolean=false;
+  showsucces:boolean=false;
+  numb?:number;
   tt= new Date();
   conta:number=0;
   pepito:boolean=false;
-  apiUrl = 'https://porfoarp.herokuapp.com';
-  //apiUrl = 'http://localhost:8080';
-  constructor(private http: HttpClient,public router:Router,public _location:Location) { }
+  //apiUrl = 'https://porfoarp.herokuapp.com';
+  apiUrl = 'http://localhost:8080';
+  constructor(private http: HttpClient,public router:Router,public _location:Location,private jwtHelper: JwtHelperService) { }
   login(user: string, password: string){
     if(user==="" && password===""){
       Swal.fire({
@@ -36,6 +51,7 @@ export class AutenticacionService {
       })
       return;
     }
+    
     const headers = { 'content-type': 'application/x-www-form-urlencoded'};
    // const headers = { 'content-type': 'application/json'};
     
@@ -60,34 +76,137 @@ export class AutenticacionService {
     .subscribe((resp: any)=>{
       //this.clinT();
       //this.sesionEsp();
+      this.id=resp.id;
       
-      this.limite=0;
-    
+      localStorage.setItem('conec',resp.conec);
+      localStorage.removeItem('id');
+     
+      
       localStorage.setItem('auth_token', resp.token);
       localStorage.setItem('usr',user);
-      localStorage.removeItem('id');
+      
+      localStorage.setItem('id',resp.id);
       var titon=new Date();
       localStorage.setItem('data',titon.getMinutes()!.toString())
       localStorage.setItem('timeps','28');
       
       localStorage.setItem('passw',password);
-      if(resp.token !==null){
-        this.secc();
+      if(resp.token.toString() !=="nada"){
+       // alert(" TOKEN"+resp.token+""+"ids"+resp.id)
+        //this.sesionEspi();
+        this.auten=1;
+        localStorage.removeItem('conta');
         this.router.navigate(['/PortFolio']);
       }else{
-        this.logout();
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'usuario o contraseña invalido!',
-          footer: 'Registrarse!'
-        })
+        this.numb=parseInt(localStorage.getItem('conec')!);
+        console.log("este es num"+this.numb);
+        console.log(JSON.stringify(resp));
+        if(this.numb===1){
+          this.logout();
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Ese Usuario esta Conectado!',
+            footer: 'User On!'
+          })
+  
+        }else{
+          
+          if (resp.auten>=3){
+            this.auten=3;
+            localStorage.setItem("conta",'4');
+            this.logout();
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'contraseña invalida!',
+              footer: 'Error!'
+            })
+            // localStorage.setItem('timelim',resp.timelim)
+            // this.id=resp.id;    
+            // this.user=resp.user
+            // this.password=resp.password;
+            // this.token="";
+            // this.expired=0;
+            // this.conec=0;
+            // this.auten=1;
+            // var titon=new Date();
+            // this.timelim=titon.getMinutes();
+            //  const {id,user,password,token,expired,conec,auten,timelim}=this;
+            //  const ModiFi={id,user,password,token,expired,conec,auten,timelim};
+            //  this.updateTaskUsr(ModiFi).subscribe(
+            //   data => {
+                
+              
+               
+            //   },
+            //   error => {
+                
+            //   alert("Se descuageringo todo"+ JSON.stringify(error));
+              
+            //   }
+            //   );
+            //   this.logout();
+          }else{
+          //alert(JSON.stringify(resp)+resp.conec);
+          if(localStorage.getItem('conta') === null){
+            this.router.navigate(['/Inic']);
+            this.auten=1;
+            localStorage.setItem("conta",'1');
+            this.valiD();
+          
+          }else{
+          if(localStorage.getItem('conta') === '1'){
+            this.auten=2;
+            localStorage.setItem("conta",'2');
+            this.valiD();
+            
+          }else{
+          if(localStorage.getItem('conta') === '2'){
+            this.auten=3;
+            localStorage.setItem("conta",'3');
+            this.valiD();
+          
+
+          }else{
+            if(localStorage.getItem('conta') === '3'){
+              this.auten=3;
+              localStorage.setItem("conta",'4');
+              this.valiD();
+              
+            }
+          }          
+        }
+        }
+          
+        } //
+            
+            
       }
       
       
-    } )
+    }} )
 
   };
+  valiD(){
+    this.logout();
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'usuario o contraseña invalido!',
+            footer: 'Registrarse!'
+          })
+  }
+  tokenVal(){
+    if (this.jwtHelper.isTokenExpired(localStorage.getItem('auth_token')!)) {
+      clearInterval(this.inter);
+      this.sesionEsp();
+      this.tiempos();
+    }
+  }
+  sesionEspi(){
+    this.inter=  setInterval(() => {this.tokenVal();},10000)
+  }
   secc(){
     
     this.cl=  setInterval(() => {
@@ -129,10 +248,10 @@ export class AutenticacionService {
     }, 1000);
   }
   sesionEsp(){
-    setTimeout(() => {
-        this.tiempos();
+  this.tim =  setTimeout(() => {
+        this.logout();
   
-      },500000)
+      },60000)
   }
   cerrSesi(){
     setTimeout(() => {
@@ -140,12 +259,12 @@ export class AutenticacionService {
 
     },90000)
   }
-  refresh(): void {
-    this.router.navigateByUrl("/refresh", { skipLocationChange: true }).then(() => {
-    console.log(decodeURI(this._location.path()));
-    this.router.navigate([decodeURI(this._location.path())]);
-    });
-  }
+  // refresh(): void {
+  //   this.router.navigateByUrl("/refresh", { skipLocationChange: true }).then(() => {
+  //   console.log(decodeURI(this._location.path()));
+  //   this.router.navigate([decodeURI(this._location.path())]);
+  //   });
+  // }
   clinT(){
     
       this.cl=  setInterval(() => {
@@ -209,10 +328,11 @@ export class AutenticacionService {
      }, 1000);
   }
   tiempos(){
+  
     Swal.fire({
       
      title: 'Extender secion',
-     text: "La secion esta por caducar,¿desea extenderla?",
+     text: "La seción caduco,¿desea extenderla?",
      icon: 'warning',
      showCancelButton: true,
      confirmButtonColor: '#3085d6',
@@ -222,25 +342,48 @@ export class AutenticacionService {
     //localStorage.setItem('timedm','10100');
     //this.clinT2();
      if (result.isConfirmed) {
-       clearInterval(this.cl);
-       this.limite=0;
-      
-       localStorage.removeItem('data');
-       this.secc;
-       
+      this.updat();
+       clearTimeout(this.tim);
        this.login(localStorage.getItem('usr')!,localStorage.getItem('passw')!);
      }else{
-      clearInterval(this.cl);
-      this.conta=1;
-      localStorage.setItem('timeps','29')
-      this.secc();
+      clearTimeout(this.tim);
+      this.logout();
       // localStorage.setItem('time','10100');
       // //localStorage.setItem('timedm','9999');
       // this.clinT();
      }
    })
   }
+  updat(){
+   if(this.id!==null){
+     
+  
+    this.id;  
+    this.user=localStorage.getItem('usr')!.toString();
+    this.password=localStorage.getItem('passw')!.toString();
+    this.token="";
+    this.expired=0;
+    this.conec=0;
+    this.auten;
+    this.timelim=0;
+     const {id,user,password,token,expired,conec,auten,timelim}=this;
+     const ModiFi={id,user,password,token,expired,conec,auten,timelim};
+     this.updateTaskUsr(ModiFi).subscribe(
+      data => {
+      
+       
+      },
+      error => {
+        
+      alert("Se descuageringo todo"+ JSON.stringify(error));
+      
+      }
+      );
+    }
+
+  }
    logout(){
+      this.updat();
      clearInterval(this.cl);
      this.conta=0;
      this.limite=0;
@@ -324,6 +467,27 @@ return this.http.put<Task>(url+'?acerca_de='+task.acerca_de
 +'&instagram='+task.instagram
 +'&infcont='+task.infcont
 , body, option);
+}
+updateTaskUsr(task:Usr): Observable<Usr>{
+  const option ={
+    headers: new HttpHeaders(
+      {
+      
+    'Content-Type': 'application/json',
+    'Authorization': localStorage.getItem('auth_token')!
+      })
+  };
+  const body={title: 'Angular POST Request Example'};
+const url = `${this.apiUrl}/user/editar/${task.id}`;
+return this.http.put<Usr>(url+'?user='+task.user
++'&password='+task.password
++'&token='+task.token
++'&expired='+task.expired
++'&conec='+task.conec
++'&auten='+task.auten
++'&timelim='+task.timelim!.toString()
+
+, body);
 }
 addTask(task:Task): Observable<Task>{
   const httpOptions = {

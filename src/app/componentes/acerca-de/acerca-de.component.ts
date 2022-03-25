@@ -61,6 +61,7 @@ export class AcercaDeComponent implements OnInit {
     this.t.updateTask(modiFi).subscribe(
       data => {
         this.ngOnInit();
+        this.t.addmiSwetTasm();
       console.log("PUT Request is successful ", data);
       },
       error => {

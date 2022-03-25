@@ -6,9 +6,9 @@ import {Bdt} from '../../Bdt'
   providedIn: 'root'
 })
 export class ConbasdatService {
- apiUrl = 'https://porfoarp.herokuapp.com';
+ //apiUrl = 'https://porfoarp.herokuapp.com';
   
- //apiUrl = 'http://localhost:8080';
+ apiUrl = 'http://localhost:8080';
  constructor(private http: HttpClient) { }
 
  getTasks():Observable<Bdt[]>{

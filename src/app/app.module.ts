@@ -15,6 +15,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AutenticacionService } from './service/autenticacion.service';
 import { EducacionService } from './service/educacion.service';
 import { RecargaComponent } from './componentes/recarga/recarga.component';
+import {JwtHelperService,JWT_OPTIONS} from '@auth0/angular-jwt';
 const appRoutes:Routes =[
   {path:'Inic', component: IniciarSesionComponent/*,pathMatch:'full'*/},
   { path: '', redirectTo: 'Inic', pathMatch: 'full' },
@@ -43,7 +44,8 @@ const appRoutes:Routes =[
     RouterModule.forRoot(appRoutes)
   ],
   exports:[RouterModule],
-  providers: [AutenticacionService,EducacionService],//{provide:HTTP_INTERCEPTORS,useClass:InterceptorService,multi:true}],
+  providers: [AutenticacionService,EducacionService,{ provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+    JwtHelperService],//{provide:HTTP_INTERCEPTORS,useClass:InterceptorService,multi:true}],
   bootstrap: [AppComponent/*,IniciarSesionComponent*/]
 })
 export class AppModule { }
