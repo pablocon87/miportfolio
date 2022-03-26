@@ -82,7 +82,7 @@ export class AutenticacionService {
       localStorage.removeItem('id');
      
       
-      localStorage.setItem('auth_token', resp.token);
+      
       localStorage.setItem('usr',user);
       
       localStorage.setItem('ids',resp.id);
@@ -91,7 +91,8 @@ export class AutenticacionService {
       localStorage.setItem('timeps','28');
       
       localStorage.setItem('passw',password);
-      if(resp.token.toString() !=="nada"){
+      if(resp.token !=="nada"){
+        localStorage.setItem('auth_token', resp.token);
        // alert(" TOKEN"+resp.token+""+"ids"+resp.id)
         //this.sesionEspi();
         this.auten=1;
@@ -102,7 +103,7 @@ export class AutenticacionService {
         //console.log("este es num"+this.numb);
         //console.log(JSON.stringify(resp));
         if(this.numb===1){
-          this.logout();
+          localStorage.setItem('conta','4')
           Swal.fire({
             icon: 'error',
             title: 'Oops...',
@@ -201,7 +202,7 @@ export class AutenticacionService {
     if (this.jwtHelper.isTokenExpired(localStorage.getItem('auth_token')!)) {
       clearInterval(this.inter);
       this.sesionEsp();
-      this.auten=0;
+      this.conec=0;
       this.updat();
       this.tiempos();
     }
@@ -365,7 +366,7 @@ export class AutenticacionService {
     this.password=localStorage.getItem('passw')!.toString();
     this.token="";
     this.expired=0;
-    this.conec=0;
+    this.conec;
     this.auten;
     this.timelim=0;
      const {id,user,password,token,expired,conec,auten,timelim}=this;

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import { AfterViewInit, Component, OnInit, Input, Output, EventEmitter, ElementRef} from '@angular/core';
 import {faTimes,faEdit,faDoorClosed } from '@fortawesome/free-solid-svg-icons';
 import { AutenticacionService } from 'src/app/service/autenticacion.service';
 import {Task} from '../../../Task'
@@ -59,9 +59,10 @@ export class EncabezadoComponent implements OnInit {
      limite?:number=0;
      tin?:number=0;
      inter:any;
-  constructor(public t:AutenticacionService,public http:HttpClient,private jwtHelper: JwtHelperService) {
-  
+  constructor(public t:AutenticacionService,public http:HttpClient,private jwtHelper: JwtHelperService,private elementRef:ElementRef) {
+    addEventListener('beforeunload', this.onClicka.bind(this));
    }
+ 
    tiempo(){
     console.log("segundos!!"+" "+this.fechaHora.getSeconds())
     if(this.fechaHora.getSeconds()>600000){
@@ -81,7 +82,9 @@ export class EncabezadoComponent implements OnInit {
   sesionEsp(){
     this.inter=  setInterval(() => {this.tokenVal();},10000)
   }
+  
   ngOnInit(): void {
+ 
     clearInterval(this.t.inter);
     this.t.sesionEspi();
     // if (this.jwtHelper.isTokenExpired(localStorage.getItem('auth_token')!)) {
@@ -184,6 +187,26 @@ export class EncabezadoComponent implements OnInit {
    
     this.faEdit;
   }
+  AfterViewInit() {
+    this.elementRef.nativeElement.querySelector('pepe')
+                                  .addEventListener(HTMLElement,'click', this.onClicka.bind(this));
+  }
+  onClicka(event) {
+    
+    this.t.conec=0;
+    this.t.logout();
+    console.log("pepe");
+    return;
+  }
+  // AfterViewInit() {
+  //   const navbarToggler =
+  //     this.elementRef.nativeElement.querySelector('pepe');
+  //   navbarToggler.addEventListener('click', () => {
+  //     this.onClicka.bind(this);
+  //     navbarToggler.classList.toggle('class');
+  //   });
+  // }
+ 
   funca(){
     this.t.clinT();
   }
