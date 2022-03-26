@@ -123,8 +123,9 @@
         <div [hidden]="ed.url_logo===null || ed.url_logo===''" class="col-sm-2"><a href="{{ed.urlinst}}"><img  src="{{ed.url_logo}}" alt="" class="logo"></a></div><li class="col-sm-10 text-muted" *ngIf="ed.id!==null" ><strong   [hidden]="this.show" >{{ed.principal}}</strong> :<p   class="col-sm-5 text-muted" [hidden]="this.show"> {{ed.segunda}}</p></li>
         <div class="row"><div class="col-sm-2"></div ><p class="col-sm-10 text-muted"><strong>Año de Inicio:</strong> </p></div>
         <div class="row"><div class="col-sm-2"></div >  <p class="col-sm-10 text-muted">{{ed.anoinic}}</p></div>
-        <div class="row"><div class="col-sm-2"></div >  <p class="col-sm-10 text-muted"><strong>Año de Finalización: </strong></p></div>
-        <div class="row"><div class="col-sm-2"></div > <p class="col-sm-10 text-muted">{{ed.anofin}}</p></div>
+        <div class="row"><div class="col-sm-2"></div >  <p [hidden]="ed.anofin!.toString() ==='actualmente' " class="col-sm-10 text-muted"><strong>Año de Finalización: </strong></p></div>
+        <div class="row"><div class="col-sm-2"></div > <p [hidden]="ed.anofin!.toString() ==='actualmente'" class="col-sm-10 text-muted">{{ed.anofin}}</p></div>
+        <div class="row"><div class="col-sm-2"></div > <p [hidden]="ed.anofin!.toString() !=='actualmente'" class="col-sm-10 text-muted">Estoy Cursando Actualmente</p></div>
         <div class="row"><div class="col-sm-2"></div ><p class="col-sm-10 text-muted"><strong> Titulo:</strong> </p></div>
           <div class="row"><div class="col-sm-2"></div > <p class="col-sm-10 text-muted">{{ed.titulo}}</p></div>
     <input [hidden]="true" [value]="ed.id" id="ided" name="ided" >
@@ -223,7 +224,7 @@
                           <select  class="form-select" aria-label="Default select example"  id="anofin" name="anofin" [(ngModel)]="anofin">
                             <option  ></option> 
                                  
-                                     
+                                   <option id="op" value="actualmente">Estoy Cursando Actualmente</option>  
                                    <option *ngFor="let popo of io"  id="op" value="{{popo[1]}}">{{popo[1]}}</option>  
                                  
                                </select>

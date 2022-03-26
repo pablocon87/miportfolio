@@ -345,16 +345,32 @@ export class AutenticacionService {
     //localStorage.setItem('timedm','10100');
     //this.clinT2();
      if (result.isConfirmed) {
-      this.updat();
+      
        clearTimeout(this.tim);
-       this.login(localStorage.getItem('usr')!,localStorage.getItem('passw')!);
-     }else{
+       if(localStorage.getItem('usr') !==null){
+        this.conec=0;
+        this.updat();
+        this.login(localStorage.getItem('usr')!,localStorage.getItem('passw')!);
+        return;
+       }else{
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Caduco La Secion!',
+          footer: 'Ingresa nuevamente!'
+        })
+        return;
+       }
+       
+     }
+     
       clearTimeout(this.tim);
+      this.conec=0;
       this.logout();
       // localStorage.setItem('time','10100');
       // //localStorage.setItem('timedm','9999');
       // this.clinT();
-     }
+     
    })
   }
   updat(){
