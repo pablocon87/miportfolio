@@ -108,8 +108,8 @@ i?:number;
       },
       error => {
         this.exp;
+
         
-        this.per.logout();
         
       console.log("Rrror", error);
       }
@@ -159,11 +159,15 @@ i?:number;
     }
   }
   onSubmit(){
-    if((<HTMLInputElement>document.getElementById("Save")).value!=="Guardar"){
+    if((<HTMLInputElement>document.getElementById("Save")).value.toString() !== "Guardar Cambios"){
+      alert("entre");
     if(  (<HTMLInputElement>document.getElementById("btncheck1")).checked===true){
       this.estrabajoactual=1;
+    }else{
+      this.estrabajoactual=0;
     }
     this.persona_id;
+    this.id=0;
     const {id,nombreEmpresa,estrabajoactual,fechainicio,fechafin,descripcion,persona_id,tipo_empleo_id}=this;
     const modiFi={id,nombreEmpresa,estrabajoactual,fechainicio,fechafin,descripcion,persona_id,tipo_empleo_id};
     let datas={ responseType: 'text'};
@@ -266,7 +270,7 @@ let val =  (<HTMLInputElement>document.getElementById("tipo_empleo_id")).value;
     //(<HTMLInputElement>document.getElementById("persona_id")).value=localStorage.getItem("id")!.toString();
     (<HTMLInputElement>document.getElementById("tipo_empleo_id")).valueAsNumber!=tipem.id;
     (<HTMLInputElement>document.getElementById("btncheck1")).checked=exp.estrabajoactual===1;
-    (<HTMLInputElement>document.getElementById("Save")).value = "Guardar";
+    (<HTMLInputElement>document.getElementById("Save")).value = "Guardar Cambios";
   
   }
   Borrar(el:Exp){
@@ -301,7 +305,7 @@ let val =  (<HTMLInputElement>document.getElementById("tipo_empleo_id")).value;
     //(<HTMLInputElement>document.getElementById("persona_id")).value=localStorage.getItem("id")!.toString();
     (<HTMLInputElement>document.getElementById("tipo_empleo_id")).valueAsNumber!=1;
     (<HTMLInputElement>document.getElementById("btncheck1")).checked=false;
-    (<HTMLInputElement>document.getElementById("Save")).value = "Guardar Cambios";
+    (<HTMLInputElement>document.getElementById("Save")).value = "Guardar";
 
   }
   educCl(ed:Educ){

@@ -131,3 +131,5 @@
 .taskt{
     border-top:5px solid rgb(85, 87, 228) ;
 }
+p{margin:0 10px 10px}
+div#content p{line-height:1.4}

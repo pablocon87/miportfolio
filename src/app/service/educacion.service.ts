@@ -38,7 +38,7 @@ return this.http.delete<Educ>(url,{headers});
 
   }
   updateTaskReminder(task:Educ): Observable<Educ>{
-    alert(task.id);
+ 
     const option ={
       headers: new HttpHeaders(
         {

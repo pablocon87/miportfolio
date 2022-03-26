@@ -3,7 +3,7 @@
 <div class="container">
 <div class=" card mat-card mb-3 row " >
     <div class="row">
-    <h1 class="col-sm-10">Experiencia</h1><div class="col-sm-2"><div ><fa-icon  data-bs-toggle="modal" data-bs-target="#exampleModal4"  [icon]="faPlus" [ngStyle]="{'color':'green'}" ></fa-icon></div></div>
+    <h1 class="col-sm-10">Experiencia</h1><div class="col-sm-2"><div ><fa-icon  data-bs-toggle="modal" data-bs-target="#exampleModal4" (click)="recarga()"  [icon]="faPlus" [ngStyle]="{'color':'green'}" ></fa-icon></div></div>
     </div>
 
 <!---------------Modaleee-------------------------------------->
@@ -99,10 +99,10 @@
     <div class="task row" *ngFor="let el of exp" [hidden]="el.nombreEmpresa==='' ">
        <div  *ngFor="let tes of tipem" class="row"><div class="col-sm-10"></div><div class="col-sm-2"><span  *ngIf="el.tipo_empleo_id===tes.id" ><fa-icon  class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal4" (click)="Modif(el,tes)" [icon]="faEdit" [ngStyle]="{'color':'green'}"></fa-icon><fa-icon  class="btn btn-outline-secondary " [icon]="faTrash" (click)="Borrar(el)" [ngStyle]="{'color':'red'}" ></fa-icon></span></div></div>     
      
-    <p><strong>Empresa:</strong> {{el.nombreEmpresa}}</p>
-    <div class="row" *ngFor="let te of tipem" ><p class="col-sm-10" *ngIf="el.tipo_empleo_id===te.id"><strong>Jornada:</strong> {{te.nombre_tipo}}</p></div>    
-    <p  class="col-sm-4"><strong>Desde:</strong> {{el.fechainicio| date:'dd-MM-yyyy'}}    </p><p class="col-sm-6"  [hidden]="el.estrabajoactual===1"><strong>Hasta:</strong> {{el.fechafin| date:'dd-MM-yyyy'}}</p> <p class="col-sm-6" [hidden]="el.estrabajoactual!==1" > <strong>Hasta:</strong> La Actualidad</p>
-    <p><strong>Tarea a Realizar:</strong> {{el.descripcion}}</p>
+    <p text-muted><strong>Empresa:</strong> {{el.nombreEmpresa}}</p>
+    <div class="row" *ngFor="let te of tipem" ><p class="col-sm-10 text-muted" *ngIf="el.tipo_empleo_id===te.id"><strong>Jornada:</strong> {{te.nombre_tipo}}</p></div>    
+    <p  class="col-sm-4 text-muted"><strong>Desde:</strong> {{el.fechainicio| date:'dd-MM-yyyy'}}    </p><p class="col-sm-6 text-muted"  [hidden]="el.estrabajoactual===1"><strong>Hasta:</strong> {{el.fechafin| date:'dd-MM-yyyy'}}</p> <p class="col-sm-6 text-muted" [hidden]="el.estrabajoactual!==1" > <strong>Hasta:</strong> La Actualidad</p>
+    <p text-muted><strong>Tarea a Realizar:</strong> {{el.descripcion}}</p>
     <div class="taskt"></div>
     <!-- <br/>------------------------------------------------------------------------<br/> -->
     </div> 
@@ -120,13 +120,13 @@
        
        <div class="row"> <div class="col-sm-10"></div ><div class="col-sm-2"><span *ngIf="ed.id!==null" ><fa-icon  class="btn btn-outline-secondary " type="button" data-bs-toggle="modal" data-bs-target="#exampleModal1" [icon]="faEdit"  (click)="educCl(ed)" [ngStyle]="{'color':'green'}"></fa-icon><fa-icon (click)="deleT(ed)"  class="btn btn-outline-secondary " [icon]="faTrash" [ngStyle]="{'color':'red'}" ></fa-icon></span></div></div>
    
-        <div [hidden]="ed.url_logo===null || ed.url_logo===''" class="col-sm-2"><a href="{{ed.urlinst}}"><img  src="{{ed.url_logo}}" alt="" class="logo"></a></div><li class="col-sm-10" *ngIf="ed.id!==null" ><strong   [hidden]="this.show" >{{ed.principal}}</strong> :<p   class="col-sm-5" [hidden]="this.show"> {{ed.segunda}}</p></li>
-        <div class="row"><div class="col-sm-2"></div ><p class="col-sm-10"><strong>Año de Inicio:</strong> </p></div>
-        <div class="row"><div class="col-sm-2"></div >  <p class="col-sm-10">{{ed.anoinic}}</p></div>
-        <div class="row"><div class="col-sm-2"></div >  <p class="col-sm-10"><strong>Año de Finalización: </strong></p></div>
-        <div class="row"><div class="col-sm-2"></div > <p class="col-sm-10">{{ed.anofin}}</p></div>
-        <div class="row"><div class="col-sm-2"></div ><p class="col-sm-10"><strong> Titulo:</strong> </p></div>
-          <div class="row"><div class="col-sm-2"></div > <p class="col-sm-10">{{ed.titulo}}</p></div>
+        <div [hidden]="ed.url_logo===null || ed.url_logo===''" class="col-sm-2"><a href="{{ed.urlinst}}"><img  src="{{ed.url_logo}}" alt="" class="logo"></a></div><li class="col-sm-10 text-muted" *ngIf="ed.id!==null" ><strong   [hidden]="this.show" >{{ed.principal}}</strong> :<p   class="col-sm-5 text-muted" [hidden]="this.show"> {{ed.segunda}}</p></li>
+        <div class="row"><div class="col-sm-2"></div ><p class="col-sm-10 text-muted"><strong>Año de Inicio:</strong> </p></div>
+        <div class="row"><div class="col-sm-2"></div >  <p class="col-sm-10 text-muted">{{ed.anoinic}}</p></div>
+        <div class="row"><div class="col-sm-2"></div >  <p class="col-sm-10 text-muted"><strong>Año de Finalización: </strong></p></div>
+        <div class="row"><div class="col-sm-2"></div > <p class="col-sm-10 text-muted">{{ed.anofin}}</p></div>
+        <div class="row"><div class="col-sm-2"></div ><p class="col-sm-10 text-muted"><strong> Titulo:</strong> </p></div>
+          <div class="row"><div class="col-sm-2"></div > <p class="col-sm-10 text-muted">{{ed.titulo}}</p></div>
     <input [hidden]="true" [value]="ed.id" id="ided" name="ided" >
     <input [hidden]="true" [value]="ed.id_persona" id="idper" name="idper" >
     <div class="taskt"></div>

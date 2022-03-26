@@ -82,9 +82,13 @@ export class EncabezadoComponent implements OnInit {
   sesionEsp(){
     this.inter=  setInterval(() => {this.tokenVal();},10000)
   }
-  
+  // ver(){
+  //   const body = { title: 'Angular PUT Request Example' };
+  //   this.http.put<any>('http://localhost:8080/user/traer/pablocon87@gmail.com', body)
+  //       .subscribe(data => alert("DATA"+JSON.stringify(data)));
+  // }
   ngOnInit(): void {
- 
+   
     clearInterval(this.t.inter);
     this.t.sesionEspi();
     // if (this.jwtHelper.isTokenExpired(localStorage.getItem('auth_token')!)) {

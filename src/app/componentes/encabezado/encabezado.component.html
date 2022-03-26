@@ -18,17 +18,17 @@
 
 <div id="pepe" class="container">
  <img src="../../../assets/images/headers.jpg" alt="" class="head">
-<div *ngFor="let tas of tasks" class="card mat-card" id="fist-card" [hidden]="color==='red'">
+<div *ngFor="let tas of tasks" class="card mat-card" id="content fist-card" [hidden]="color==='red'">
    
     <div >  
       <img src="{{tas.url_foto}}" alt="" class="me"><fa-icon [icon]="faEdit" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="onClick(tas)" [ngStyle]="{'color':'green'}" ></fa-icon>
     </div>
     <h1>{{tas.nombre+" " + tas.apellido}}</h1>
-    <p><strong>Fecha de Nacimiento :</strong> {{tas.fechanac | date:'dd-MM-yyyy'}}</p>
-    <p><strong>Soy :</strong>{{tas.sobre_mi}}</p>
-    <p><strong>Domicilio :</strong>{{tas.domicilio}} <a href="{{tas.infcont}}"><i  class="fa-brands fa-linkedin">.</i>Información del Contacto</a><p>
-    <p><strong>Telefono :</strong> {{tas.telefono}}</p>
-    <p><strong>E-Mail :</strong>  {{tas.correo}}</p>
+    <p class="text-muted"><strong>Fecha de Nacimiento :</strong> {{tas.fechanac | date:'dd-MM-yyyy'}}</p>
+    <p class="text-muted"><strong>Soy :</strong>{{tas.sobre_mi}}</p>
+    <p class="text-muted"><strong>Domicilio :</strong>{{tas.domicilio}} <a href="{{tas.infcont}}"><i  class="fa-brands fa-linkedin">.</i>Información del Contacto</a><p>
+    <p class="text-muted"><strong>Telefono :</strong> {{tas.telefono}}</p>
+    <p class="text-muted"><strong>E-Mail :</strong>  {{tas.correo}}</p>
 </div>
 
 
