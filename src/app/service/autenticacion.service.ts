@@ -365,6 +365,7 @@ export class AutenticacionService {
      }
      
       clearTimeout(this.tim);
+      this.id!=null;
       this.conec=0;
       this.logout();
       // localStorage.setItem('time','10100');
