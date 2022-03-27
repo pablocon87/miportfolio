@@ -365,7 +365,7 @@ export class AutenticacionService {
      }
      
       clearTimeout(this.tim);
-      this.id!=null;
+      
       this.conec=0;
       this.logout();
       // localStorage.setItem('time','10100');
@@ -375,6 +375,7 @@ export class AutenticacionService {
    })
   }
   updat(){
+    if(localStorage.getItem('usr') !==null ){
    if(this.id!==null){
      
   
@@ -400,7 +401,7 @@ export class AutenticacionService {
       }
       );
     }
-
+  }
   }
    logout(){
       this.updat();
