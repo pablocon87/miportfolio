@@ -16,6 +16,8 @@ import { AutenticacionService } from './service/autenticacion.service';
 import { EducacionService } from './service/educacion.service';
 import { RecargaComponent } from './componentes/recarga/recarga.component';
 import {JwtHelperService,JWT_OPTIONS} from '@auth0/angular-jwt';
+import { ConocimientoComponent } from './componentes/conocimiento/conocimiento.component';
+
 const appRoutes:Routes =[
   {path:'Inic', component: IniciarSesionComponent/*,pathMatch:'full'*/},
   { path: '', redirectTo: 'Inic', pathMatch: 'full' },
@@ -32,7 +34,9 @@ const appRoutes:Routes =[
     ExperienciaYEducacionComponent,
     LogrosComponent,
     IniciarSesionComponent,
-    RecargaComponent
+    RecargaComponent,
+    ConocimientoComponent,
+   
   ],
   imports: [
     BrowserModule,

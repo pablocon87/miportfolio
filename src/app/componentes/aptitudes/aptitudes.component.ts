@@ -359,7 +359,7 @@ ValorRanBd(){
   this.BasdaC();
 }
   InglesC(){
-    var chart = new CanvasJS.Chart("chartContainer", {
+    var chart = new CanvasJS.Chart("chartConta", {
       theme: "light2", // "light1", "light2", "dark1", "dark2"
       exportEnabled: true,
       animationEnabled: true,
@@ -893,6 +893,9 @@ ValorRanBd(){
         this.ngOnInit();
       }});
   }
+/**NUEVO CONOC */
+
+
 }
 
 

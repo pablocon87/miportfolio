@@ -60,6 +60,7 @@ export class EncabezadoComponent implements OnInit {
      tin?:number=0;
      inter:any;
   constructor(public t:AutenticacionService,public http:HttpClient,private jwtHelper: JwtHelperService,private elementRef:ElementRef) {
+   
     addEventListener('beforeunload', this.onClicka.bind(this));
    }
  

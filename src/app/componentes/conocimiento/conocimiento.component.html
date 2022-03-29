@@ -1,0 +1,180 @@
+<div id="cot" class="container row">
+<div class="row">
+<p class="col-sm-10 h1">Conocimientos</p><div class="col-sm-2"><div ><fa-icon  (click)="this.showall=true"  [icon]="faPlus" [ngStyle]="{'color':'green'}" ></fa-icon></div></div>
+</div>
+<div [hidden]="!this.showall">
+<form (ngSubmit)="submitadd()" >
+    <div class="input-group" >
+    <div class="input-group-prepend"><span class="input-group-text" style="width: 110px;margin: 2px 0px 0px 0px;">Sobre:<br></span></div>
+     <input type="text" class="form-control" id="sobre" name="sobre"  [(ngModel)]="sobre" placeholder="Coloque Sobre"/>
+     </div>
+     <div class="input-group" >
+    <div class="input-group-prepend"><span class="input-group-text" style="width: 110px;margin: 2px 0px 0px 0px;">De:<br></span></div>
+    <input type="text" class="form-control" id="de" name="de"  [(ngModel)]="de" placeholder="Coloque De"/>
+    </div>
+<div class="input-group">
+<label for="customRange2" class="form-label">De</label> 
+<input id="ext" data-id='ex1RangePicker' (input)="ValorRanT()"  type="range" data-min="0" data-max="20" data-step="1" data-value="0" />
+<div id="demo"></div>
+</div>
+
+<input type="submit"  class="form-control" id="Sapves"  value="Aplicar" class="btn btn-outline-primary" >
+<input type="button" (click)="this.showall=false"  class="form-control" id="Sapvess"  value="Volver" class="btn btn-outline-primary" >
+</form>
+<div id="chartContainer11" style="height: 150px; width: 150px;"></div>
+</div>
+<div class="taskt row"></div>
+<div class="task row" #elReference [attr.foo]="cc.de == 'foo' ? true : null" *ngFor="let cc of this.conoc" [id]="cc.id" >
+<div class="row">
+ <div class="col-sm-10" ><h5 [id]="cc.sobre" [ngClass]="cc.sobre" >Conocimientos de {{cc.sobre}}</h5></div><div class="col-sm-2"><fa-icon  class="btn btn-outline-secondary" (click)="this.concat=cc.de;Clickeame(cc.de);"   [icon]="faEdit" [ngStyle]="{'color':'green'}"></fa-icon><fa-icon  class="btn btn-outline-secondary" (click)="Borrarc(cc)"  [icon]="faTrash"  [ngStyle]="{'color':'red'}" ></fa-icon></div>
+</div>
+<form (ngSubmit)="submit()">
+    
+    <div class="input-group" [hidden]="Clickeame(cc.de)" >
+    <div class="input-group-prepend"><span class="input-group-text" style="width: 110px;margin: 2px 0px 0px 0px;">Sobre:<br></span></div>
+     <input type="text" class="form-control"    placeholder="Coloque Sobre"/>
+     </div>
+     <div class="input-group" [hidden]="Clickeame(cc.de)">
+    <div class="input-group-prepend"><span class="input-group-text" style="width: 110px;margin: 2px 0px 0px 0px;">De:<br></span></div>
+    <input type="text" class="form-control"    placeholder="Coloque De"/>
+    </div>
+  
+<div class="input-group">
+<label for="customRange2" class="form-label">{{cc.de}}</label> 
+
+<input [id]="cc.de+''+cc.id" data-id='ex1RangePicker' (input)="ValorRan(cc)"  type="range" data-min="0" data-max="20" data-step="1" data-value="{{cc.saber}}" [disabled]="Clickeame(cc.de)"/>
+<div [id]="cc.de+'a'+cc.id" >{{cc.saber}}</div>
+</div>
+<input type="submit"  class="form-control" [hidden]="Clickeame(cc.de)"  value="Guardar" class="btn btn-outline-primary" >
+<input type="button" (click)="this.concat='';Clickeame(cc.de)"  class="form-control" [hidden]="Clickeame(cc.de)"  value="Volver" class="btn btn-outline-primary" >
+</form>
+ <!-- <div class="donut-chart-block block"> 
+    <h2 class="titular">{{cc.sobre}}</h2>
+    <div class="donut-chart">
+
+<div id="porcion1" class="recorte">  <div  class="quesito ios" data-rel="40" ></div></div>
+  <div id="porcion2" class="recorte"><div class="quesito mac" data-rel="39"></div></div>
+<div id="porcion3" class="recorte"><div class="quesito win" data-rel="31"></div></div>
+<div id="porcionFin" class="recorte"><div class="quesito linux" data-rel="9"></div></div>  
+  
+            <p class="center-date"><br><span class="scnd-font-color">{{cc.de}}</span></p>        
+    </div>
+    <ul class="os-percentages horizontal-list">
+        <li>
+            <p class="ios os scnd-font-color">{{cc.de}}</p>
+            <p class="os-percentage">{{cc.saber}}<sup>%</sup></p>
+        </li>
+        
+    </ul>
+</div>  -->
+<!-- <td>{{i}}</td> -->
+ <div [id]="'chartContai'+cc.de" style="height: 350px; width: 100%;"></div>
+ <div class="taskt"></div> 
+</div>
+<div *ngIf="this.conoc !==null;"></div>
+<div id="pic" class="row">
+<!-- <div id="cot1" class="col-sm-6">
+
+
+</div>
+<div id="cot2" class="col-sm-6">
+
+
+</div> -->
+</div>
+<!-- <div class="donut-chart-block block"> 
+  <h2 class="titular"></h2>
+  <div class="donut-chart">
+
+<div id="porcion1" class="recorte">  <div  class="quesito ios" data-rel="40" ></div></div>
+ <div id="porcion2" class="recorte"><div class="quesito mac" data-rel="39"></div></div>
+<div id="porcion3" class="recorte"><div class="quesito win" data-rel="31"></div></div>
+<div id="porcionFin" class="recorte"><div class="quesito linux" data-rel="9"></div></div>  
+
+          <p id="centro" class="center-date"><br>  <span class="scnd-font-color">prua</span></p>        
+  </div>
+  <ul class="os-percentages horizontal-list">
+      <li>
+          <p class="ios os scnd-font-color"></p>
+          <p class="os-percentage">40<sup>%</sup></p>
+      </li>
+      
+  </ul>
+</div>  -->
+
+<div id="lolito" ></div>
+</div>
+    <!-- DONUT CHART BLOCK (LEFT-CONTAINER) --> 
+    
+   <!-- LINE CHART BLOCK (LEFT-CONTAINER)
+                  <div class="line-chart-block block">
+       <div class="line-chart">
+         <div class='grafico'>
+         <ul class='eje-y'>
+           <li data-ejeY='30'></li>
+           <li data-ejeY='20'></li>
+           <li data-ejeY='10'></li>
+           <li data-ejeY='0'></li>
+         </ul>
+         <ul class='eje-x'>
+           <li>Apr</li>
+           <li>May</li>
+           <li>Jun</li>
+         </ul>
+           <span data-valor='25'>
+             <span data-valor='8'>
+               <span data-valor='13'>
+                 <span data-valor='5'>   
+                   <span data-valor='23'>   
+                   <span data-valor='12'>
+                       <span data-valor='15'>
+                       </span></span></span></span></span></span></span>
+         </div>
+         
+       </div>
+                      <ul class="time-lenght horizontal-list">
+                          <li><a class="time-lenght-btn" href="#14">Week</a></li>
+                          <li><a class="time-lenght-btn" href="#15">Month</a></li>
+                          <li><a class="time-lenght-btn" href="#16">Year</a></li>
+                      </ul>
+                      <ul class="month-data clear">
+                          <li>
+                              <p>APR<span class="scnd-font-color"> 2013</span></p>
+                              <p><span class="entypo-plus increment"> </span>21<sup>%</sup></p>
+                          </li>
+                          <li>
+                              <p>MAY<span class="scnd-font-color"> 2013</span></p>
+                              <p><span class="entypo-plus increment"> </span>48<sup>%</sup></p>
+                          </li>
+                          <li>
+                              <p>JUN<span class="scnd-font-color"> 2013</span></p>
+                              <p><span class="entypo-plus increment"> </span>35<sup>%</sup></p>
+                          </li>
+                      </ul>
+                  </div>
+                  
+   -->
+    
+    <!-- <div class="bar-chart-block block">
+      <h2 class='titular'>By Country <span>*1000</span></h2>
+      <div class='grafico bar-chart'>
+         <ul class='eje-y'>
+           <li data-ejeY='60'></li>
+           <li data-ejeY='45'></li>
+           <li data-ejeY='30'></li>
+           <li data-ejeY='15'></li>
+           <li data-ejeY='0'></li>
+         </ul>
+         <ul class='eje-x'>
+           <li data-ejeX='37'><i>España</i></li>
+           <li data-ejeX='56'><i>Portugal</i></li>
+           <li data-ejeX='25'><i>Italia</i></li>
+           <li data-ejeX='18'><i>Grecia</i></li>
+           <li data-ejeX='45'><i>EE.UU</i></li>
+           <li data-ejeX='50'><i>México</i></li>
+           <li data-ejeX='33'><i>Chile</i></li>
+         </ul>
+      </div>
+    </div>
+              </div> -->
+  
