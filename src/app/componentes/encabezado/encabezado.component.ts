@@ -2,6 +2,7 @@ import { AfterViewInit, Component, OnInit, Input, Output, EventEmitter, ElementR
 import {faTimes,faEdit,faDoorClosed } from '@fortawesome/free-solid-svg-icons';
 import { AutenticacionService } from 'src/app/service/autenticacion.service';
 import {Task} from '../../../Task'
+import { Usr } from 'src/Usr';
 import {HttpClient,HttpHeaders, HttpParams ,HttpResponse} from '@angular/common/http';
 import {JwtHelperService,JWT_OPTIONS} from '@auth0/angular-jwt';
 import Swal from 'sweetalert2'
@@ -59,6 +60,8 @@ export class EncabezadoComponent implements OnInit {
      limite?:number=0;
      tin?:number=0;
      inter:any;
+     rol?:number;
+     users:Usr[]=[];
   constructor(public t:AutenticacionService,public http:HttpClient,private jwtHelper: JwtHelperService,private elementRef:ElementRef) {
    
     //addEventListener('beforeunload', this.onClicka.bind(this));
@@ -189,8 +192,22 @@ export class EncabezadoComponent implements OnInit {
         console.log("PUT Request is successful ", resp);
         
       } )
+      this.t.getTasksUsr().subscribe((resp: any)=>{
+        resp;
+        
+         
+            this.rol=resp.rol;
+            this.t.rol=resp.rol;
+        
+  //   for(let taso of this.tasks){
+  //       localStorage.setItem("id",taso.id!.toString())
+  //  }
+  //  console.log("PUT Request is successful ", resp);
+   
+ } )
    
     this.faEdit;
+    
   }
   AfterViewInit() {
     this.elementRef.nativeElement.querySelector('pepe')
@@ -332,6 +349,14 @@ export class EncabezadoComponent implements OnInit {
       
     }
     onClick(task:Task){
+      if(this.rol===0){
+        Swal.fire(
+          'Aviso!',
+          'Solo El Administrador Puede Editar!',
+          'warning'
+        )
+        return;
+      }
       this.moDific(task);
       // if (this.color==='green'){
       //      this.color="red";

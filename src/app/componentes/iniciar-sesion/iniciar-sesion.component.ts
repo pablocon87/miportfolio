@@ -26,6 +26,7 @@ export class IniciarSesionComponent implements OnInit {
   auten?:number;
   cuenta?:number;
   timelim?:number;
+  rol?:number;
   users:String="";
     form:FormGroup;
   show:boolean=false;
@@ -184,8 +185,9 @@ this.password=this.form.get('passwords')!.value;
      this.conec=0;
      this.auten=1
      this.timelim=0;
-    const {id,user,password,token,expired,conec,auten,timelim}=this
-    const Registrar={id,user,password,token,expired,conec,auten,timelim}
+     this.rol=0;
+    const {id,user,password,token,expired,conec,auten,timelim,rol}=this
+    const Registrar={id,user,password,token,expired,conec,auten,timelim,rol}
      this.autenticacionService.addTaskReg(Registrar).subscribe({
       next: resp => {
         const myJSON = JSON.stringify(resp);

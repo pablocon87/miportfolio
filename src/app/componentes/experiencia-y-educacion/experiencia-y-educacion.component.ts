@@ -4,6 +4,7 @@ import {Exp} from '../../../Exp';
 import {Tipem} from '../../../Tipem';
 import {Educ} from '../../../Educ'
 import {Task} from '../../../Task'
+import {Usr} from '../../../Usr'
 import {ExperienciaService} from '../../service/experiencia.service';
 import { AutenticacionService } from 'src/app/service/autenticacion.service';
 import { EducacionService } from 'src/app/service/educacion.service';
@@ -43,6 +44,8 @@ nombreEmpresa:String="";
     anoinic?:Date;
     anofin?:Date;
     titulo:String="";
+    users:Usr[]=[];
+    rol?:number;
 exp:Exp[]=[];
   tipem:Tipem[]=[];
   edu:Educ[]=[];
@@ -89,6 +92,15 @@ i?:number;
         
        
       this.Recarga();
+      this.per.getTasksUsr().subscribe((resp:any)=>{
+
+        
+          this.rol=resp.rol;
+
+        
+      }
+      
+      )
    
   }
   OpRe(){
@@ -258,6 +270,10 @@ let val =  (<HTMLInputElement>document.getElementById("tipo_empleo_id")).value;
 
   }
   Modif(exp:Exp,tipem:Tipem){
+    if(this.rol===0){
+      this.per.addRol();
+      return;
+    }
     //this.addExp();
     this.id=exp.id;
     this.tipo_empleo_id=tipem.id;
@@ -274,6 +290,10 @@ let val =  (<HTMLInputElement>document.getElementById("tipo_empleo_id")).value;
   
   }
   Borrar(el:Exp){
+    if(this.rol===0){
+      this.per.addRol();
+      return;
+    }
     this.e.deleteTask(el).subscribe({
       next: resp => {
         let obj=JSON.parse(resp.toString());
@@ -298,6 +318,11 @@ let val =  (<HTMLInputElement>document.getElementById("tipo_empleo_id")).value;
     this.ngOnInit();
   }
   recarga(){
+    if(this.rol===0){
+      this.per.addRol();
+      return;
+
+    }
     (<HTMLInputElement>document.getElementById("nombreEmpresa")).value="";
     (<HTMLInputElement>document.getElementById("fechainicio")).value="";
     (<HTMLInputElement>document.getElementById("fechafin")).value="";
@@ -309,7 +334,10 @@ let val =  (<HTMLInputElement>document.getElementById("tipo_empleo_id")).value;
 
   }
   educCl(ed:Educ){
-  
+  if(this.rol===0){
+    this.per.addRol();
+    return;
+  }
     // if(this.showadd===false){
       this.id=ed.id; 
       this.id_persona=ed.id_persona;
@@ -332,6 +360,10 @@ let val =  (<HTMLInputElement>document.getElementById("tipo_empleo_id")).value;
   // }
   }
   addEdu(){
+      if(this.rol===0){
+        this.per.addRol();
+        return;
+      }
     // if(this.showadd===false){
       (<HTMLInputElement>document.getElementById("urllogo")).value="";
       (<HTMLInputElement>document.getElementById("principal")).value="";
@@ -420,6 +452,10 @@ let val =  (<HTMLInputElement>document.getElementById("tipo_empleo_id")).value;
 
   }
   deleT(ed:Educ){
+    if(this.rol===0){
+      this.per.addRol();
+      return;
+    }
     this.educ.deleteTask(ed).subscribe(
       data => {
       

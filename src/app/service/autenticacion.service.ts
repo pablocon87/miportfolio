@@ -23,6 +23,7 @@ export class AutenticacionService {
   auten?:number=1;
   timelim?:number=0;
   times:number=10600;
+  rol?:number;
   fech?:Date;
   today = new Date();
   num:number=20;
@@ -82,7 +83,7 @@ export class AutenticacionService {
       localStorage.removeItem('id');
      
       
-      
+      this.rol=resp.rol;
       localStorage.setItem('usr',user);
       
       localStorage.setItem('ids',resp.id);
@@ -387,8 +388,15 @@ export class AutenticacionService {
     this.conec;
     this.auten;
     this.timelim=0;
-     const {id,user,password,token,expired,conec,auten,timelim}=this;
-     const ModiFi={id,user,password,token,expired,conec,auten,timelim};
+    this.getTasksUsr().subscribe((resp:any)=>{
+
+      
+          this.rol=resp.rol;
+    
+    })
+    
+     const {id,user,password,token,expired,conec,auten,timelim,rol}=this;
+     const ModiFi={id,user,password,token,expired,conec,auten,timelim,rol};
      this.updateTaskUsr(ModiFi).subscribe(
       data => {
       
@@ -441,6 +449,27 @@ export class AutenticacionService {
     return tasks;*/
       
     return this.http.get<Task[]> (this.apiUrl+'/personas/traer',httpOptions)
+    
+  }
+  getTasksUsr():Observable<Usr>{
+    const httpOptions = {
+
+      headers: new HttpHeaders(
+        {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'Authorization': localStorage.getItem('auth_token')!
+        }
+       )//,
+      //    head: new HttpParams()
+      //    .set('Content-Type', 'application/json')
+    
+    }
+    /*const tasks =of(TASKS);
+    return tasks;*/
+    const body={title: 'Angular POST Request Example'};
+    const url = `${this.apiUrl}/user/traer/${localStorage.getItem('usr')}`;
+    return this.http.put<Usr>(url,body,httpOptions);
+    //return this.http.get<Usr[]> (this.apiUrl+'/user/traer',httpOptions)
     
   }
   deleteTask(task:Task):  Observable<Task> {
@@ -508,6 +537,7 @@ return this.http.put<Usr>(url+'?user='+task.user
 +'&conec='+task.conec
 +'&auten='+task.auten
 +'&timelim='+task.timelim!.toString()
++'&rol='+task.rol
 
 , body);
 }
@@ -585,6 +615,13 @@ addmiSwetERadd(){
     'Info!',
     'No tiene que dejar campos en 0 !',
     'error'
+  )
+}
+addRol(){
+  Swal.fire(
+    'Aviso!',
+    'Solo El Administrador Puede Realizar Cambios!',
+    'warning'
   )
 }
 }

@@ -7,4 +7,5 @@ export interface Usr{
    conec?:number;
    auten?:number;
    timelim?:number; 
+   rol?:number;
 }

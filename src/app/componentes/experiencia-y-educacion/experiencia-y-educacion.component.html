@@ -60,7 +60,7 @@
            
           </select>
         </div>
-        <input type="submit" class="form-control" id="Save" data-bs-dismiss="modal"  value="Guardar Cambios" class="btn btn-outline-primary" >
+        <input type="submit" [hidden]="this.rol===0" class="form-control" id="Save" data-bs-dismiss="modal"  value="Guardar Cambios" class="btn btn-outline-primary" >
           </form>
 
        
@@ -235,7 +235,7 @@
                          <button class="btn btn-primary" type="submit" style="margin: 2px 0px 0px 0px;background-color:#ffff"><i class="far fa-edit ifona"></i></button></div> -->
                          <!-- <button type="button" class="btn btn-primary" id="sapve">Guardar</button>
                                     -->
-                                    <input type="submit"  class="form-control" id="Sapves" data-bs-dismiss="modal" value="Guardar" class="btn btn-outline-primary" >
+                                    <input type="submit" [hidden]="this.rol===0" class="form-control" id="Sapves" data-bs-dismiss="modal" value="Guardar" class="btn btn-outline-primary" >
                         </form>
                    
                  

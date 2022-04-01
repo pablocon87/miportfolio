@@ -29,7 +29,7 @@
                             <div class="input-group-prepend"><span class="input-group-text" style="width: 110px;margin: 2px 0px 0px 0px;">Sobre mi:<br></span></div>
                           <input type="textare" class="form-control"  id ="acerca_de" name="acerca_de"  [(ngModel)]="acerca_de" placeholder="una breve descripcion de usted" />
                           </div>
-                          <input type="submit" class="form-control" id="valor" value="Guardar Cambios" class="btn btn-outline-primary" >
+                          <input type="submit" class="form-control" [hidden]="this.rol===0" id="valor" value="Guardar Cambios" class="btn btn-outline-primary" >
                     </form>   
 
 

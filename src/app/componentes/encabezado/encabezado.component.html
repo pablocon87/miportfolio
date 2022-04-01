@@ -106,7 +106,7 @@
       <div class="input-group-prepend"><span class="input-group-text" style="width: 110px;margin: 2px 0px 0px 0px;">Contacto:<br></span></div>
     <input type="text" class="form-control" id ="infcont" name="infcont" [(ngModel)]="infcont" placeholder="Su url de Contacto" /> 
     </div>
-    <input type="submit" class="form-control" id="valore" value="Guardar Cambios" class="btn btn-outline-primary" >
+    <input type="submit" class="form-control" [hidden]="this.rol===0" id="valore" value="Guardar Cambios" class="btn btn-outline-primary" >
       </form>
       <!-- <input type="submit" id="valor" value="Volver" (click)="onClicks()" [hidden]="color==='green'"  class="btn btn-outline-success"> -->
     </div>

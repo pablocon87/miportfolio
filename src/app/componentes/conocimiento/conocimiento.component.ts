@@ -4,7 +4,9 @@ import {ConocimientoService} from '../../service/conocimiento.service';
 import {AutenticacionService} from '../../service/autenticacion.service';
 import {EducacionService} from '../../service/educacion.service'
 import {ExperienciaService} from '../../service/experiencia.service'
+
 import {Cnc} from '../../../Cnc';
+import {Usr} from '../../../Usr'
 import {faTimes,faEdit,faPlus,faTrash} from '@fortawesome/free-solid-svg-icons';
 import {FormBuilder, FormGroup,Validators} from '@angular/forms';
 import Swal from 'sweetalert2';
@@ -40,6 +42,8 @@ export class ConocimientoComponent implements OnInit,AfterViewInit {
  cont:number=0;
  concat:String="";
  adjunt:String="";
+ users:Usr[]=[];
+ rol?:number;
   rendererFactory?:RendererFactory2;
   recaptchaContainer:any="";
   recaptchaContainerc:any="";
@@ -259,7 +263,7 @@ this.recaptchaContainerts = this.renderer.createElement('div');
       console.log("Rrror", error);
       }
       );
-
+     
       this.c.getTasks().subscribe(
         data => {
           this.conoc=data;
@@ -374,6 +378,12 @@ this.recaptchaContainerts = this.renderer.createElement('div');
         }
           console.log("MUESTRA"+this.elReference.toArray()
           .filter(r => r.nativeElement.hasAttribute('foo')));
+
+          this.per.getTasksUsr().subscribe((resp:any)=>{
+           
+              this.rol=resp.rol;
+            
+          })
           // console.log(this.els.map(({id, cc}) => ({id, cc})));
       }
         
@@ -533,6 +543,10 @@ graFico(cf:Cnc){
   chartedin.render();
 }
 Borrarc(el:Cnc){
+  if(this.rol===0){
+    this.per.addRol();
+    return;
+  }
   this.c.deleteTask(el).subscribe({
     next: resp => {
       let obj=JSON.parse(resp.toString());
@@ -570,7 +584,15 @@ Clickmee(conos:Cnc){
  }
 
 }
+ClickRol(){
+  if(this.rol===0){
+     this.concat="";
+     this.per.addRol();
+     return;
+  }
+}
 Clickeame(ccc,aaa,bbb){
+ 
 if(this.concat ===ccc){
   
   (<HTMLInputElement>document.getElementById(bbb+''+aaa)).value=aaa.toString();
@@ -582,6 +604,11 @@ return false;
 }
 }
 AddN(){
+  if(this.rol===0){
+    this.showall=false;
+    this.per.addRol();
+    return;
+  }
   (<HTMLInputElement>document.getElementById('sobre')).value="";
   (<HTMLInputElement>document.getElementById('de')).value="";
 }
