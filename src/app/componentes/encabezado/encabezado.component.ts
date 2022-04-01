@@ -61,7 +61,7 @@ export class EncabezadoComponent implements OnInit {
      inter:any;
   constructor(public t:AutenticacionService,public http:HttpClient,private jwtHelper: JwtHelperService,private elementRef:ElementRef) {
    
-    addEventListener('beforeunload', this.onClicka.bind(this));
+    //addEventListener('beforeunload', this.onClicka.bind(this));
    }
  
    tiempo(){

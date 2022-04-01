@@ -7,7 +7,7 @@ import {ExperienciaService} from '../../service/experiencia.service'
 import {Cnc} from '../../../Cnc';
 import {faTimes,faEdit,faPlus,faTrash} from '@fortawesome/free-solid-svg-icons';
 import {FormBuilder, FormGroup,Validators} from '@angular/forms';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-conocimiento',
   templateUrl: './conocimiento.component.html',
@@ -390,6 +390,14 @@ submitadd(){
   this.de=(<HTMLInputElement>document.getElementById("de")).value;
   this.saber=parseInt((<HTMLInputElement>document.getElementById("demo")).innerHTML);
   this.persona_id
+  if(this.de==="" || this.sobre===""){
+    Swal.fire(
+      'Campos Vacios!',
+      'Debe colocar Sobre y DE',
+      'warning'
+    )
+    return;
+  }
   const {id,sobre,de,saber,persona_id}=this;
   const AddCon={id,sobre,de,saber,persona_id};
   this.c.addTask(AddCon).subscribe({
@@ -422,8 +430,38 @@ submitadd(){
     }
 });
 }
-submit(){
- 
+submit(cnb:Cnc){
+
+this.id=cnb.id;
+this.de=(<HTMLInputElement>document.getElementById(cnb.id+''+cnb.de)).value;
+this.sobre=(<HTMLInputElement>document.getElementById(cnb.id+''+cnb.sobre)).value;
+this.saber=parseInt((<HTMLInputElement>document.getElementById(cnb.de+'a'+cnb.id)).innerHTML);
+this.persona_id;
+if(this.de==="" || this.sobre===""){
+  Swal.fire(
+    'Campos Vacios!',
+    'Debe colocar Sobre y DE',
+    'warning'
+  )
+  return;
+}
+  const {id,sobre,de,saber,persona_id}=this;
+  const modiFi={id,sobre,de,saber,persona_id};
+
+  this.c.updateTaskReminder(modiFi).subscribe(
+    data => {
+      // this.ngOnInit();
+      // this.ngAfterViewInit();
+      this.concat="";
+      this.per.addmiSwetTasm();
+       this.ngOnInit();
+       this.ngAfterViewInit();
+    console.log("PUT Request is successful ", data);
+    },
+    error => {
+    console.log("Rrror", error);
+    }
+    );
 
 }
 ValorRanT(){
@@ -469,9 +507,9 @@ ValorRan(ji:Cnc){
 graFico(cf:Cnc){
   const el = undefined;
   
-
+ var valor= (<HTMLInputElement>document.getElementById(cf.de+''+cf.id)).value;
   
- var result=100-cf.saber!;
+ var result=100-parseInt(valor);
   var chartedin = new CanvasJSs.Chart("chartContai"+cf.de+"", {
     theme: "light2", // "light1", "light2", "dark1", "dark2"
     exportEnabled: true,
@@ -486,7 +524,7 @@ graFico(cf:Cnc){
       indexLabelFontSize: 16,
       indexLabel: "{label} - {y}%",
       dataPoints: [
-        { y: cf.saber, label: ""+cf.de+"" },
+        { y: valor, label: ""+cf.de+"" },
         { y: result, label: "Falta Por Saber" },
         
       ]
@@ -523,7 +561,8 @@ Borrarc(el:Cnc){
 Clickmee(conos:Cnc){
   
  if(this.concat !==''){
-  
+  (<HTMLInputElement>document.getElementById(conos.id+''+conos.sobre)).value=conos.sobre.toString();
+  (<HTMLInputElement>document.getElementById(conos.id+''+conos.de)).value=conos.de.toString();
   return true;
 
  }else{
@@ -531,13 +570,20 @@ Clickmee(conos:Cnc){
  }
 
 }
-Clickeame(ccc){
+Clickeame(ccc,aaa,bbb){
 if(this.concat ===ccc){
+  
+  (<HTMLInputElement>document.getElementById(bbb+''+aaa)).value=aaa.toString();
+  (<HTMLInputElement>document.getElementById(bbb+''+ccc)).value=ccc.toString();
 return false;
 }else{
   return true;
 
 }
+}
+AddN(){
+  (<HTMLInputElement>document.getElementById('sobre')).value="";
+  (<HTMLInputElement>document.getElementById('de')).value="";
 }
 
 }
