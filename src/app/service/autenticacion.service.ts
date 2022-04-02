@@ -8,6 +8,7 @@ import {Usr} from '../../Usr'
 import Swal from 'sweetalert2';
 import {JwtHelperService,JWT_OPTIONS} from '@auth0/angular-jwt';
 import { Location } from '@angular/common';
+import * as CryptoJS from 'crypto-js';
 
 @Injectable({
   providedIn: 'root',
@@ -39,11 +40,38 @@ export class AutenticacionService {
   tt= new Date();
   conta:number=0;
   pepito:boolean=false;
-  apiUrl = 'https://porfoarp.herokuapp.com';
-  //apiUrl = 'http://localhost:8080';
+  //apiUrl = 'https://porfoarp.herokuapp.com';
+  apiUrl = 'http://localhost:8080';
   constructor(private http: HttpClient,public router:Router,public _location:Location,private jwtHelper: JwtHelperService) { }
   
-  
+//** encriptador */
+set(keys, value){
+  var key = CryptoJS.enc.Utf8.parse(keys);
+  var iv = CryptoJS.enc.Utf8.parse(keys);
+  var encrypted = CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(value.toString()), key,
+  {
+      keySize: 128 / 8,
+      iv: iv,
+      mode: CryptoJS.mode.CBC,
+      padding: CryptoJS.pad.Pkcs7
+  });
+
+  return encrypted.toString();
+}
+
+//The get method is use for decrypt the value.
+get(keys, value){
+  var key = CryptoJS.enc.Utf8.parse(keys);
+  var iv = CryptoJS.enc.Utf8.parse(keys);
+  var decrypted = CryptoJS.AES.decrypt(value, key, {
+      keySize: 128 / 8,
+      iv: iv,
+      mode: CryptoJS.mode.CBC,
+      padding: CryptoJS.pad.Pkcs7
+  });
+  return decrypted.toString(CryptoJS.enc.Utf8);
+}
+//**fin encript */
 login(user: string, password: string){
     if(user==="" && password===""){
       Swal.fire({
@@ -77,7 +105,12 @@ login(user: string, password: string){
       
       localStorage.setItem('conec',resp.conec);
       localStorage.removeItem('id');
+      var encrypted = this.set('123456$#@$^@1ERF', password);
+      var decrypted = this.get('123456$#@$^@1ERF', encrypted);
      
+      console.log('Encrypted :' + encrypted);
+      console.log('Encrypted :' + decrypted);
+  
       
       this.rol=resp.rol;
       localStorage.setItem('usr',user);

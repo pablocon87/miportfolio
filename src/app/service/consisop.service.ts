@@ -6,9 +6,9 @@ import {Sop} from '../../Sop'
   providedIn: 'root'
 })
 export class ConsisopService {
- apiUrl = 'https://porfoarp.herokuapp.com';
+ //apiUrl = 'https://porfoarp.herokuapp.com';
   
- //apiUrl = 'http://localhost:8080';
+ apiUrl = 'http://localhost:8080';
  constructor(private http: HttpClient) { }
 
 getTasks():Observable<Sop[]>{
