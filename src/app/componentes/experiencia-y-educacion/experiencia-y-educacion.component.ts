@@ -87,11 +87,10 @@ i?:number;
         
   }
   
-      //alert(JSON.stringify(this.ii))
-    //console.log("ESTE THIS"+JSON.stringify(this.aa))
+     
         
        
-      this.Recarga();
+  this.Recarga();
       this.per.getTasksUsr().subscribe((resp:any)=>{
 
         
@@ -103,11 +102,13 @@ i?:number;
       )
    
   }
-  OpRe(){
+
+OpRe(){
     let opt;
    
-  }
-  Recarga(){
+}
+
+Recarga(){
     this.per.getTasks().subscribe(
       data => {
         this.pers=data;
@@ -152,8 +153,9 @@ i?:number;
       console.log("Rrror", error);
       }
       );
-  }
-  addExp(ex:Exp){
+}
+
+addExp(ex:Exp){
     this.persona_id=ex.persona_id;
     if (this.color==='green'){
       this.color="red";
@@ -161,18 +163,20 @@ i?:number;
      }else{this.color="green";
     
    }
-  }
-  Selec(){
+}
+  
+Selec(){
     var myDate = new Date();
     var year = myDate.getFullYear();
     for( this.i = 1900; this.i < year+1; this.i++){
       document.write("<option></option>");
-    // document.write('<option value="'+this.i+'">'+this.i+'</option>');
+    
     }
-  }
-  onSubmit(){
+}
+
+onSubmit(){
     if((<HTMLInputElement>document.getElementById("Save")).value.toString() !== "Guardar Cambios"){
-      alert("entre");
+      
     if(  (<HTMLInputElement>document.getElementById("btncheck1")).checked===true){
       this.estrabajoactual=1;
     }else{
@@ -209,28 +213,18 @@ i?:number;
          
       }
   });
-  // this.e.addTask(modiFi).pipe(map(resp => console.log("VER"+" "+JSON.stringify(resp)) ))
-    
-  //   this.e.addTask(modiFi).subscribe({
-  //     next:data =>  {
-        
-  //     },
-  //     error: error => {
-  //        const s={responseType:'text'};
-  //         console.error('There was an error!'+ error.message);
-  //     }
-  // })
+ 
   }else{
     this.id;
     this.persona_id;
-  this.nombreEmpresa=  (<HTMLInputElement>document.getElementById("nombreEmpresa")).value;
-  var fini:any =  (<HTMLInputElement>document.getElementById("fechainicio")).value;
-  this.fechainicio=fini;
-   var fefin:any= (<HTMLInputElement>document.getElementById("fechafin")).value;
-   this.fechafin=fefin;
-   this.descripcion= (<HTMLInputElement>document.getElementById("descripcion")).value;
- // this.persona_id=    (<HTMLInputElement>document.getElementById("persona_id")).value;
-let val =  (<HTMLInputElement>document.getElementById("tipo_empleo_id")).value;
+    this.nombreEmpresa=  (<HTMLInputElement>document.getElementById("nombreEmpresa")).value;
+    var fini:any =  (<HTMLInputElement>document.getElementById("fechainicio")).value;
+    this.fechainicio=fini;
+    var fefin:any= (<HTMLInputElement>document.getElementById("fechafin")).value;
+    this.fechafin=fefin;
+    this.descripcion= (<HTMLInputElement>document.getElementById("descripcion")).value;
+
+    let val =  (<HTMLInputElement>document.getElementById("tipo_empleo_id")).value;
     this.tipo_empleo_id=parseFloat(val);
     if( (<HTMLInputElement>document.getElementById("btncheck1")).checked===true){
       this.estrabajoactual=1;
@@ -253,8 +247,9 @@ let val =  (<HTMLInputElement>document.getElementById("tipo_empleo_id")).value;
       );
       (<HTMLInputElement>document.getElementById("Save")).value!=="Guardar Cambios";
   }
-  }
-  onClicks(){
+}
+
+onClicks(){
     
     if (this.color==='green'){
       this.color="red";
@@ -264,17 +259,18 @@ let val =  (<HTMLInputElement>document.getElementById("tipo_empleo_id")).value;
      this.ngOnInit();
      this.valor="";
    }
-  }
-  pepito(velior:any){
+}
+
+pepito(velior:any){
     alert(velior)
 
-  }
-  Modif(exp:Exp,tipem:Tipem){
+}
+
+Modif(exp:Exp,tipem:Tipem){
     if(this.rol===0){
       this.per.addRol();
       return;
     }
-    //this.addExp();
     this.id=exp.id;
     this.tipo_empleo_id=tipem.id;
     this.persona_id=exp.persona_id;
@@ -283,13 +279,12 @@ let val =  (<HTMLInputElement>document.getElementById("tipo_empleo_id")).value;
     (<HTMLInputElement>document.getElementById("fechainicio")).value=exp.fechainicio!.toString();
     (<HTMLInputElement>document.getElementById("fechafin")).value=exp.fechafin!.toString();
     (<HTMLInputElement>document.getElementById("descripcion")).value=exp.descripcion.toString();
-    //(<HTMLInputElement>document.getElementById("persona_id")).value=localStorage.getItem("id")!.toString();
     (<HTMLInputElement>document.getElementById("tipo_empleo_id")).valueAsNumber!=tipem.id;
     (<HTMLInputElement>document.getElementById("btncheck1")).checked=exp.estrabajoactual===1;
     (<HTMLInputElement>document.getElementById("Save")).value = "Guardar Cambios";
   
   }
-  Borrar(el:Exp){
+Borrar(el:Exp){
     if(this.rol===0){
       this.per.addRol();
       return;
@@ -316,8 +311,9 @@ let val =  (<HTMLInputElement>document.getElementById("tipo_empleo_id")).value;
       }
   });
     this.ngOnInit();
-  }
-  recarga(){
+}
+
+recarga(){
     if(this.rol===0){
       this.per.addRol();
       return;
@@ -327,44 +323,36 @@ let val =  (<HTMLInputElement>document.getElementById("tipo_empleo_id")).value;
     (<HTMLInputElement>document.getElementById("fechainicio")).value="";
     (<HTMLInputElement>document.getElementById("fechafin")).value="";
     (<HTMLInputElement>document.getElementById("descripcion")).value="";
-    //(<HTMLInputElement>document.getElementById("persona_id")).value=localStorage.getItem("id")!.toString();
     (<HTMLInputElement>document.getElementById("tipo_empleo_id")).valueAsNumber!=1;
     (<HTMLInputElement>document.getElementById("btncheck1")).checked=false;
     (<HTMLInputElement>document.getElementById("Save")).value = "Guardar";
 
   }
-  educCl(ed:Educ){
+educCl(ed:Educ){
   if(this.rol===0){
     this.per.addRol();
     return;
   }
-    // if(this.showadd===false){
+   
       this.id=ed.id; 
       this.id_persona=ed.id_persona;
       this.showadd=true;  
       (<HTMLInputElement>document.getElementById("Sapves")).value="Modificar";
       (<HTMLInputElement>document.getElementById("urllogo")).value=ed.url_logo.toString();
-    (<HTMLInputElement>document.getElementById("principal")).value=ed.principal.toString();
+      (<HTMLInputElement>document.getElementById("principal")).value=ed.principal.toString();
       (<HTMLInputElement>document.getElementById("segunda")).value=ed.segunda.toString();
        (<HTMLInputElement>document.getElementById("urlinst")).value=ed.urlinst.toString();
        (<HTMLInputElement>document.getElementById("anoinic")).value=ed.anoinic!.toString();
        (<HTMLInputElement>document.getElementById("anofin")).value=ed.anofin!.toString();
        (<HTMLInputElement>document.getElementById("titulo")).value=ed.titulo.toString();
-      //this.id= parseFloat((<HTMLInputElement>document.getElementById("ided")).value);
-      //((<HTMLInputElement>document.getElementById("ided")).value)=ed.id?;
-      
-       
-  
-  // }else{this.showadd=false;
-  //   (<HTMLInputElement>document.getElementById("Sapve")).value="Guardar Cambios";
-  // }
-  }
-  addEdu(){
+     
+}
+
+addEdu(){
       if(this.rol===0){
         this.per.addRol();
         return;
       }
-    // if(this.showadd===false){
       (<HTMLInputElement>document.getElementById("urllogo")).value="";
       (<HTMLInputElement>document.getElementById("principal")).value="";
       (<HTMLInputElement>document.getElementById("segunda")).value="";
@@ -374,9 +362,10 @@ let val =  (<HTMLInputElement>document.getElementById("tipo_empleo_id")).value;
       (<HTMLInputElement>document.getElementById("titulo")).value="";
       (<HTMLInputElement>document.getElementById("Sapves")).value="Guardar Cambios";
       this.showadd=true;    
-  // }else{this.showadd=false}
-   }
-  envEd(){
+ 
+}
+
+envEd(){
   if( (<HTMLInputElement>document.getElementById("Sapves")).value!=="Modificar"){
   if(this.principal==="" || this.segunda===""){
     alert("Debe llenar los campos al agregar");
@@ -411,47 +400,44 @@ let val =  (<HTMLInputElement>document.getElementById("tipo_empleo_id")).value;
       this.envEdm();
     }
     this.ngOnInit();
-  }
-  envEdm(){
-   // alert(parseFloat((<HTMLInputElement>document.getElementById("ided")).value));
-   this.url_logo= (<HTMLInputElement>document.getElementById("urllogo")).value;
-     this.principal= (<HTMLInputElement>document.getElementById("principal")).value;
- this.segunda= (<HTMLInputElement>document.getElementById("segunda")).value;
- this.urlinst=(<HTMLInputElement>document.getElementById("urlinst")).value;
- var x:any=     (<HTMLInputElement>document.getElementById("anoinic")).value;
- this.anoinic=x;
-   var xx:any=   (<HTMLInputElement>document.getElementById("anofin")).value;
-   this.anofin=xx;   
-   this.titulo=(<HTMLInputElement>document.getElementById("titulo")).value;
- //this.id=  parseFloat((<HTMLInputElement>document.getElementById("ided")).value);
-//  alert(this.principal);
-//  alert(this.segunda);
-// alert(this.id);
-// alert(this.id_persona)
-// return;
-  const {principal,segunda,id_persona,id,url_logo,urlinst,anoinic,anofin,titulo,persona_id}=this;
-  const modiFi={principal,segunda,id_persona,id,url_logo,urlinst,anoinic,anofin,titulo,persona_id}
-  if(this.principal==="" || this.segunda==="" || this.id===null){
-    alert("Debe llenar los campos de la Modificacion");
-    return;
-  }
-  this.educ.updateTaskReminder(modiFi).subscribe(
-    data => {
-      this.showadd=false;    
-      this.ngOnInit();
-    
-      this.e.addmiSwetExm();
-    },
-    error => {
-      this.showadd=false;    
-      this.ngOnInit();
-    alert("Se descuageringo todo"+ error);
-    }
-    );
-    this.ngOnInit();
+}
 
-  }
-  deleT(ed:Educ){
+envEdm(){
+   
+      this.url_logo= (<HTMLInputElement>document.getElementById("urllogo")).value;
+      this.principal= (<HTMLInputElement>document.getElementById("principal")).value;
+      this.segunda= (<HTMLInputElement>document.getElementById("segunda")).value;
+      this.urlinst=(<HTMLInputElement>document.getElementById("urlinst")).value;
+      var x:any=     (<HTMLInputElement>document.getElementById("anoinic")).value;
+      this.anoinic=x;
+      var xx:any=   (<HTMLInputElement>document.getElementById("anofin")).value;
+      this.anofin=xx;   
+      this.titulo=(<HTMLInputElement>document.getElementById("titulo")).value;
+ 
+      const {principal,segunda,id_persona,id,url_logo,urlinst,anoinic,anofin,titulo,persona_id}=this;
+      const modiFi={principal,segunda,id_persona,id,url_logo,urlinst,anoinic,anofin,titulo,persona_id}
+      if(this.principal==="" || this.segunda==="" || this.id===null){
+        alert("Debe llenar los campos de la Modificacion");
+        return;
+      }
+      this.educ.updateTaskReminder(modiFi).subscribe(
+        data => {
+          this.showadd=false;    
+          this.ngOnInit();
+        
+          this.e.addmiSwetExm();
+        },
+        error => {
+          this.showadd=false;    
+          this.ngOnInit();
+        alert("Se descuageringo todo"+ error);
+        }
+        );
+        this.ngOnInit();
+
+}
+
+deleT(ed:Educ){
     if(this.rol===0){
       this.per.addRol();
       return;
@@ -479,6 +465,6 @@ let val =  (<HTMLInputElement>document.getElementById("tipo_empleo_id")).value;
       );
      
   
-    }
+}
   
 }

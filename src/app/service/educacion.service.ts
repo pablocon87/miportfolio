@@ -13,7 +13,7 @@ export class EducacionService {
  //apiUrl = 'http://localhost:8080';
   constructor(private http: HttpClient) { }
 
-  getTasks():Observable<Educ[]>{
+getTasks():Observable<Educ[]>{
     const httpOptions = {
 
       headers: new HttpHeaders(
@@ -22,22 +22,22 @@ export class EducacionService {
           'Authorization': localStorage.getItem('auth_token')!,
         }
       )
-        // head: new HttpParams()
-        // .set('Content-Type', 'application/json')
+        
     
     };
-    /*const tasks =of(TASKS);
-    return tasks;*/
+   
     return this.http.get<Educ[]> (this.apiUrl+'/educacion/traer',httpOptions)
-  }
-  deleteTask(task:Educ):  Observable<Educ> {
+}
+
+deleteTask(task:Educ):  Observable<Educ> {
     const body={title: 'Angular POST Request Example'};
     const headers = { 'Authorization': localStorage.getItem('auth_token')!, 'Content-Type': 'application/json' };
-const url = `${this.apiUrl}/educacion/borrar/${task.id}`;
-return this.http.delete<Educ>(url,{headers});
+    const url = `${this.apiUrl}/educacion/borrar/${task.id}`;
+    return this.http.delete<Educ>(url,{headers});
 
-  }
-  updateTaskReminder(task:Educ): Observable<Educ>{
+}
+
+updateTaskReminder(task:Educ): Observable<Educ>{
  
     const option ={
       headers: new HttpHeaders(
@@ -48,20 +48,21 @@ return this.http.delete<Educ>(url,{headers});
         })
     };
     const body={title: 'Angular POST Request Example'};
-  const url = `${this.apiUrl}/educacion/editar/${task.id}`;
-  return this.http.put<Educ>(url+'?principal='+task.principal
-  +'&segunda='+task.segunda
-  +'&personaid='+task.id_persona
-  +'&urllogo='+task.url_logo
-  +'&urlinst='+task.urlinst
-  +'&anoinic='+task.anoinic
-  +'&anofin='+task.anofin
-  +'&titulo='+task.titulo
-  +'&persona_id='+task.persona_id
+    const url = `${this.apiUrl}/educacion/editar/${task.id}`;
+    return this.http.put<Educ>(url+'?principal='+task.principal
+    +'&segunda='+task.segunda
+    +'&personaid='+task.id_persona
+    +'&urllogo='+task.url_logo
+    +'&urlinst='+task.urlinst
+    +'&anoinic='+task.anoinic
+    +'&anofin='+task.anofin
+    +'&titulo='+task.titulo
+    +'&persona_id='+task.persona_id
 
-  
-  , body, option);
+    
+    , body, option);
 }
+
 addTask(task:Educ): Observable<Educ>{
   const option ={
     headers: new HttpHeaders(
@@ -71,9 +72,7 @@ addTask(task:Educ): Observable<Educ>{
     'Authorization': localStorage.getItem('auth_token')!
       })
   };
-  // const params = new URLSearchParams()
-  // params.set('user', user)
-  // params.set('password',password)
+ 
   return this.http.post<Educ>(this.apiUrl+'/educacion/crear', task, option);
 
 }

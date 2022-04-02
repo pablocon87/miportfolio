@@ -26,12 +26,9 @@ export class ExperienciaService {
           'Authorization': localStorage.getItem('auth_token')!,
         }
       )
-        // head: new HttpParams()
-        // .set('Content-Type', 'application/json')
-    
+        
     }
-    /*const tasks =of(TASKS);
-    return tasks;*/
+    
     return this.http.get<Exp[]> (this.apiUrl+'/experiencia/traer',httpOptions)
   }
   getTasksTip():Observable<Tipem[]>{
@@ -43,13 +40,12 @@ export class ExperienciaService {
           'Authorization': localStorage.getItem('auth_token')!,
         }
       )
-        // head: new HttpParams()
-        // .set('Content-Type', 'application/json')
     
     }
     return this.http.get<Tipem[]> (this.apiUrl+'/tipoem/traer',httpOptions)
   }
-  deleteTask(task:Exp):  Observable<Exp> {
+
+deleteTask(task:Exp):  Observable<Exp> {
     const option ={
       headers: new HttpHeaders(
         {
@@ -58,11 +54,12 @@ export class ExperienciaService {
       'Authorization': localStorage.getItem('auth_token')!
         })
     };
-const url = `${this.apiUrl}/experiencia/borrar/${task.id}`;
-return this.http.delete<Exp>(url,option);
+    const url = `${this.apiUrl}/experiencia/borrar/${task.id}`;
+    return this.http.delete<Exp>(url,option);
 
-  }
-  updateTaskReminder(task:Exp): Observable<Exp>{
+}
+
+updateTaskReminder(task:Exp): Observable<Exp>{
     const option ={
       headers: new HttpHeaders(
         {
@@ -72,18 +69,19 @@ return this.http.delete<Exp>(url,option);
         })
     };
     const body={title: 'Angular POST Request Example'};
-  const url = `${this.apiUrl}/experiencia/editar/${task.id}`;
-  return this.http.put<Exp>(url+'?nombreEmpresa='+ task.nombreEmpresa
-  +'&estrabajoactual='+ task.estrabajoactual
-  +'&fechainicio='+task.fechainicio
-  +'&fechafin='+task.fechafin
-+'&descripcion='+task.descripcion
-+'&persona_id='+  task.persona_id
- +'&tipo_empleo_id='+ task.tipo_empleo_id
-  
-  
-  , body, option);
+    const url = `${this.apiUrl}/experiencia/editar/${task.id}`;
+    return this.http.put<Exp>(url+'?nombreEmpresa='+ task.nombreEmpresa
+    +'&estrabajoactual='+ task.estrabajoactual
+    +'&fechainicio='+task.fechainicio
+    +'&fechafin='+task.fechafin
+    +'&descripcion='+task.descripcion
+    +'&persona_id='+  task.persona_id
+    +'&tipo_empleo_id='+ task.tipo_empleo_id
+    
+    
+    , body, option);
 }
+
 addTask(task:Exp): Observable<Exp>{
   const options ={
     
@@ -98,6 +96,7 @@ addTask(task:Exp): Observable<Exp>{
   return this.http.post<Exp>(this.apiUrl+'/experiencia/crear', task ,options);
 
 }
+
 addmiSwetEx(){
   Swal.fire(
     'Muy Bien!',
@@ -105,6 +104,7 @@ addmiSwetEx(){
     'success'
   )
 }
+
 addmiSwetExm(){
   Swal.fire(
     'Muy Bien!',
@@ -112,6 +112,7 @@ addmiSwetExm(){
     'success'
   )
 }
+
 addmiSwetExb(){
   Swal.fire(
     'Muy Bien!',
@@ -119,4 +120,5 @@ addmiSwetExb(){
     'success'
   )
 }
+
 }

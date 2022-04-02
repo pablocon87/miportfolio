@@ -42,7 +42,9 @@ export class AutenticacionService {
   apiUrl = 'https://porfoarp.herokuapp.com';
   //apiUrl = 'http://localhost:8080';
   constructor(private http: HttpClient,public router:Router,public _location:Location,private jwtHelper: JwtHelperService) { }
-  login(user: string, password: string){
+  
+  
+login(user: string, password: string){
     if(user==="" && password===""){
       Swal.fire({
         icon: 'error',
@@ -54,29 +56,23 @@ export class AutenticacionService {
     }
     
     const headers = { 'content-type': 'application/x-www-form-urlencoded'};
-   // const headers = { 'content-type': 'application/json'};
+   
     
     const body = { 
      head: new HttpParams()
     .set('user', user)
     .set('password', password)
-  };
-  const params = new URLSearchParams()
-  params.set('user', user)
-  params.set('password',password)
-  
+    };
+    const params = new URLSearchParams()
+    params.set('user', user)
+    params.set('password',password)
+    
   
 
-  // const options = new RequestOptions({
-  //   headers: this.getAuthorizedHeaders(),
-  //   responseType: ResponseContentType.Json,
-  //   params: params,
-  //   withCredentials: false
-  // });
+
     this.http.post(this.apiUrl + '/user',params,{headers})
     .subscribe((resp: any)=>{
-      //this.clinT();
-      //this.sesionEsp();
+     
       this.id=resp.id;
       
       localStorage.setItem('conec',resp.conec);
@@ -94,15 +90,11 @@ export class AutenticacionService {
       localStorage.setItem('passw',password);
       if(resp.token !=="nada"){
         localStorage.setItem('auth_token', resp.token);
-       // alert(" TOKEN"+resp.token+""+"ids"+resp.id)
-        //this.sesionEspi();
         this.auten=1;
         localStorage.removeItem('conta');
         this.router.navigate(['/PortFolio']);
       }else{
         this.numb=parseInt(localStorage.getItem('conec')!);
-        //console.log("este es num"+this.numb);
-        //console.log(JSON.stringify(resp));
         if(this.numb===1){
           localStorage.setItem('conta','4')
           Swal.fire({
@@ -112,8 +104,7 @@ export class AutenticacionService {
             footer: 'User On!'
           })
   
-        }else{
-          
+        }else{ 
           if (resp.auten>=3){
             this.auten=3;
             localStorage.setItem("conta",'4');
@@ -124,33 +115,9 @@ export class AutenticacionService {
               text: 'contraseña invalida!',
               footer: 'Error!'
             })
-            // localStorage.setItem('timelim',resp.timelim)
-            // this.id=resp.id;    
-            // this.user=resp.user
-            // this.password=resp.password;
-            // this.token="";
-            // this.expired=0;
-            // this.conec=0;
-            // this.auten=1;
-            // var titon=new Date();
-            // this.timelim=titon.getMinutes();
-            //  const {id,user,password,token,expired,conec,auten,timelim}=this;
-            //  const ModiFi={id,user,password,token,expired,conec,auten,timelim};
-            //  this.updateTaskUsr(ModiFi).subscribe(
-            //   data => {
-                
-              
-               
-            //   },
-            //   error => {
-                
-            //   alert("Se descuageringo todo"+ JSON.stringify(error));
-              
-            //   }
-            //   );
-            //   this.logout();
+           
           }else{
-          //alert(JSON.stringify(resp)+resp.conec);
+          
           if(localStorage.getItem('conta') === null){
             this.router.navigate(['/Inic']);
             this.auten=1;
@@ -181,7 +148,7 @@ export class AutenticacionService {
         }
         }
           
-        } //
+        } 
             
             
       }
@@ -190,16 +157,16 @@ export class AutenticacionService {
     }} )
 
   };
-  valiD(){
-    this.logout();
+valiD(){
+          this.logout();
           Swal.fire({
             icon: 'error',
             title: 'Oops...',
             text: 'usuario o contraseña invalido!',
             footer: 'Registrarse!'
           })
-  }
-  tokenVal(){
+}
+tokenVal(){
     if (this.jwtHelper.isTokenExpired(localStorage.getItem('auth_token')!)) {
       clearInterval(this.inter);
       this.sesionEsp();
@@ -207,69 +174,26 @@ export class AutenticacionService {
       this.updat();
       this.tiempos();
     }
-  }
-  sesionEspi(){
-    this.inter=  setInterval(() => {this.tokenVal();},10000)
-  }
-  secc(){
-    
-    this.cl=  setInterval(() => {
-      
-      var fifi =new Date()
-      fifi.getMinutes();
-      //console.log("este es fifi "+" "+fifi);
-      this.limite=0;
-      this.limite=fifi.getMinutes()-parseInt(localStorage.getItem('data')!);
+}
 
-     
-      // if(this.limite !== parseInt(localStorage.getItem('tip')!) ){
-      //   localStorage.setItem('tip',this.limite?.toString());
-      //   let t=parseInt(localStorage.getItem('timeps')!)-parseInt(localStorage.getItem('tip')!);
-      // localStorage.setItem('timeps',t.toString());
-      // }
-      
-      //console.log("este es Limite"+" "+ this.limite)
-       if (this.limite>=parseInt(localStorage.getItem('timeps')!)){
-         if(this.conta===0){
-           clearInterval(this.cl);
-           this.conta=2;
-           localStorage.removeItem('tip');
-           localStorage.setItem('timeps','29')
-           this.secc();
-          this.tiempos();
-         }else{
-          if(this.conta===2){
-            this.logout();
-          }
-          if(this.conta===1){
-            this.logout();
-          }
-         }
-         
-          
-          //this.logout();
-       }
-    }, 1000);
-  }
-  sesionEsp(){
+sesionEspi(){
+    this.inter=  setInterval(() => {this.tokenVal();},10000)
+}
+
+sesionEsp(){
   this.tim =  setTimeout(() => {
         this.logout();
   
       },60000)
-  }
-  cerrSesi(){
+}
+cerrSesi(){
     setTimeout(() => {
       this.logout();
 
     },90000)
-  }
-  // refresh(): void {
-  //   this.router.navigateByUrl("/refresh", { skipLocationChange: true }).then(() => {
-  //   console.log(decodeURI(this._location.path()));
-  //   this.router.navigate([decodeURI(this._location.path())]);
-  //   });
-  // }
-  clinT(){
+}
+ 
+clinT(){
     
       this.cl=  setInterval(() => {
        
@@ -282,7 +206,7 @@ export class AutenticacionService {
          this.times-=1;
           localStorage.setItem('time',this.times.toString());
       }
-     // console.log("este es el tiempo "+ " "+ localStorage.getItem('time') );
+    
      if(localStorage.getItem('timedm') !==''){
       this.timdm=parseInt(localStorage.getItem('timedm')!);
       this.timdm-=1;
@@ -296,13 +220,11 @@ export class AutenticacionService {
         clearInterval(this.cl);
         this.tiempos();
       }
-      // setTimeout(() => {
-      //   this.tiempos();
-  
-      // },600000)
+     
      }, 1000);
-  }
-  clinT2(){
+}
+
+clinT2(){
    
       this.cl2=  setInterval(() => {
        
@@ -315,7 +237,6 @@ export class AutenticacionService {
          this.times-=1;
           localStorage.setItem('time',this.times.toString());
       }
-     // console.log("este es el tiempo "+ " "+ localStorage.getItem('time') );
      if(localStorage.getItem('timedm') !==''){
       this.timdm=parseInt(localStorage.getItem('timedm')!);
       this.timdm-=1;
@@ -325,13 +246,11 @@ export class AutenticacionService {
     }
   }
       
-      // setTimeout(() => {
-      //   this.tiempos();
-  
-      // },600000)
+    
      }, 1000);
   }
-  tiempos(){
+
+ tiempos(){
   
     Swal.fire({
       
@@ -343,8 +262,7 @@ export class AutenticacionService {
      cancelButtonColor: '#d33',
      confirmButtonText: 'Si, extender!'
    }).then((result) => {
-    //localStorage.setItem('timedm','10100');
-    //this.clinT2();
+   
      if (result.isConfirmed) {
       
        clearTimeout(this.tim);
@@ -369,13 +287,12 @@ export class AutenticacionService {
       
       this.conec=0;
       this.logout();
-      // localStorage.setItem('time','10100');
-      // //localStorage.setItem('timedm','9999');
-      // this.clinT();
+      
      
    })
-  }
-  updat(){
+}
+
+updat(){
     if(localStorage.getItem('usr') !==null ){
    if(this.id!==null){
      
@@ -410,29 +327,33 @@ export class AutenticacionService {
       );
     }
   }
-  }
-   logout(){
+}
+   
+logout(){
       this.updat();
-     clearInterval(this.cl);
-     this.conta=0;
-     this.limite=0;
-     localStorage.removeItem('data');
-     localStorage.removeItem('timedm');
-     localStorage.removeItem('time');
-     localStorage.removeItem('usr');
-     localStorage.removeItem('passw');
-    localStorage.removeItem('auth_token');
-    localStorage.removeItem('tip');
-    localStorage.removeItem('ids');
-    localStorage.removeItem('timeps');
-    this.router.navigate(['']);
+      clearInterval(this.cl);
+      this.conta=0;
+      this.limite=0;
+      localStorage.removeItem('data');
+      localStorage.removeItem('timedm');
+      localStorage.removeItem('time');
+      localStorage.removeItem('usr');
+      localStorage.removeItem('passw');
+      localStorage.removeItem('auth_token');
+      localStorage.removeItem('tip');
+      localStorage.removeItem('ids');
+      localStorage.removeItem('timeps');
+      this.router.navigate(['']);
 
-  }
-  public get logIn(): boolean {
+}
+
+
+public get logIn(): boolean {
     return (localStorage.getItem('auth_token')!==null);
 
-  }
-  getTasks():Observable<Task[]>{
+}
+
+getTasks():Observable<Task[]>{
     const httpOptions = {
 
       headers: new HttpHeaders(
@@ -440,18 +361,15 @@ export class AutenticacionService {
           'Content-Type': 'application/x-www-form-urlencoded',
           'Authorization': localStorage.getItem('auth_token')!
         }
-       )//,
-      //    head: new HttpParams()
-      //    .set('Content-Type', 'application/json')
-    
+       )
     }
-    /*const tasks =of(TASKS);
-    return tasks;*/
+    
       
     return this.http.get<Task[]> (this.apiUrl+'/personas/traer',httpOptions)
     
-  }
-  getTasksUsr():Observable<Usr>{
+}
+
+getTasksUsr():Observable<Usr>{
     const httpOptions = {
 
       headers: new HttpHeaders(
@@ -459,25 +377,24 @@ export class AutenticacionService {
           'Content-Type': 'application/x-www-form-urlencoded',
           'Authorization': localStorage.getItem('auth_token')!
         }
-       )//,
-      //    head: new HttpParams()
-      //    .set('Content-Type', 'application/json')
+       )
     
     }
-    /*const tasks =of(TASKS);
-    return tasks;*/
+    
     const body={title: 'Angular POST Request Example'};
     const url = `${this.apiUrl}/user/traer/${localStorage.getItem('usr')}`;
     return this.http.put<Usr>(url,body,httpOptions);
-    //return this.http.get<Usr[]> (this.apiUrl+'/user/traer',httpOptions)
     
-  }
-  deleteTask(task:Task):  Observable<Task> {
-const url = `${this.apiUrl}/${task.id}`;
-return this.http.delete<Task>(url);
+    
+}
 
-  }
-  updateTaskReminder(task:Task): Observable<Task>{
+deleteTask(task:Task):  Observable<Task> {
+    const url = `${this.apiUrl}/${task.id}`;
+    return this.http.delete<Task>(url);
+
+}
+
+updateTaskReminder(task:Task): Observable<Task>{
     const httpOptions = {
 
       headers: new HttpHeaders(
@@ -485,14 +402,12 @@ return this.http.delete<Task>(url);
           'Content-Type': 'application/x-www-form-urlencoded',
           'Authorization': localStorage.getItem('auth_token')!
         }
-       )//,
-      //    head: new HttpParams()
-      //    .set('Content-Type', 'application/json')
-    
+       )
     }
   const url = `${this.apiUrl}/${task.id}`;
   return this.http.put<Task>(url, task, httpOptions);
 }
+
 updateTask(task:Task): Observable<Task>{
   const option ={
     headers: new HttpHeaders(
@@ -503,22 +418,23 @@ updateTask(task:Task): Observable<Task>{
       })
   };
   const body={title: 'Angular POST Request Example'};
-const url = `${this.apiUrl}/personas/editar/${task.id}`;
-return this.http.put<Task>(url+'?acerca_de='+task.acerca_de
-+'&nombre='+task.nombre
-+'&apellido='+task.apellido
-+'&domicilio='+task.domicilio
-+'&fechanac='+task.fechanac
-+'&telefono='+task.telefono
-+'&correo='+task.correo
-+'&sobre_mi='+task.sobre_mi
-+'&url_foto='+task.url_foto
-+'&facebook='+task.facebook
-+'&twiter='+task.twiter
-+'&instagram='+task.instagram
-+'&infcont='+task.infcont
-, body, option);
+  const url = `${this.apiUrl}/personas/editar/${task.id}`;
+  return this.http.put<Task>(url+'?acerca_de='+task.acerca_de
+  +'&nombre='+task.nombre
+  +'&apellido='+task.apellido
+  +'&domicilio='+task.domicilio
+  +'&fechanac='+task.fechanac
+  +'&telefono='+task.telefono
+  +'&correo='+task.correo
+  +'&sobre_mi='+task.sobre_mi
+  +'&url_foto='+task.url_foto
+  +'&facebook='+task.facebook
+  +'&twiter='+task.twiter
+  +'&instagram='+task.instagram
+  +'&infcont='+task.infcont
+  , body, option);
 }
+
 updateTaskUsr(task:Usr): Observable<Usr>{
   const option ={
     headers: new HttpHeaders(
@@ -529,17 +445,17 @@ updateTaskUsr(task:Usr): Observable<Usr>{
       })
   };
   const body={title: 'Angular POST Request Example'};
-const url = `${this.apiUrl}/user/editar/${task.id}`;
-return this.http.put<Usr>(url+'?user='+task.user
-+'&password='+task.password
-+'&token='+task.token
-+'&expired='+task.expired
-+'&conec='+task.conec
-+'&auten='+task.auten
-+'&timelim='+task.timelim!.toString()
-+'&rol='+task.rol
+  const url = `${this.apiUrl}/user/editar/${task.id}`;
+  return this.http.put<Usr>(url+'?user='+task.user
+  +'&password='+task.password
+  +'&token='+task.token
+  +'&expired='+task.expired
+  +'&conec='+task.conec
+  +'&auten='+task.auten
+  +'&timelim='+task.timelim!.toString()
+  +'&rol='+task.rol
 
-, body);
+  , body);
 }
 addTask(task:Task): Observable<Task>{
   const httpOptions = {
@@ -549,14 +465,13 @@ addTask(task:Task): Observable<Task>{
         'Content-Type': 'application/x-www-form-urlencoded',
         'Authorization': localStorage.getItem('auth_token')!
       }
-     )//,
-    //    head: new HttpParams()
-    //    .set('Content-Type', 'application/json')
+     )
   
   }
   return this.http.post<Task>(this.apiUrl, task, httpOptions);
 
 }
+
 addTaskReg(reg:Reg): Observable<Reg>{
   const httpOptions = {
 
@@ -565,14 +480,13 @@ addTaskReg(reg:Reg): Observable<Reg>{
         'Content-Type': 'application/x-www-form-urlencoded',
         'Authorization': localStorage.getItem('auth_token')!
       }
-     )//,
-    //    head: new HttpParams()
-    //    .set('Content-Type', 'application/json')
+     )
   
   }
   return this.http.post<Reg>(this.apiUrl+'/user/crear', reg);
 
 }
+
 addmiSwet(){
   Swal.fire(
     'Buen Trabajo!',
@@ -580,6 +494,7 @@ addmiSwet(){
     'success'
   )
 }
+
 addmiSwetER(){
   Swal.fire(
     'Sorry!',
@@ -587,6 +502,7 @@ addmiSwetER(){
     'error'
   )
 }
+
 addmiSwetTasm(){
   Swal.fire(
     'Muy Bien!',
@@ -595,6 +511,7 @@ addmiSwetTasm(){
   )
 
 }
+
 addmiSwetTasadd(){
   Swal.fire(
     'Muy Bien!',
@@ -602,6 +519,7 @@ addmiSwetTasadd(){
     'success'
   )
 }
+
 addmiSwetTasbor(){
   Swal.fire(
     'Muy Bien!',
@@ -609,6 +527,7 @@ addmiSwetTasbor(){
     'success'
   )
 }
+
 addmiSwetERadd(){
 
   Swal.fire(
@@ -617,6 +536,7 @@ addmiSwetERadd(){
     'error'
   )
 }
+
 addRol(){
   Swal.fire(
     'Aviso!',

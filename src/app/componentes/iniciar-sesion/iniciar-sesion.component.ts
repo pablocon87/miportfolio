@@ -157,10 +157,11 @@ pass:['',[Validators.required,Validators.minLength(8)]]});
      }
    }
 clickMe(tr:boolean){
- // this.clickMet();
+
   this.show=tr;
 }
-   onReg(event:Event){
+
+onReg(event:Event){
     event.preventDefault;
     if (this.Users?.hasError('email')){
       Swal.fire({
@@ -181,13 +182,13 @@ clickMe(tr:boolean){
       return;
      }
      this.user=this.form.get('users')!.value;
-this.password=this.form.get('passwords')!.value;
+     this.password=this.form.get('passwords')!.value;
      this.conec=0;
      this.auten=1
      this.timelim=0;
      this.rol=0;
-    const {id,user,password,token,expired,conec,auten,timelim,rol}=this
-    const Registrar={id,user,password,token,expired,conec,auten,timelim,rol}
+     const {id,user,password,token,expired,conec,auten,timelim,rol}=this
+     const Registrar={id,user,password,token,expired,conec,auten,timelim,rol}
      this.autenticacionService.addTaskReg(Registrar).subscribe({
       next: resp => {
         const myJSON = JSON.stringify(resp);
@@ -216,12 +217,14 @@ this.password=this.form.get('passwords')!.value;
         ;
       }
     });
-   }
-   clickMet(){
+}
+
+clickMet(){
     (<HTMLInputElement>document.getElementById("email")).value="";
     (<HTMLInputElement>document.getElementById("password")).value="";
-   }
-   checkform(){
+}
+
+checkform(){
     
     
     if((<HTMLInputElement>document.getElementById('CaptchaInput'))!.value == ""){
@@ -239,12 +242,11 @@ this.password=this.form.get('passwords')!.value;
     return false;
     }
     return true;
-    }
+}
     
    
     
-    // Validate input against the generated number
-    ValidCaptcha(){
+ValidCaptcha(){
     var str1 = this.removeSpaces((<HTMLInputElement>document.getElementById('txtCaptcha')).value);
     var str2 = this.removeSpaces((<HTMLInputElement>document.getElementById('CaptchaInput')).value);
     if (str1 == str2){
@@ -258,21 +260,23 @@ this.password=this.form.get('passwords')!.value;
     }
     }
     
-    // Remove the spaces from the entered and generated code
-    removeSpaces(string){
+    
+removeSpaces(string){
     return string.split(' ').join('');
-    }
+}
+
 showDanger(){
   setTimeout(() => {
     this.showdanger=false;
    
   },5000)
 }
+
 showSucces(){
-  setTimeout(() => {
-    localStorage.removeItem('conta')
-    this.showsucces=false;
-    this.show=true;
-  },5000)
-}
+    setTimeout(() => {
+      localStorage.removeItem('conta')
+      this.showsucces=false;
+      this.show=true;
+    },5000)
+  }
 }

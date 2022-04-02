@@ -32,7 +32,7 @@ export class AcercaDeComponent implements OnInit {
    users:Usr[] = [];
   constructor(public t:AutenticacionService) { }
 
-  ngOnInit(): void {
+ngOnInit(): void {
     this.t.getTasks().subscribe((taskss)=>[
       this.tasks=taskss
      
@@ -46,8 +46,9 @@ export class AcercaDeComponent implements OnInit {
       
     })
      
-  }
-  moDific(task: Task){
+}
+
+moDific(task: Task){
     if(this.rol===0){
       Swal.fire(
         'Aviso!',
@@ -71,8 +72,9 @@ export class AcercaDeComponent implements OnInit {
     this.infcont=task.infcont;
     (<HTMLInputElement>document.getElementById("acerca_de")).value = task.acerca_de.toString();
 
-  }
-  onSubmit(){
+}
+
+onSubmit(){
 
     this.acerca_de= (<HTMLInputElement>document.getElementById("acerca_de")).value ;
     const {id,nombre,apellido,url_foto,fechanac,domicilio,sobre_mi,telefono,correo,acerca_de,facebook,twiter,instagram,infcont}=this;

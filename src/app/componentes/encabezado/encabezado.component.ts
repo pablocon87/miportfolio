@@ -86,104 +86,15 @@ export class EncabezadoComponent implements OnInit {
   sesionEsp(){
     this.inter=  setInterval(() => {this.tokenVal();},10000)
   }
-  // ver(){
-  //   const body = { title: 'Angular PUT Request Example' };
-  //   this.http.put<any>('http://localhost:8080/user/traer/pablocon87@gmail.com', body)
-  //       .subscribe(data => alert("DATA"+JSON.stringify(data)));
-  // }
+  
   ngOnInit(): void {
    
     clearInterval(this.t.inter);
     this.t.sesionEspi();
-    // if (this.jwtHelper.isTokenExpired(localStorage.getItem('auth_token')!)) {
-    //   alert("el token expiro")
-    // } else {
-    //   console.log("el token es valido")
-    // }
+    
     this.tin=0;
    
-    
-    // if(localStorage.getItem('timeps') !==""){
-    //   clearInterval(this.t.cl);
-    //     this.t.secc();
-      // this.clin=  setInterval(() => {
-        
-      //   var tt= new Date();
-       
-      //   tt.getMinutes();
-      //   clearInterval(this.t.cl);
-      // //  if(this.tin===0){
-      // //   clearInterval(this.t.cl);
-      // //   this.tin=parseInt(localStorage.getItem('timeps')!);
-      // //   localStorage.setItem('timeps',this.tin.toString())
-      // //   console.log("ESTE ES TIN" +" "+this.tin);
-        
-      // //  }
-      // //  if(this.tin!==parseInt(localStorage.getItem('timeps')!)){
-      // //   this.tin=parseInt(localStorage.getItem('timeps')!)-parseInt(localStorage.getItem('tip')!)
-
-      // //  }
-      
-      //   console.log("este es tt en Carga"+tt);
-       
-        
-      //   this.limite=tt.getMinutes()-parseInt(localStorage.getItem('data')!);
-      //   console.log("localsto"+" "+localStorage.getItem('timeps'))
-      //   console.log("este es Limite en Carga"+" "+ this.limite);
-      //   localStorage.setItem('tip',this.limite.toString())
-      //    if (this.limite>= (this.limite-parseInt(localStorage.getItem('timeps')!))){
-      //      clearInterval(this.clin);
-      //       this.t.logout();
-      //    }
-      // }, 10000);
-    // }
-    // clearInterval(this.t.cl);
-    //  setTimeout(() => {
-    //      this.funca();
-    
-    //  },1000)
-  //  if (this.tutu>this.times){
-    
-  // }
-    // window.setInterval('tiempo()',10000);
-  //   setTimeout(function(){ 
-    
-  //     console.log("Ready");
-  // }, 1000);
-    //  this.cl=  setInterval(() => {
-       
-       
-    //    if(this.times===parseInt(localStorage.getItem('time')!)){
-    //     this.times-=1;
-    //     localStorage.setItem('time',this.times.toString());
-    //    }else{
-    //      this.times=parseInt(localStorage.getItem('time')!);
-    //      this.times-=1;
-    //       localStorage.setItem('time',this.times.toString());
-    //   }
-    //   console.log("este es el tiempo "+ " "+ localStorage.getItem('time') );
-    //   if(parseInt(localStorage.getItem('time')!)<10000){
-    //     clearInterval(this.cl);
-    //     this.tiempos();
-    //   }
-    //   // setTimeout(() => {
-    //   //   this.tiempos();
-  
-    //   // },parseInt(localStorage.getItem('time')!))
-    //  }, 1000);
-    // this.t.getTasks().subscribe(
-    //   data => {
-    //     this.tasks=data;
-    //     for(let taso of this.tasks){
-    //         localStorage.setItem("id",taso.id!.toString())
-    //     }
-    //   console.log("PUT Request is successful ", data);
-    //   },
-    //   error => {
-    //     this.tasks;
-    //   console.log("Rrror", error);
-    //   }
-    //   );
+   
       this.t.getTasks().subscribe((resp: any)=>{
              this.tasks=resp;
          for(let taso of this.tasks){
@@ -199,40 +110,30 @@ export class EncabezadoComponent implements OnInit {
             this.rol=resp.rol;
             this.t.rol=resp.rol;
         
-  //   for(let taso of this.tasks){
-  //       localStorage.setItem("id",taso.id!.toString())
-  //  }
-  //  console.log("PUT Request is successful ", resp);
+
    
  } )
    
     this.faEdit;
     
   }
-  AfterViewInit() {
+AfterViewInit() {
     this.elementRef.nativeElement.querySelector('pepe')
                                   .addEventListener(HTMLElement,'click', this.onClicka.bind(this));
-  }
-  onClicka(event) {
+}
+onClicka(event) {
     
     this.t.conec=0;
     this.t.logout();
     console.log("pepe");
     return;
-  }
-  // AfterViewInit() {
-  //   const navbarToggler =
-  //     this.elementRef.nativeElement.querySelector('pepe');
-  //   navbarToggler.addEventListener('click', () => {
-  //     this.onClicka.bind(this);
-  //     navbarToggler.classList.toggle('class');
-  //   });
-  // }
+}
  
-  funca(){
+funca(){
     this.t.clinT();
-  }
-  tiempos(){
+}
+  
+tiempos(){
    Swal.fire({
     title: 'Extender secion',
     text: "La secion esta por caducar,¿desea extenderla?",
@@ -250,26 +151,28 @@ export class EncabezadoComponent implements OnInit {
   })
     
     
-  }
-  moDific(task: Task){
+}
+ 
+moDific(task: Task){
      this.id=task.id;
      this.acerca_de=task.acerca_de; 
       //(<HTMLInputElement>document.getElementById("idsm")).value = this.id;
-     (<HTMLInputElement>document.getElementById("nombre")).value=task.nombre.toString();
-     (<HTMLInputElement>document.getElementById("apellido")).value = task.apellido.toString();
-    (<HTMLInputElement>document.getElementById("url_foto")).value = task.url_foto.toString();
-     (<HTMLInputElement>document.getElementById("fechanac")).value = task.fechanac!.toString();
-       (<HTMLInputElement>document.getElementById("domicilio")).value = task.domicilio.toString();
-     (<HTMLInputElement>document.getElementById("sobre_mi")).value = task.sobre_mi.toString();
+      (<HTMLInputElement>document.getElementById("nombre")).value=task.nombre.toString();
+      (<HTMLInputElement>document.getElementById("apellido")).value = task.apellido.toString();
+      (<HTMLInputElement>document.getElementById("url_foto")).value = task.url_foto.toString();
+      (<HTMLInputElement>document.getElementById("fechanac")).value = task.fechanac!.toString();
+      (<HTMLInputElement>document.getElementById("domicilio")).value = task.domicilio.toString();
+      (<HTMLInputElement>document.getElementById("sobre_mi")).value = task.sobre_mi.toString();
       (<HTMLInputElement>document.getElementById("telefono")).value = task.telefono.toString();
-    (<HTMLInputElement>document.getElementById("correo")).value = task.correo.toString();
-    (<HTMLInputElement>document.getElementById("facebook")).value = task.facebook.toString();
-    (<HTMLInputElement>document.getElementById("twiter")).value = task.twiter.toString();
-    (<HTMLInputElement>document.getElementById("instagram")).value = task.instagram.toString();
-    (<HTMLInputElement>document.getElementById("infcont")).value = task.infcont.toString();
-      //(<HTMLInputElement>document.getElementById("valor")).value = "Modificar";
+      (<HTMLInputElement>document.getElementById("correo")).value = task.correo.toString();
+      (<HTMLInputElement>document.getElementById("facebook")).value = task.facebook.toString();
+      (<HTMLInputElement>document.getElementById("twiter")).value = task.twiter.toString();
+      (<HTMLInputElement>document.getElementById("instagram")).value = task.instagram.toString();
+      (<HTMLInputElement>document.getElementById("infcont")).value = task.infcont.toString();
+      
     }
-    onSubmit(){
+
+onSubmit(){
     if((<HTMLInputElement>document.getElementById("valore")).value === "Guardar Cambios"){
     this.nombre=    (<HTMLInputElement>document.getElementById("nombre")).value;
     this.apellido=  (<HTMLInputElement>document.getElementById("apellido")).value ;
@@ -284,47 +187,20 @@ export class EncabezadoComponent implements OnInit {
     this.twiter=(<HTMLInputElement>document.getElementById("twiter")).value ;
     this.instagram=(<HTMLInputElement>document.getElementById("instagram")).value ;
     this.infcont=(<HTMLInputElement>document.getElementById("infcont")).value;
-    var formData = new FormData();
    
-    formData.append("id", this.id!.toString());
-  formData.append("nombre", this.nombre.toString());
-  formData.append("apellido", this.apellido.toString());
-  formData.append("url_foto", this.url_foto.toString());
-  formData.append("fechanac", this.fechanac!.toString());
-  formData.append("domicilio", this.domicilio.toString());
-  formData.append("sobre_mi", this.sobre_mi.toString());
-  formData.append("telefono", this.telefono.toString());
-  formData.append("correo", this.correo.toString());
 
         const {id,nombre,apellido,url_foto,fechanac,domicilio,sobre_mi,telefono,correo,acerca_de,facebook,twiter,instagram,infcont}=this;
         const modiFi={id,nombre,apellido,url_foto,fechanac,domicilio,sobre_mi,telefono,correo,acerca_de,facebook,twiter,instagram,infcont};
-        const body = new HttpParams()
-        .set('nombre', nombre.toString())
-        .set('apellido', apellido.toString())
-        .set('url_foto', url_foto.toString())
-        .set('fechanac', fechanac!.toString())
-        .set('domicilio', domicilio.toString())
-        .set('sobre_mi', sobre_mi.toString())
-        .set('telefono', telefono.toString())
-        .set('correo', correo.toString())
-
-        ;
+     
     
         
        
-      //  let md =[modiFi];
+  
       if(this.nombre===""){
         alert ("vacio");
         return;
       }
-  /*    this.http.put('http://localhost:8080/personas/editar/'+this.id, body.toString(),httpOptions).subscribe(
-        data => {
-        console.log("PUT Request is successful ", data);
-        },
-        error => {
-        console.log("Rrror", error);
-        }
-        );*/
+ 
         this.t.updateTask(modiFi).subscribe(
           data => {
             this.ngOnInit();
@@ -336,10 +212,7 @@ export class EncabezadoComponent implements OnInit {
           }
           );
     
-                //this.addTask(d)
-     
-    
-    //this.onAddTask.prototype._maxListeners = 100;
+               
       
       
       }else{
@@ -347,8 +220,9 @@ export class EncabezadoComponent implements OnInit {
         this.color='green';
       }
       
-    }
-    onClick(task:Task){
+}
+
+onClick(task:Task){
       if(this.rol===0){
         Swal.fire(
           'Aviso!',
@@ -358,14 +232,10 @@ export class EncabezadoComponent implements OnInit {
         return;
       }
       this.moDific(task);
-      // if (this.color==='green'){
-      //      this.color="red";
-      //      this.moDific(task);
-      //     }else{this.color="green";
-         
-      //   }
-      }
-      onClicks(){
+    
+}
+
+onClicks(){
         if (this.color==='green'){
           this.color="red";
      
@@ -373,5 +243,6 @@ export class EncabezadoComponent implements OnInit {
         
        }
        this.ngOnInit()
-      }
+}
+
 }

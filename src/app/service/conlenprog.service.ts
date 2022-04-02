@@ -12,7 +12,7 @@ export class ConlenprogService {
  //apiUrl = 'http://localhost:8080';
  constructor(private http: HttpClient) { }
 
- getTasks():Observable<Lnp[]>{
+getTasks():Observable<Lnp[]>{
    const httpOptions = {
 
      headers: new HttpHeaders(
@@ -21,44 +21,46 @@ export class ConlenprogService {
          'Authorization': localStorage.getItem('auth_token')!,
        }
      )
-       // head: new HttpParams()
-       // .set('Content-Type', 'application/json')
+     
    
    };
-   /*const tasks =of(TASKS);
-   return tasks;*/
+  
    return this.http.get<Lnp[]> (this.apiUrl+'/lenprog/traer',httpOptions)
- }
- deleteTask(task:Lnp):  Observable<Lnp> {
-   const body={title: 'Angular POST Request Example'};
-   const headers = { 'Authorization': localStorage.getItem('auth_token')!, 'Content-Type': 'application/json' };
-const url = `${this.apiUrl}/lenprog/borrar/${task.id}`;
-return this.http.delete<Lnp>(url,{headers});
 
- }
- updateTaskReminder(task:Lnp): Observable<Lnp>{
-   
-   const option ={
-     headers: new HttpHeaders(
-       {
-       
-     'Content-Type': 'application/json',
-     'Authorization': localStorage.getItem('auth_token')!
-       })
-   };
-   const body={title: 'Angular POST Request Example'};
- const url = `${this.apiUrl}/lenprog/editar/${task.id}`;
- return this.http.put<Lnp>(url+'?personaid='+task.persona_id
- +'&php='+task.php
- +'&java='+task.java
- +'&ruby='+task.ruby
- +'&javascript='+task.javascript
- +'&typescript='+task.typescript
- +'&python='+task.python
- +'&otros='+task.otros
- 
- , body, option);
 }
+
+deleteTask(task:Lnp):  Observable<Lnp> {
+    const body={title: 'Angular POST Request Example'};
+    const headers = { 'Authorization': localStorage.getItem('auth_token')!, 'Content-Type': 'application/json' };
+    const url = `${this.apiUrl}/lenprog/borrar/${task.id}`;
+    return this.http.delete<Lnp>(url,{headers});
+
+}
+
+updateTaskReminder(task:Lnp): Observable<Lnp>{
+   
+    const option ={
+      headers: new HttpHeaders(
+        {
+        
+      'Content-Type': 'application/json',
+      'Authorization': localStorage.getItem('auth_token')!
+        })
+    };
+    const body={title: 'Angular POST Request Example'};
+    const url = `${this.apiUrl}/lenprog/editar/${task.id}`;
+    return this.http.put<Lnp>(url+'?personaid='+task.persona_id
+    +'&php='+task.php
+    +'&java='+task.java
+    +'&ruby='+task.ruby
+    +'&javascript='+task.javascript
+    +'&typescript='+task.typescript
+    +'&python='+task.python
+    +'&otros='+task.otros
+    
+    , body, option);
+}
+
 addTask(task:Lnp): Observable<Lnp>{
  const option ={
    headers: new HttpHeaders(
@@ -68,9 +70,7 @@ addTask(task:Lnp): Observable<Lnp>{
    'Authorization': localStorage.getItem('auth_token')!
      })
  };
- // const params = new URLSearchParams()
- // params.set('user', user)
- // params.set('password',password)
+ 
  return this.http.post<Lnp>(this.apiUrl+'/lenprog/crear', task, option);
 
 }

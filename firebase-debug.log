@@ -1,0 +1,21 @@
+[debug] [2022-04-02T00:55:25.664Z] ----------------------------------------------------------------------
+[debug] [2022-04-02T00:55:25.666Z] Command:       C:\Users\pablo\DOWNLO~1\firebase-tools-instant-win.exe C:\Users\pablo\.cache\firebase\tools\lib\node_modules\firebase-tools\lib\bin\firebase init
+[debug] [2022-04-02T00:55:25.666Z] CLI Version:   10.5.0
+[debug] [2022-04-02T00:55:25.666Z] Platform:      win32
+[debug] [2022-04-02T00:55:25.666Z] Node Version:  v12.18.1
+[debug] [2022-04-02T00:55:25.667Z] Time:          Fri Apr 01 2022 21:55:25 GMT-0300 (GMT-03:00)
+[debug] [2022-04-02T00:55:25.668Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-04-02T00:55:25.675Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-04-02T00:55:25.675Z] > authorizing via signed-in user (pablocon87@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\pablo\Documents\arprogram\portfolio\miportfolio
+

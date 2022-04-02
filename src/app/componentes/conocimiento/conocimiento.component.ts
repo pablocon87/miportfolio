@@ -66,15 +66,7 @@ export class ConocimientoComponent implements OnInit,AfterViewInit {
     const divel = document.createElement('div').setAttribute("style","background-color:#E64C65;transform:nonerotate(144deg);")
                                                 
   }
-    // const divid = (<HTMLInputElement>document.getElementById("quesito"));
-    //  //color:green; height: 150px; width: 150px; border: 4px solid
-    // //  background-color: #E64C65;
-    // // transform: rotate(144deg);
-    //  divid.style.setProperty("background-color", " #E64C65"); 
-    //  divid.style.setProperty("transform", "rotate(144deg)"); 
-    //  divid.style.setProperty("width", "150px"); 
-    //  divid.style.setProperty("border", "4px solid"); 
-      //divid.setAttribute("style","background-color:#6ab150;list-style:none;")
+   
    }
   
   constructor(public c:ConocimientoService,public per:AutenticacionService,private renderer: Renderer2,ref: ElementRef<HTMLDivElement>,public e:ExperienciaService) {
@@ -244,7 +236,7 @@ this.recaptchaContainerts = this.renderer.createElement('div');
     return recaptchaContainers;
   }
   }
-   ngOnInit(): void {
+ngOnInit(): void {
      
     
     (<HTMLInputElement>document.getElementById("demo")).innerHTML=this.saber!.toString();
@@ -267,37 +259,7 @@ this.recaptchaContainerts = this.renderer.createElement('div');
       this.c.getTasks().subscribe(
         data => {
           this.conoc=data;
-          for(let adj of this.conoc){
-              // if(this.adjunt===''){
-              //   this.adjunt=adj.sobre;
-              // }else{
-              //   if(this.adjunt===adj.sobre){
-              //     this.adjunt=adj.sobre;
-              //   }
-
-              //}
-
-          }
-         // this.conoc2.push(this.conoc);
-          //this.graFico(this.conoc);
-          //this.StylesCss(this.conoc);
-          
-               //this.graFico(cfs);
-              //this.toDo(cfs);
-              //alert(cf.de);
-             
-          //  this.saber =cnmm.saber;
-          //  this.de=cnmm.de;
-          //(<HTMLInputElement>document.getElementById('lolito')).innerHTML=chartedin.toString();
-           
-           
-           
-         // }
-          
-        //   this.sobre= (<HTMLInputElement>document.getElementById("sobre")).value;
-        //   this.de=(<HTMLInputElement>document.getElementById("de")).value;
-        //  this.saber=parseInt((<HTMLInputElement>document.getElementById("ext")).innerHTML);
-        // console.log("PUT Request is successful ", data);
+         
         },
         error => {
           
@@ -306,15 +268,10 @@ this.recaptchaContainerts = this.renderer.createElement('div');
         );
        
         
-        //this.StylesCss();
-        // for(let cnmm of this.conoc){
-        //   (<HTMLInputElement>document.getElementById("ext")).innerHTML!=cnmm.saber?.toString();
-        //   (<HTMLInputElement>document.getElementById("demo")).innerHTML!=cnmm.de;
-        //     this.ValorRan(cnmm);
-        //   }
-        
-      }
-      ngAfterViewInit(): void{
+       
+}
+
+ngAfterViewInit(): void{
         
         this.c.getTasks().subscribe(
           data => {
@@ -340,17 +297,14 @@ this.recaptchaContainerts = this.renderer.createElement('div');
                        if (this.cont<=1){
                          
                          if(desobre===cfs.de){
-                          //alert(document.getElementsByClassName(cfs.sobre.toString())[i].innerHTML+" "+cfs.de);
                           lerolero=i;
                           document.getElementsByClassName(cfs.sobre.toString())[i].innerHTML="";
                           document.getElementsByClassName(cfs.sobre.toString())[lerolero-1].innerHTML=this.adjunt.toString();
                          }
-                        // alert("Este de"+ cfs.de+" "+document.getElementsByClassName(cfs.sobre.toString())[i].innerHTML);
                        
                      }else{
                        
                          if(lerolero-1 !== i){
-                        //alert("Este de"+ cfs.de+" "+document.getElementsByClassName(cfs.sobre.toString())[i].innerHTML);
                         document.getElementsByClassName(cfs.sobre.toString())[i].innerHTML="";
                       }
                        
@@ -362,7 +316,7 @@ this.recaptchaContainerts = this.renderer.createElement('div');
                  
             
             }
-            //this.concat=cfs.de+''+this.cont;
+         
           }
              
             
@@ -384,16 +338,17 @@ this.recaptchaContainerts = this.renderer.createElement('div');
               this.rol=resp.rol;
             
           })
-          // console.log(this.els.map(({id, cc}) => ({id, cc})));
-      }
+          
+}
         
-   recar(){
-    //  alert("RECARGA"+JSON.stringify(this.conoc));
+recar(){
+   
     for(let cfsst of this.conoc){
-    // alert("hola");
+ 
       this.graFico(cfsst);
     }
-   } 
+} 
+
 submitadd(){
   this.id;
   this.sobre= (<HTMLInputElement>document.getElementById("sobre")).value;
@@ -440,28 +395,28 @@ submitadd(){
     }
 });
 }
+
 submit(cnb:Cnc){
 
-this.id=cnb.id;
-this.de=(<HTMLInputElement>document.getElementById(cnb.id+''+cnb.de)).value;
-this.sobre=(<HTMLInputElement>document.getElementById(cnb.id+''+cnb.sobre)).value;
-this.saber=parseInt((<HTMLInputElement>document.getElementById(cnb.de+'a'+cnb.id)).innerHTML);
-this.persona_id;
-if(this.de==="" || this.sobre===""){
-  Swal.fire(
-    'Campos Vacios!',
-    'Debe colocar Sobre y DE',
-    'warning'
-  )
-  return;
-}
+  this.id=cnb.id;
+  this.de=(<HTMLInputElement>document.getElementById(cnb.id+''+cnb.de)).value;
+  this.sobre=(<HTMLInputElement>document.getElementById(cnb.id+''+cnb.sobre)).value;
+  this.saber=parseInt((<HTMLInputElement>document.getElementById(cnb.de+'a'+cnb.id)).innerHTML);
+  this.persona_id;
+  if(this.de==="" || this.sobre===""){
+    Swal.fire(
+      'Campos Vacios!',
+      'Debe colocar Sobre y DE',
+      'warning'
+    )
+    return;
+  }
   const {id,sobre,de,saber,persona_id}=this;
   const modiFi={id,sobre,de,saber,persona_id};
 
   this.c.updateTaskReminder(modiFi).subscribe(
     data => {
-      // this.ngOnInit();
-      // this.ngAfterViewInit();
+     
       this.concat="";
       this.per.addmiSwetTasm();
        this.ngOnInit();
@@ -474,6 +429,7 @@ if(this.de==="" || this.sobre===""){
     );
 
 }
+
 ValorRanT(){
   var slider = (<HTMLInputElement>document.getElementById("ext"));
   var output = (<HTMLInputElement>document.getElementById("demo"));
@@ -481,10 +437,11 @@ ValorRanT(){
   this.de=(<HTMLInputElement>document.getElementById("de")).value;
   this.saber = parseInt(slider.value);
   this.graFicoT();
-  //this.ingtec=parseInt(slider.value);
+ 
 }
+
 graFicoT(){
-  var chart = new CanvasJSs.Chart("chartContainer11", {
+     var chart = new CanvasJSs.Chart("chartContainer11", {
     theme: "light2", // "light1", "light2", "dark1", "dark2"
     exportEnabled: true,
     animationEnabled: true,
@@ -506,20 +463,22 @@ graFicoT(){
   });
   chart.render();
 }
+
 ValorRan(ji:Cnc){
   var slider1 = (<HTMLInputElement>document.getElementById(ji.de+''+ji.id));
   var output1 = (<HTMLInputElement>document.getElementById(ji.de+"a"+ji.id));
   output1.innerHTML = slider1.value; 
-  //this.toDo(ji);
+  
   this.graFico(ji);
-  //this.ingtec=parseInt(slider.value);
+ 
 }
+
 graFico(cf:Cnc){
   const el = undefined;
   
- var valor= (<HTMLInputElement>document.getElementById(cf.de+''+cf.id)).value;
-  
- var result=100-parseInt(valor);
+  var valor= (<HTMLInputElement>document.getElementById(cf.de+''+cf.id)).value;
+    
+  var result=100-parseInt(valor);
   var chartedin = new CanvasJSs.Chart("chartContai"+cf.de+"", {
     theme: "light2", // "light1", "light2", "dark1", "dark2"
     exportEnabled: true,
@@ -542,6 +501,7 @@ graFico(cf:Cnc){
   });
   chartedin.render();
 }
+
 Borrarc(el:Cnc){
   if(this.rol===0){
     this.per.addRol();
@@ -552,7 +512,7 @@ Borrarc(el:Cnc){
       let obj=JSON.parse(resp.toString());
       console.log("ESTE ES "+obj.text);
       this.ngOnInit();
-        //this.status = 'Delete successful';
+        
     },
     error: error => {
       const myJSON = JSON.stringify(error);
@@ -572,6 +532,7 @@ Borrarc(el:Cnc){
   this.ngOnInit();
   this.ngAfterViewInit();
 }
+
 Clickmee(conos:Cnc){
   
  if(this.concat !==''){
@@ -584,6 +545,7 @@ Clickmee(conos:Cnc){
  }
 
 }
+
 ClickRol(){
   if(this.rol===0){
      this.concat="";
@@ -591,6 +553,7 @@ ClickRol(){
      return;
   }
 }
+
 Clickeame(ccc,aaa,bbb){
  
 if(this.concat ===ccc){
@@ -603,6 +566,7 @@ return false;
 
 }
 }
+
 AddN(){
   if(this.rol===0){
     this.showall=false;

@@ -6,10 +6,10 @@
             
              
               <div *ngFor="let tas of tasks"  class="col-sm-12 item social"><a href="{{tas.facebook}}"><i class="fab fa-facebook"></i></a><a href="{{tas.instagram}}"><i class="fab fa-instagram"></i></a><a href="{{tas.twiter}}"><i class="fab fa-twitter"></i></a><a class="as" (click)="this.t.auten=1;this.t.conec=0;this.t.logout();" href="/#" title="Salir" ><fa-icon [icon]="faDoorClosed"  ></fa-icon></a></div>
-              <!-- <div class="col-sm-1"><fa-icon [icon]="faDoorClosed"  ></fa-icon></div> -->
+             
             </div>
            <div class="row">
-             <!-- <div class="col-sm-10"></div><div class="col-sm-2 boton"><button type="button" class="btn btn-secondary">Salir</button></div> -->
+             
            </div>
   
 </div>
@@ -38,7 +38,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+        
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -47,9 +47,7 @@
                  
               <div class="card">
              <div class="card-body" style="text-align: center;">
-             <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span> 
-             </button> -->
+             
                  <h4 class="modal-title" id="exampleModalLabel">Modificar<br></h4>
           
                  <h6 class="text-muted card-subtitle mb-2">Escriba su dato&nbsp;</h6>
@@ -108,7 +106,7 @@
     </div>
     <input type="submit" class="form-control" [hidden]="this.rol===0" id="valore" value="Guardar Cambios" class="btn btn-outline-primary" >
       </form>
-      <!-- <input type="submit" id="valor" value="Volver" (click)="onClicks()" [hidden]="color==='green'"  class="btn btn-outline-success"> -->
+      
     </div>
   </div>
                  

@@ -11,7 +11,7 @@ export class ConbasdatService {
  //apiUrl = 'http://localhost:8080';
  constructor(private http: HttpClient) { }
 
- getTasks():Observable<Bdt[]>{
+getTasks():Observable<Bdt[]>{
    const httpOptions = {
 
      headers: new HttpHeaders(
@@ -20,42 +20,42 @@ export class ConbasdatService {
          'Authorization': localStorage.getItem('auth_token')!,
        }
      )
-       // head: new HttpParams()
-       // .set('Content-Type', 'application/json')
-   
-   };
-   /*const tasks =of(TASKS);
-   return tasks;*/
-   return this.http.get<Bdt[]> (this.apiUrl+'/basdat/traer',httpOptions)
- }
- deleteTask(task:Bdt):  Observable<Bdt> {
-   const body={title: 'Angular POST Request Example'};
-   const headers = { 'Authorization': localStorage.getItem('auth_token')!, 'Content-Type': 'application/json' };
-const url = `${this.apiUrl}/basdat/borrar/${task.id}`;
-return this.http.delete<Bdt>(url,{headers});
-
- }
- updateTaskReminder(task:Bdt): Observable<Bdt>{
-   
-   const option ={
-     headers: new HttpHeaders(
-       {
        
-     'Content-Type': 'application/json',
-     'Authorization': localStorage.getItem('auth_token')!
-       })
+   
    };
-   const body={title: 'Angular POST Request Example'};
- const url = `${this.apiUrl}/basdat/editar/${task.id}`;
- return this.http.put<Bdt>(url+'?personaid='+task.persona_id
- +'&mysql='+task.mysql
- +'&postgresql='+task.postgresql
- +'&sqlserver='+task.sqlserver
-
- +'&otros='+task.otros
- 
- , body, option);
+   
+   return this.http.get<Bdt[]> (this.apiUrl+'/basdat/traer',httpOptions)
 }
+
+deleteTask(task:Bdt):  Observable<Bdt> {
+    const body={title: 'Angular POST Request Example'};
+    const headers = { 'Authorization': localStorage.getItem('auth_token')!, 'Content-Type': 'application/json' };
+    const url = `${this.apiUrl}/basdat/borrar/${task.id}`;
+    return this.http.delete<Bdt>(url,{headers});
+
+}
+
+updateTaskReminder(task:Bdt): Observable<Bdt>{
+   
+    const option ={
+      headers: new HttpHeaders(
+        {
+        
+      'Content-Type': 'application/json',
+      'Authorization': localStorage.getItem('auth_token')!
+        })
+    };
+    const body={title: 'Angular POST Request Example'};
+    const url = `${this.apiUrl}/basdat/editar/${task.id}`;
+    return this.http.put<Bdt>(url+'?personaid='+task.persona_id
+    +'&mysql='+task.mysql
+    +'&postgresql='+task.postgresql
+    +'&sqlserver='+task.sqlserver
+    +'&otros='+task.otros
+    
+    , body, option);
+}
+
 addTask(task:Bdt): Observable<Bdt>{
  const option ={
    headers: new HttpHeaders(
@@ -65,10 +65,8 @@ addTask(task:Bdt): Observable<Bdt>{
    'Authorization': localStorage.getItem('auth_token')!
      })
  };
- // const params = new URLSearchParams()
- // params.set('user', user)
- // params.set('password',password)
  return this.http.post<Bdt>(this.apiUrl+'/basdat/crear', task, option);
 
 }
+
 }

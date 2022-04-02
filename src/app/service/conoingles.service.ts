@@ -11,7 +11,7 @@ export class ConoinglesService {
  //apiUrl = 'http://localhost:8080';
   constructor(private http: HttpClient) { }
 
-  getTasks():Observable<Ingl[]>{
+getTasks():Observable<Ingl[]>{
     const httpOptions = {
 
       headers: new HttpHeaders(
@@ -20,22 +20,22 @@ export class ConoinglesService {
           'Authorization': localStorage.getItem('auth_token')!,
         }
       )
-        // head: new HttpParams()
-        // .set('Content-Type', 'application/json')
+        
     
     };
-    /*const tasks =of(TASKS);
-    return tasks;*/
+    
     return this.http.get<Ingl[]> (this.apiUrl+'/ingles/traer',httpOptions)
-  }
-  deleteTask(task:Ingl):  Observable<Ingl> {
+}
+
+deleteTask(task:Ingl):  Observable<Ingl> {
     const body={title: 'Angular POST Request Example'};
     const headers = { 'Authorization': localStorage.getItem('auth_token')!, 'Content-Type': 'application/json' };
-const url = `${this.apiUrl}/ingles/borrar/${task.id}`;
-return this.http.delete<Ingl>(url,{headers});
+    const url = `${this.apiUrl}/ingles/borrar/${task.id}`;
+    return this.http.delete<Ingl>(url,{headers});
 
-  }
-  updateTaskReminder(task:Ingl): Observable<Ingl>{
+}
+
+updateTaskReminder(task:Ingl): Observable<Ingl>{
   
     const option ={
       headers: new HttpHeaders(
@@ -46,17 +46,18 @@ return this.http.delete<Ingl>(url,{headers});
         })
     };
     const body={title: 'Angular POST Request Example'};
-  const url = `${this.apiUrl}/ingles/editar/${task.id}`;
-  return this.http.put<Ingl>(url+'?inescrip='+task.inescrip
-  +'&inoral='+task.inoral
-  +'&intecnico='+task.intecnico
-  +'&inbasico='+task.inbasico
-  +'&inavanzado='+task.inavanzado
-  +'&personaid='+task.persona_id
+    const url = `${this.apiUrl}/ingles/editar/${task.id}`;
+    return this.http.put<Ingl>(url+'?inescrip='+task.inescrip
+    +'&inoral='+task.inoral
+    +'&intecnico='+task.intecnico
+    +'&inbasico='+task.inbasico
+    +'&inavanzado='+task.inavanzado
+    +'&personaid='+task.persona_id
 
-  
-  , body, option);
+    
+    , body, option);
 }
+
 addTask(task:Ingl): Observable<Ingl>{
   const option ={
     headers: new HttpHeaders(
@@ -66,9 +67,7 @@ addTask(task:Ingl): Observable<Ingl>{
     'Authorization': localStorage.getItem('auth_token')!
       })
   };
-  // const params = new URLSearchParams()
-  // params.set('user', user)
-  // params.set('password',password)
+
   return this.http.post<Ingl>(this.apiUrl+'/ingles/crear', task, option);
 
 }
