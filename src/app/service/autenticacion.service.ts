@@ -40,8 +40,8 @@ export class AutenticacionService {
   tt= new Date();
   conta:number=0;
   pepito:boolean=false;
-  //apiUrl = 'https://porfoarp.herokuapp.com';
-  apiUrl = 'http://localhost:8080';
+  apiUrl = 'https://porfoarp.herokuapp.com';
+  //apiUrl = 'http://localhost:8080';
   constructor(private http: HttpClient,public router:Router,public _location:Location,private jwtHelper: JwtHelperService) { }
   
 //** encriptador */
@@ -106,21 +106,23 @@ login(user: string, password: string){
       localStorage.setItem('conec',resp.conec);
       localStorage.removeItem('id');
       var encrypted = this.set('123456$#@$^@1ERF', password);
-      var decrypted = this.get('123456$#@$^@1ERF', encrypted);
+      var encryptedu = this.set('123456$#@$^@1ERF', user);
+      var encryptedid = this.set('123456$#@$^@1ERF', resp.id);
+     // var decrypted = this.get('123456$#@$^@1ERF', encrypted);
      
-      console.log('Encrypted :' + encrypted);
-      console.log('Encrypted :' + decrypted);
+      //console.log('Encrypted :' + encrypted);
+      //console.log('Encrypted :' + decrypted);
   
       
       this.rol=resp.rol;
-      localStorage.setItem('usr',user);
+      localStorage.setItem('usr',encryptedu);
       
-      localStorage.setItem('ids',resp.id);
+      localStorage.setItem('ids',encryptedid);
       var titon=new Date();
       localStorage.setItem('data',titon.getMinutes()!.toString())
       localStorage.setItem('timeps','28');
       
-      localStorage.setItem('passw',password);
+      localStorage.setItem('passw',encrypted);
       if(resp.token !=="nada"){
         localStorage.setItem('auth_token', resp.token);
         this.auten=1;
@@ -302,7 +304,8 @@ clinT2(){
        if(localStorage.getItem('usr') !==null){
         this.conec=0;
         this.updat();
-        this.login(localStorage.getItem('usr')!,localStorage.getItem('passw')!);
+       // var decrypted = this.get('123456$#@$^@1ERF', encrypted);
+        this.login(this.get('123456$#@$^@1ERF',localStorage.getItem('usr')!),this.get('123456$#@$^@1ERF',localStorage.getItem('passw')!));
         return;
        }else{
         Swal.fire({
@@ -330,9 +333,10 @@ updat(){
    if(this.id!==null){
      
   
-    this.id=parseInt(localStorage.getItem('ids')!);  
-    this.user=localStorage.getItem('usr')!.toString();
-    this.password=localStorage.getItem('passw')!.toString();
+    this.id=parseInt(this.get('123456$#@$^@1ERF',localStorage.getItem('ids')!));  
+    this.user=this.get('123456$#@$^@1ERF',localStorage.getItem('usr')!.toString());
+    
+    this.password=this.get('123456$#@$^@1ERF',localStorage.getItem('passw')!.toString());
     this.token="";
     this.expired=0;
     this.conec;
@@ -415,7 +419,7 @@ getTasksUsr():Observable<Usr>{
     }
     
     const body={title: 'Angular POST Request Example'};
-    const url = `${this.apiUrl}/user/traer/${localStorage.getItem('usr')}`;
+    const url = `${this.apiUrl}/user/traer/${this.get('123456$#@$^@1ERF',localStorage.getItem('usr'))}`;
     return this.http.put<Usr>(url,body,httpOptions);
     
     
