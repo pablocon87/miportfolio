@@ -107,17 +107,20 @@ login(user: string, password: string){
       localStorage.removeItem('id');
       var encrypted = this.set('123456$#@$^@1ERF', password);
       var encryptedu = this.set('123456$#@$^@1ERF', user);
+      if(resp.id !==null || resp.rol !==null){
       var encryptedid = this.set('123456$#@$^@1ERF', resp.id);
+      var encryptedrol = this.set('123456$#@$^@1ERF', resp.rol);
+      localStorage.setItem('rol',encryptedrol);
+      localStorage.setItem('ids',encryptedid);
      // var decrypted = this.get('123456$#@$^@1ERF', encrypted);
-     
+    }
       //console.log('Encrypted :' + encrypted);
       //console.log('Encrypted :' + decrypted);
   
       
       this.rol=resp.rol;
       localStorage.setItem('usr',encryptedu);
-      
-      localStorage.setItem('ids',encryptedid);
+     
       var titon=new Date();
       localStorage.setItem('data',titon.getMinutes()!.toString())
       localStorage.setItem('timeps','28');
@@ -143,6 +146,7 @@ login(user: string, password: string){
           if (resp.auten>=3){
             this.auten=3;
             localStorage.setItem("conta",'4');
+            this.id=0;
             this.logout();
             Swal.fire({
               icon: 'error',
@@ -193,6 +197,7 @@ login(user: string, password: string){
 
   };
 valiD(){
+          this.id=0;
           this.logout();
           Swal.fire({
             icon: 'error',
@@ -329,8 +334,13 @@ clinT2(){
 }
 
 updat(){
+
+  if(this.id===0){
+    
+    return;
+  }
     if(localStorage.getItem('usr') !==null ){
-   if(this.id!==null){
+   if(this.id!==null || this.id !==0 ){
      
   
     this.id=parseInt(this.get('123456$#@$^@1ERF',localStorage.getItem('ids')!));  
@@ -342,12 +352,13 @@ updat(){
     this.conec;
     this.auten;
     this.timelim=0;
-    this.getTasksUsr().subscribe((resp:any)=>{
+    
+  
 
       
-          this.rol=resp.rol;
+    this.rol=parseInt(this.get('123456$#@$^@1ERF',localStorage.getItem('rol')!));
     
-    })
+    
     
      const {id,user,password,token,expired,conec,auten,timelim,rol}=this;
      const ModiFi={id,user,password,token,expired,conec,auten,timelim,rol};
@@ -358,7 +369,7 @@ updat(){
       },
       error => {
         
-      alert("Se descuageringo todo"+ JSON.stringify(error));
+      alert("Se descuageringo todo Update"+ JSON.stringify(error));
       
       }
       );
@@ -367,6 +378,7 @@ updat(){
 }
    
 logout(){
+    this.conec=0;
       this.updat();
       clearInterval(this.cl);
       this.conta=0;
@@ -380,6 +392,7 @@ logout(){
       localStorage.removeItem('tip');
       localStorage.removeItem('ids');
       localStorage.removeItem('timeps');
+      localStorage.removeItem('rol');
       this.router.navigate(['']);
 
 }
@@ -477,8 +490,8 @@ updateTaskUsr(task:Usr): Observable<Usr>{
     headers: new HttpHeaders(
       {
       
-    'Content-Type': 'application/json',
-    'Authorization': localStorage.getItem('auth_token')!
+    'Content-Type': 'application/json'
+    //'Authorization': localStorage.getItem('auth_token')!
       })
   };
   const body={title: 'Angular POST Request Example'};
@@ -492,7 +505,7 @@ updateTaskUsr(task:Usr): Observable<Usr>{
   +'&timelim='+task.timelim!.toString()
   +'&rol='+task.rol
 
-  , body);
+  , body,option);
 }
 addTask(task:Task): Observable<Task>{
   const httpOptions = {

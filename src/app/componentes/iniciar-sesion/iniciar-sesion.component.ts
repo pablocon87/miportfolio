@@ -20,7 +20,7 @@ export class IniciarSesionComponent implements OnInit {
   id?:number;
   user:String="";
   passwords:String="";
-  token:String="";
+  token:String="0";
   expired?:number;
   conec?:number;
   auten?:number;

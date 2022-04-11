@@ -1,16 +1,22 @@
-<div class="containert" *ngIf="!autenticacionService.logIn" [hidden]="!this.show">
-  <div class="alert alert-danger" role="alert" [hidden]="!this.showdanger">
-  {{this.cuenta}} Intento
-  </div>
+<!-- modal-dialog text-center
+containert modal-content text-center main-section -->
+<div class="modal-dialog text-center" *ngIf="!autenticacionService.logIn" [hidden]="!this.show">
+  <div class="col-sm-8 main-section">
+    <div id="modale" class="modal-content">
+  
 
-    <h1 class="m-5">Iniciar Sesion</h1>
+<!-- <h1 class="m-5"> -->
+      <div class="col-12 user-img"><img src="../../../assets/images/me.jpg" /></div>
+    <!-- </h1> -->
 
-    <form [formGroup]="form" class="m-5" (ngSubmit)="onEnviar($event)">
-        <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Email</label>
+    <form [formGroup]="form" class="col-12" (ngSubmit)="onEnviar($event)">
+        <!-- <div class="mb-3"> -->
+            <!-- <label for="exampleInputEmail1" class="form-label">Email</label> -->
+            <div class="form-group" id="user-group">
             <input formControlName="email" type="email"
             [ngClass]="{'is-invalid':Email?.errors && Email?.touched, 'is-valid':!Email?.errors && Email?.touched}"
-            class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required> 
+            class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email" required> 
+          </div>
             <div *ngIf="Email?.errors && Email?.touched" >
               <p *ngIf="Email?.hasError('required')" class="text-danger">
                       El email es requerido.
@@ -19,12 +25,15 @@
                   El formato de email debe ser valido.
               </p>
             </div>
-        </div>
-        <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+            <br>
+        <!-- </div> -->
+        <!-- <div class="mb-3"> -->
+          <!-- <label for="exampleInputPassword1" class="form-label">Contraseña</label> -->
+          <div class="form-group" id="contrasena-group">
           <input formControlName="password" type="password"
           [ngClass]="{'is-invalid':Password?.errors && Password?.touched, 'is-valid':!Password?.errors && Password?.touched}"
-          class="form-control" id="exampleInputPassword1" required>
+          class="form-control" id="exampleInputPassword1" placeholder="Contraseña" required>
+        </div>
           <div *ngIf="Password?.errors && Email?.touched">
             <p *ngIf="Password?.hasError('required')" class="text-danger">
                     La contraseña es requerida.
@@ -33,12 +42,16 @@
                 La contraseña debe ser de 8 caracteres.
             </p>
           </div>
-        </div>
+        <!-- </div> -->
        
-        <button type="submit" class="btn btn-primary">Ingresar</button>
-        <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal3"  class="btn btn-success">Registrarse</button>
+        <button type="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i>Ingresar</button>
+        <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal3"  class="btn btn-success"><i class="fa-solid fa-registered"></i>Registrarse</button>
       </form>
-      
+      <div class="alert alert-danger" role="alert" [hidden]="!this.showdanger">
+        {{this.cuenta}} Intento
+        </div>
+      </div>
+    </div>
 </div>
 
     <div class="containert alino" [hidden]="this.show">
@@ -76,7 +89,7 @@
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
                   </div>
                             <div class="modal-body">
                                 <div class="input-group " style="margin: 5px;padding: 5px; font-size:small">
@@ -92,7 +105,7 @@
                                       <div class="input-group">
                                         <form [formGroup]="form" class="m-5" (ngSubmit)="onReg($event)">
                                                 <div class="input-group">
-                                                <div class="input-group-prepend"><span class="input-group-text" style="width: 180px;margin: 2px 0px 0px 0px;">Su email:<br></span></div>
+                                                <div class="input-group-prepend"><span class="input-group-text" style="width: 280px;margin: 2px 0px 0px 0px;">Su email:<br></span></div>
                                                 
                                                   <input formControlName="users" type="email"
                                                           [ngClass]="{'is-invalid':Users?.errors && Users?.touched, 'is-valid':!Users?.errors && Users?.touched}"
@@ -107,7 +120,7 @@
                                                 </p>
                                                 </div>
                                                   <div class="input-group">
-                                                    <div class="input-group-prepend"><span class="input-group-text" style="width: 180px;margin: 2px 0px 0px 0px;">Contraseña:<br></span></div>
+                                                    <div class="input-group-prepend"><span class="input-group-text" style="width: 280px;margin: 2px 0px 0px 0px;">Contraseña:<br></span></div>
                                                   <input formControlName="passwords" type="password"  [ngClass]="{'is-invalid':Passwords?.errors && Passwords?.touched, 'is-valid':!Passwords?.errors && Password?.touched}" class="form-control" id="passwords" name="passwords" style="width: 280px;margin: 2px 0px 0px 0px;"/>
                                                 </div>
                                                 <div *ngIf="Passwords?.errors && Users?.touched">
@@ -119,7 +132,7 @@
                                                 </p>
                                                 </div>
                                                   <div class="input-group">
-                                                  <div class="input-group-prepend"><span class="input-group-text" style="width: 180px;margin: 2px 0px 0px 0px;">Repita su Contraseña:<br></span></div>
+                                                  <div class="input-group-prepend"><span class="input-group-text" style="width: 280px;margin: 2px 0px 0px 0px;">Repita su Contraseña:<br></span></div>
                                                   <input formControlName="pass" type="password" [ngClass]="{'is-invalid':Pass?.errors && Pass?.touched, 'is-valid':!Pass?.errors && Password?.touched}" class="form-control" id="pass" name="pass" style="width: 280px;margin: 2px 0px 0px 0px;" />
                                                   
                                                 </div>

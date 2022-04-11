@@ -1,6 +1,6 @@
 
 
-<div class="container">
+<div class="container card-body">
 
     <div class="row">
     <h1 class="col-sm-10">Experiencia</h1><div class="col-sm-2"><div ><fa-icon  data-bs-toggle="modal" data-bs-target="#exampleModal4" (click)="recarga()"  [icon]="faPlus" [ngStyle]="{'color':'green'}" ></fa-icon></div></div>
@@ -12,7 +12,7 @@
       <div class="modal-content">
         <div class="modal-header">
           
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
         </div>
         <div class="modal-body">
             <div class="input-group " style="margin: 5px;padding: 5px; font-size:small">
@@ -84,15 +84,15 @@
 <!----------------------------fin M odale---------------------------------------------------------->
           
     <!-- <br/>------------------------------------------------------------------------<br/> -->
-    <div class="taskt row"></div>
-    <div class="task row" *ngFor="let el of exp" [hidden]="el.nombreEmpresa==='' ">
+    
+    <div class="container card-body" *ngFor="let el of exp" [hidden]="el.nombreEmpresa==='' ">
        <div  *ngFor="let tes of tipem" class="row"><div class="col-sm-10"></div><div class="col-sm-2"><span  *ngIf="el.tipo_empleo_id===tes.id" ><fa-icon  class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal4" (click)="Modif(el,tes)" [icon]="faEdit" [ngStyle]="{'color':'green'}"></fa-icon><fa-icon  class="btn btn-outline-secondary " [icon]="faTrash" (click)="Borrar(el)" [ngStyle]="{'color':'red'}" ></fa-icon></span></div></div>     
      
     <p text-muted><strong>Empresa:</strong> {{el.nombreEmpresa}}</p>
     <div class="row" *ngFor="let te of tipem" ><p class="col-sm-10 text-muted" *ngIf="el.tipo_empleo_id===te.id"><strong>Jornada:</strong> {{te.nombre_tipo}}</p></div>    
     <p  class="col-sm-4 text-muted"><strong>Desde:</strong> {{el.fechainicio| date:'dd-MM-yyyy'}}    </p><p class="col-sm-6 text-muted"  [hidden]="el.estrabajoactual===1"><strong>Hasta:</strong> {{el.fechafin| date:'dd-MM-yyyy'}}</p> <p class="col-sm-6 text-muted" [hidden]="el.estrabajoactual!==1" > <strong>Hasta:</strong> La Actualidad</p>
     <p text-muted><strong>Tarea a Realizar:</strong> {{el.descripcion}}</p>
-    <div class="taskt"></div>
+    
     <!-- <br/>------------------------------------------------------------------------<br/> -->
     </div> 
     <div class="row">
@@ -100,8 +100,8 @@
     </div>
    
     
-    <div class="taskt row"></div>
-    <div class="task row" *ngFor="let ed of edu" >
+   
+    <div class="container card-body" *ngFor="let ed of edu" >
        
        <div class="row"> <div class="col-sm-10"></div ><div class="col-sm-2"><span *ngIf="ed.id!==null" ><fa-icon  class="btn btn-outline-secondary " type="button" data-bs-toggle="modal" data-bs-target="#exampleModal1" [icon]="faEdit"  (click)="educCl(ed)" [ngStyle]="{'color':'green'}"></fa-icon><fa-icon (click)="deleT(ed)"  class="btn btn-outline-secondary " [icon]="faTrash" [ngStyle]="{'color':'red'}" ></fa-icon></span></div></div>
    
@@ -115,7 +115,7 @@
           <div class="row"><div class="col-sm-2"></div > <p class="col-sm-10 text-muted">{{ed.titulo}}</p></div>
     <input [hidden]="true" [value]="ed.id" id="ided" name="ided" >
     <input [hidden]="true" [value]="ed.id_persona" id="idper" name="idper" >
-    <div class="taskt"></div>
+    
     </div>
   
   <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -123,7 +123,7 @@
       <div class="modal-content">
         <div class="modal-header">
          
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
         </div>
         <div class="modal-body">
             <div class="input-group " style="margin: 5px;padding: 5px; font-size:small">

@@ -16,9 +16,9 @@
 </div>
 
 
-<div id="pepe" class="container">
+<div id="pepe" class="container card-body">
  <img src="../../../assets/images/headers.jpg" alt="" class="head">
-<div *ngFor="let tas of tasks" class="card mat-card" id="content fist-card" [hidden]="color==='red'">
+<div *ngFor="let tas of tasks" class=" card-body" id="content fist-card" [hidden]="color==='red'">
    
     <div >  
       <img src="{{tas.url_foto}}" alt="" class="me"><fa-icon [icon]="faEdit" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="onClick(tas)" [ngStyle]="{'color':'green'}" ></fa-icon>
@@ -39,7 +39,7 @@
     <div class="modal-content">
       <div class="modal-header">
         
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
       </div>
       <div class="modal-body">
           <div class="input-group " style="margin: 5px;padding: 5px; font-size:small">
