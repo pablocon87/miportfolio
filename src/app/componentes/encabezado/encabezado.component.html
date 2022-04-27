@@ -1,0 +1,262 @@
+<div class="container">
+<!-- <div class="container"> -->
+<!-- <div class="row" >  -->
+<!-- position:relative;right:8px !important; style="position:relative;right:8px !important;top:3px;" -->
+  <!-- <img class="col-sm-1"  src="../../../assets/images/descarga.png"> -->
+  <!-- <div class="col-sm-2"> -->
+    <nav class="navbar navbar-expand-lg  navbar-dark bg-dark " style="background-color:black !important;border-radius:20px;">
+      <div *ngFor="let tas of tasks" class="container-fluid">
+        <img class="navbar-brand"  src="../../../assets/images/descarga.png">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="row collapse navbar-collapse" id="navbarNavDropdown" style="text-align: center;position:relative;left:100px;">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class=" col-sm-3 nav-link active" target="_blank" href="{{tas.facebook}}"><i class="fab fa-facebook"></i></a>
+             
+            </li>
+            <li class="nav-item">
+              <a class=" nav-link" target="_blank" href="{{tas.instagram}}"><i class="fab fa-instagram"></i></a>
+           
+            </li>
+            <li class="nav-item">
+              <a class="col-sm-3  nav-link" target="_blank" href="{{tas.twiter}}"><i class="fab fa-twitter"></i></a>
+            
+            </li>
+            <li class="nav-link">
+              <a class="col-sm-3  nav-link" class="as btn" (click)="this.Exitt()" title="Salir" ><fa-icon [icon]="faDoorClosed" ></fa-icon></a>
+            </li>
+            <li class="nav-item  dropdown" *ngIf="this.rol!==2" >
+              <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i id="icons" class="fa-brands fa-cpanel"></i>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <li><a class="btn dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal9">Cambiar Contraseña</a></li>
+                <li ><a  class="btn dropdown-item" (click)="this.BorrarUsr(users);">Eliminar Cuenta</a></li>
+                <li><a class="btn dropdown-item" (click)="RolAd();">Pasar a Rol Administrador</a></li>
+              </ul>
+          </li>
+         
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- </div> -->
+<!-- </div> -->
+         
+
+
+
+<!-- <div class="row">
+            
+             
+             <div *ngFor="let tas of tasks"  class="col-sm-12 item social"> <a target="_blank" href="{{tas.facebook}}"><i class="fab fa-facebook"></i></a><a target="_blank" href="{{tas.instagram}}"><i class="fab fa-instagram"></i></a><a target="_blank" href="{{tas.twiter}}"><i class="fab fa-twitter"></i></a><a class="as btn" (click)="this.Exitt()" title="Salir" ><fa-icon [icon]="faDoorClosed"   ></fa-icon></a> </div>
+            
+            </div>
+            
+            
+            <div class="col-sm-9"></div>
+            <div  class="col-sm-3" style="position: relative;bottom:70px ;" >
+              <div class="dropdown" >
+                <p class="dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i id="icons" class="fa-brands fa-cpanel"></i>
+                </p>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li><a class="btn dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal9">Cambiar Contraseña</a></li>
+                  <li ><a  class="btn dropdown-item" (click)="this.BorrarUsr(users);">Eliminar Cuenta</a></li>
+                  <li><a class="btn dropdown-item" (click)="RolAd();">Pasar a Rol Administrador</a></li>
+                </ul>
+              </div>
+           </div> -->
+  
+<!-- </div> -->
+</div>
+
+
+<div id="pepe" class="container card-body">
+ <img src="../../../assets/images/headers.jpg" alt="" class="head">
+<div *ngFor="let tas of tasks" class=" card-body" id="content fist-card" [hidden]="color==='red'">
+   
+    <div >  
+      <img src="{{tas.url_foto}}" alt="" class="me"><fa-icon [icon]="faEdit" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="onClick(tas)" [ngStyle]="{'color':'green'}" ></fa-icon>
+    </div>
+    <h1>{{tas.nombre+" " + tas.apellido}}</h1>
+    <p class="text-muted"><strong>Fecha de Nacimiento :</strong> {{tas.fechanac | date:'dd-MM-yyyy'}}</p>
+    <p class="text-muted"><strong>Soy :</strong>{{tas.sobre_mi}}</p>
+    <p class="text-muted"><strong>Domicilio :</strong>{{tas.domicilio}} <a class="asd" target="_blank" href="{{tas.infcont}}"><i  class="fa-brands fa-linkedin">.</i>Información del Contacto</a><p>
+    <p class="text-muted"><strong>Telefono :</strong> {{tas.telefono}}</p>
+    <p class="text-muted"><strong>E-Mail :</strong>  {{tas.correo}}</p>
+</div>
+
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        
+        <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+      </div>
+      <div class="modal-body">
+          <div class="input-group " style="margin: 5px;padding: 5px; font-size:small">
+      
+                 
+              <div class="card">
+             <div class="card-body" style="text-align: center;">
+             
+                 <h4 class="modal-title" id="exampleModalLabel">Modificar<br></h4>
+          
+                 <h6 class="text-muted card-subtitle mb-2">Escriba su dato&nbsp;</h6>
+                 <p class="card-text"></p>
+                 <div class="input-group">
+<form class="add-form" (ngSubmit)="onSubmit()"   >
+  <div class="input-group">
+    <div class="input-group-prepend"><span class="input-group-text" style="width: 110px;margin: 2px 0px 0px 0px;">Url Logo:<br></span></div>
+    <input type="text" class="form-control" id ="url_foto" name="url_foto" [(ngModel)]="url_foto" placeholder="coloque la url de la foto" />
+    </div>
+    <div class="input-group">
+      <div class="input-group-prepend"><span class="input-group-text" style="width: 110px;margin: 2px 0px 0px 0px;">Nombre:<br></span></div>
+    <input type="text" class="form-control" id ="nombre" name ="nombre"   [(ngModel)]="nombre" placeholder="Coloque su Nombre" />
+    </div>
+    <div class="input-group">
+      <div class="input-group-prepend"><span class="input-group-text" style="width: 110px;margin: 2px 0px 0px 0px;">Apellido:<br></span></div>
+    <input type="text"  class="form-control" id ="apellido" name ="apellido"  [(ngModel)]="apellido" placeholder="Coloque su Apellido"/>
+    </div>
+    <div class="input-group">
+      <div class="input-group-prepend"><span class="input-group-text" style="width: 110px;margin: 2px 0px 0px 0px;">Nacimiento:<br></span></div>
+    <input type="date" class="form-control" id ="fechanac" name="fechanac" [(ngModel)]="fechanac" placeholder="Fecha de Nacimiento" />
+    </div>
+    <div class="input-group">
+      <div class="input-group-prepend"><span class="input-group-text" style="width: 110px;margin: 2px 0px 0px 0px;">Sobre mi:<br></span></div>
+    <input type="textare" class="form-control"  id ="sobre_mi" name="sobre_mi"  [(ngModel)]="sobre_mi" placeholder="una breve descripcion de usted" />
+    </div>
+    <div class="input-group">
+      <div class="input-group-prepend"><span class="input-group-text" style="width: 110px;margin: 2px 0px 0px 0px;">Domicilio:<br></span></div>
+    <input type="text" class="form-control" id ="domicilio"  name="domicilio" [(ngModel)]="domicilio" placeholder="Coloque su Domicilio"/>
+    </div>
+    <div class="input-group">
+      <div class="input-group-prepend"><span class="input-group-text" style="width: 110px;margin: 2px 0px 0px 0px;">Telefono:<br></span></div>
+    <input type="text" class="form-control" id ="telefono" name="telefono" [(ngModel)]="telefono" placeholder="Su telefono"/>
+    </div>
+    <div class="input-group">
+      <div class="input-group-prepend"><span class="input-group-text" style="width: 110px;margin: 2px 0px 0px 0px;">Correo:<br></span></div>
+    <input type="text" class="form-control" id ="correo" name="correo" [(ngModel)]="correo" placeholder="Su E-mail" /> 
+    </div>
+    <div class="input-group">
+      <div class="input-group-prepend"><span class="input-group-text" style="width: 110px;margin: 2px 0px 0px 0px;">Facebook:<br></span></div>
+    <input type="text" class="form-control" id ="facebook" name="facebook" [(ngModel)]="facebook" placeholder="Su Facebook" /> 
+    </div>
+
+    <div class="input-group">
+      <div class="input-group-prepend"><span class="input-group-text" style="width: 110px;margin: 2px 0px 0px 0px;">Twitter:<br></span></div>
+    <input type="text" class="form-control" id ="twiter" name="twiter" [(ngModel)]="twiter" placeholder="Su Twitter" /> 
+    </div>
+
+    <div class="input-group">
+      <div class="input-group-prepend"><span class="input-group-text" style="width: 110px;margin: 2px 0px 0px 0px;">Instagram:<br></span></div>
+    <input type="text" class="form-control" id ="instagram" name="instagram" [(ngModel)]="instagram" placeholder="Su Instagram" /> 
+    </div> 
+    <div class="input-group">
+      <div class="input-group-prepend"><span class="input-group-text" style="width: 110px;margin: 2px 0px 0px 0px;">Contacto:<br></span></div>
+    <input type="text" class="form-control" id ="infcont" name="infcont" [(ngModel)]="infcont" placeholder="Su url de Contacto" /> 
+    </div>
+    <input type="submit" class="form-control" [hidden]="this.rol===0 || this.rol===2" id="valore" value="Guardar Cambios" class="btn btn-outline-primary" >
+      </form>
+      
+    </div>
+  </div>
+                 
+</div>
+
+     
+
+
+
+
+
+
+
+ 
+</div>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">Close</button>
+
+</div>
+</div>
+</div>
+</div>
+<!--fin otro modal-->
+
+</div>
+
+
+<!-- Modal passs change -->
+<div class="modal fade" id="exampleModal9" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+      </div>
+                <div class="modal-body">
+                    <div class="input-group " style="margin: 5px;padding: 5px; font-size:small">
+                
+                          
+                      <div class="card">
+                      <div class="card-body" style="text-align: center;">
+                    
+                          <h4 class="modal-title" id="exampleModalLabel">Nueva Contraseña<br></h4>
+                    
+                          <h6 class="text-muted card-subtitle mb-2">Escriba su nueva Contraseña&nbsp;</h6>
+                          <p class="card-text"></p>
+                          <div class="input-group">
+                            <form [formGroup]="form" class="m-5" (ngSubmit)="onReg($event)">
+                                  
+                                      <div class="input-group">
+                                        <!-- <div class="input-group-prepend"><span class="input-group-text" style="width: 280px;margin: 2px 0px 0px 0px;">Contraseña:<br></span></div> -->
+                                      <input formControlName="password" type="password"  [ngClass]="{'is-invalid':Password?.errors && Password?.touched, 'is-valid':!Password?.errors && Password?.touched}" class="form-control" id="password" name="passwords" placeholder="Escriba su nueva Contraseña" style="width: 280px;margin: 2px 0px 0px 0px;"/>
+                                    </div>
+                                    <div *ngIf="Password?.errors">
+                                      <p *ngIf="Password?.hasError('required')" class="text-danger">
+                                              La contraseña es requerida.
+                                      </p>
+                                      <p *ngIf="Password?.errors?.['minlength']" class="text-danger">
+                                          La contraseña debe ser de 8 caracteres.
+                                    </p>
+                                    </div>
+                                      <div class="input-group">
+                                      <!-- <div class="input-group-prepend"><span class="input-group-text" style="width: 280px;margin: 2px 0px 0px 0px;">Repita su Contraseña:<br></span></div> -->
+                                      <input formControlName="pass" type="password" [ngClass]="{'is-invalid':Pass?.errors && Pass?.touched, 'is-valid':!Pass?.errors && Password?.touched}" placeholder="Repita su Contraseña" class="form-control" id="pass" name="pass" style="width: 280px;margin: 2px 0px 0px 0px;" />
+                                      
+                                    </div>
+                                    <div *ngIf="Pass?.errors">
+                                      <p *ngIf="Pass?.hasError('required')" class="text-danger">
+                                              La contraseña es requerida.
+                                      </p>
+                                      <p *ngIf="Password?.errors?.['minlength']" class="text-danger">
+                                          La contraseña debe ser de 8 caracteres.
+                                    </p>
+
+                                    </div>
+                                    <p id="error" class="{{this.color}}"></p>
+                                    <input type="submit" class="form-control" id="valor" value="Cambiar Contraseña" class="btn btn-outline-primary" disabled>
+
+                            </form>          
+                              
+                              
+                              </div>
+                              </div>
+                                            
+                              </div>
+                                                
+                              </div>
+                </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary"   data-bs-dismiss="modal">Close</button>
+                    
+                    </div>
+            </div>
+      </div>
+</div>

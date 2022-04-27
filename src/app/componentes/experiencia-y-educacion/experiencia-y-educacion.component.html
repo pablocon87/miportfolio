@@ -1,0 +1,216 @@
+
+
+<div class="container card-body">
+
+    <div class="row">
+    <h1 class="col-sm-10">Experiencia</h1><div class="col-sm-2"><div ><fa-icon  data-bs-toggle="modal" data-bs-target="#exampleModal4" (click)="recarga()"  [icon]="faPlus" [ngStyle]="{'color':'green'}" ></fa-icon></div></div>
+    </div>
+
+<!---------------Modaleee-------------------------------------->
+<div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          
+          <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+        </div>
+        <div class="modal-body">
+            <div class="input-group " style="margin: 5px;padding: 5px; font-size:small">
+        
+                   
+                <div class="card">
+               <div class="card-body" style="text-align: center;">
+             
+                   <h4 class="modal-title" id="exampleModalLabel">Modificar<br></h4>
+            
+                   <h6 class="text-muted card-subtitle mb-2">Escriba su dato&nbsp;</h6>
+                   <p class="card-text"></p>
+                   <div class="input-group">
+
+    <form class="add-form" (ngSubmit)="onSubmit()"   >
+      <div class="input-group">
+      <div class="input-group-prepend"><span class="input-group-text" style="width: 110px;margin: 2px 0px 0px 0px;">Fecha Inicio:<br></span></div>
+        <input type="date" class="form-control" id ="fechainicio" name="fechainicio"  [(ngModel)]="fechainicio" placeholder="Coloque la Fecha de Inicio"/>
+        </div>
+        <div class="input-group">
+          <div class="input-group-prepend"><span class="input-group-text" style="width: 110px;margin: 2px 0px 0px 0px;">Fecha Fin:<br></span></div>
+        <input type="date" class="form-control" id ="fechafin" name ="fechafin"   [(ngModel)]="fechafin" placeholder="Coloque la Fecha Fin" />
+        </div>
+        <div class="input-group">
+          <div class="input-group-prepend"><span class="input-group-text" style="width: 110px;margin: 2px 0px 0px 0px;">Empresa:<br></span></div>
+        <input type="text"  class="form-control" id ="nombreEmpresa" name ="nombreEmpresa"  [(ngModel)]="nombreEmpresa" placeholder="Coloque El nombre de La empresa" />
+        </div>
+        <div class="input-group">
+          <div class="input-group-prepend"><span class="input-group-text" style="width: 110px;margin: 2px 0px 0px 0px;">Descripcion:<br></span></div>
+        <input type="textarea" class="form-control" id ="descripcion" name="descripcion" [(ngModel)]="descripcion" placeholder="Coloque una breve descripcion"/>
+        </div>
+        
+        
+        
+        <input type="checkbox" class="btn-check" id ="btncheck1" name="esTrabajoActual"  [(ngModel)]="estrabajoactual" autocomplete="off"  >
+            <label class="btn btn-outline-primary" for="btncheck1">Es trabajo Actual</label>
+        <input type="hidden"  id ="persona_id"  name=" persona_id" [(ngModel)]="persona_id" />
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupSelect01">Tipo de Empleo</label>
+        <select   class="form-control" id="tipo_empleo_id" name="tipo_empleo_id"  [(ngModel)]="tipo_empleo_id">
+            
+            <option  *ngFor="let ti of tipem" value="{{ti.id}}">{{ti.nombre_tipo}}</option>
+           
+          </select>
+        </div>
+        <input type="submit" [hidden]="this.rol===0 || this.rol===2" class="form-control" id="Save" data-bs-dismiss="modal"  value="Guardar Cambios" class="btn btn-outline-primary" >
+          </form>
+
+       
+          
+        </div>
+                 
+    </div>
+     
+    </div>
+ </div>
+ <div class="modal-footer">
+   <button type="button" class="btn btn-secondary" (click)="onClicks()" data-bs-dismiss="modal">Close</button>
+  
+ </div>
+</div>
+</div>
+</div>
+<!--fin otro modal-->
+
+</div>
+
+
+<!----------------------------fin M odale---------------------------------------------------------->
+          
+    <!-- <br/>------------------------------------------------------------------------<br/> -->
+    
+    <div class="container card-body" *ngFor="let el of exp" [hidden]="el.nombreEmpresa==='' ">
+       <div  *ngFor="let tes of tipem" class="row"><div class="col-sm-10"></div><div class="col-sm-2"><span  *ngIf="el.tipo_empleo_id===tes.id" ><fa-icon  class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal4" (click)="Modif(el,tes)" [icon]="faEdit" [ngStyle]="{'color':'green'}"></fa-icon><fa-icon  class="btn btn-outline-secondary " [icon]="faTrash" (click)="Borrar(el)" [ngStyle]="{'color':'red'}" ></fa-icon></span></div></div>     
+     
+    <p text-muted><strong>Empresa:</strong> {{el.nombreEmpresa}}</p>
+    <div class="row" *ngFor="let te of tipem" ><p class="col-sm-10 text-muted" *ngIf="el.tipo_empleo_id===te.id"><strong>Jornada:</strong> {{te.nombre_tipo}}</p></div>    
+    <p  class="col-sm-4 text-muted"><strong>Desde:</strong> {{el.fechainicio| date:'dd-MM-yyyy'}}    </p><p class="col-sm-6 text-muted"  [hidden]="el.estrabajoactual===1"><strong>Hasta:</strong> {{el.fechafin| date:'dd-MM-yyyy'}}</p> <p class="col-sm-6 text-muted" [hidden]="el.estrabajoactual!==1" > <strong>Hasta:</strong> La Actualidad</p>
+    <p text-muted><strong>Tarea Realizada:</strong> {{el.descripcion}}</p>
+    
+    <!-- <br/>------------------------------------------------------------------------<br/> -->
+    </div> 
+    <div class="row">
+    <h1 class="col-sm-10">Educacion</h1><span class="col-sm-2"><fa-icon data-bs-toggle="modal" data-bs-target="#exampleModal1" (click)="addEdu()"  [icon]="faPlus" [ngStyle]="{'color':'green'}" ></fa-icon></span>
+    </div>
+   
+    
+   
+    <div class="container card-body" *ngFor="let ed of edu" >
+       
+       <div class="row"> <div class="col-sm-10"></div ><div class="col-sm-2"><span *ngIf="ed.id!==null" ><fa-icon  class="btn btn-outline-secondary " type="button" data-bs-toggle="modal" data-bs-target="#exampleModal1" [icon]="faEdit"  (click)="educCl(ed)" [ngStyle]="{'color':'green'}"></fa-icon><fa-icon (click)="deleT(ed)"  class="btn btn-outline-secondary " [icon]="faTrash" [ngStyle]="{'color':'red'}" ></fa-icon></span></div></div>
+   
+        <div [hidden]="ed.url_logo===null || ed.url_logo===''" class="col-sm-2"><a href="{{ed.urlinst}}"><img  src="{{ed.url_logo}}" alt="" class="logo"></a></div><br><li class="col-sm-10 text-muted" *ngIf="ed.id!==null" ><strong   [hidden]="this.show" >{{ed.principal}}</strong> :<p   class="col-sm-5 text-muted" [hidden]="this.show"> {{ed.segunda}}</p></li>
+        <div class="row"><div class="col-sm-2"></div ><p class="col-sm-10 text-muted"><strong>Año de Inicio:</strong> </p></div>
+        <div class="row"><div class="col-sm-2"></div >  <p class="col-sm-10 text-muted">{{ed.anoinic}}</p></div>
+        <div class="row"><div class="col-sm-2"></div >  <p [hidden]="ed.anofin!.toString() ==='actualmente' " class="col-sm-10 text-muted"><strong>Año de Finalización: </strong></p></div>
+        <div class="row"><div class="col-sm-2"></div > <p [hidden]="ed.anofin!.toString() ==='actualmente'" class="col-sm-10 text-muted">{{ed.anofin}}</p></div>
+        <div class="row"><div class="col-sm-2"></div > <p [hidden]="ed.anofin!.toString() !=='actualmente'" class="col-sm-10 text-muted">Estoy Cursando Actualmente</p></div>
+        <div class="row"><div class="col-sm-2"></div ><p class="col-sm-10 text-muted"><strong> Titulo:</strong> </p></div>
+          <div class="row"><div class="col-sm-2"></div > <h1 class="col-sm-10 text-muted">{{ed.titulo}}</h1></div>
+    <input [hidden]="true" [value]="ed.id" id="ided" name="ided" >
+    <input [hidden]="true" [value]="ed.id_persona" id="idper" name="idper" >
+    
+    </div>
+  
+  <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+         
+          <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+        </div>
+        <div class="modal-body">
+            <div class="input-group " style="margin: 5px;padding: 5px; font-size:small">
+        
+                   
+                <div class="card">
+               <div class="card-body" style="text-align: center;">
+             
+                   <h4 class="modal-title" id="exampleModalLabel">Modificar<br></h4>
+            
+                   <h6 class="text-muted card-subtitle mb-2">Escriba su nuevo dato &nbsp;</h6>
+                   <p class="card-text"></p>
+                   
+       
+                    <form (ngSubmit)="envEd()"> 
+                      <div class="input-group"> 
+                       <div class="input-group-prepend"><span class="input-group-text" style="width: 110px;margin: 2px 0px 0px 0px;">Url del Logo:<br></span></div>
+                       <input class="form-control" type="text" style="margin: 2px 0px 0px 0px;" id="urllogo" name="urllogo" [(ngModel)]="url_logo">
+                       </div>
+                       <div class="input-group">
+                        <div class="input-group-prepend"><span class="input-group-text" style="width: 110px;margin: 2px 0px 0px 0px;">Url del Lugar<br></span></div>
+                       
+                        <input class="form-control" type="text" style="margin: 2px 0px 0px 0px;" type="text" id="urlinst" name="urlinst" [(ngModel)]="urlinst">
+                        </div>
+                     
+                   
+                        <div class="input-group">
+                        <div class="input-group-prepend"><span class="input-group-text" style="width: 110px;margin: 2px 0px 0px 0px;">Nivel:<br></span></div>
+                        <input class="form-control" type="text" style="margin: 2px 0px 0px 0px;" type="text" id="principal" name="principal" [(ngModel)]="principal">
+                        </div>
+                        <div class="input-group">
+                        <div class="input-group-prepend"><span class="input-group-text" style="width: 110px;margin: 2px 0px 0px 0px;">Titulo<br></span></div>
+                          
+                        <input class="form-control" type="text" style="margin: 2px 0px 0px 0px;" type="text" id="titulo" name="titulo" [(ngModel)]="titulo">
+                        </div>
+                      
+                        <div class="input-group">
+                        <div class="input-group-prepend"><span class="input-group-text" style="width: 110px;margin: 2px 0px 0px 0px;">Establecimiento<br></span></div>
+                      
+                        <input class="form-control" type="text" style="margin: 2px 0px 0px 0px;" type="text" id="segunda" name="segunda" [(ngModel)]="segunda">
+                        </div>
+
+                        <div class="input-group">
+                        <div class="input-group-prepend"><span class="input-group-text" style="width: 110px;margin: 2px 0px 0px 0px;" >Año de Inicio<br></span></div>
+                         
+                           
+                        <select  class="form-select" aria-label="Default select example"  id="anoinic" name="anoinic" [(ngModel)]="anoinic">
+                        <option ></option> 
+                                
+                                    
+                          <option *ngFor="let popo of io"  id="op" value="{{popo[1]}}">{{popo[1]}}</option>  
+                            
+                        </select>
+                        
+                        
+                        </div>
+                        <div class="input-group">
+                          <div class="input-group-prepend"><span class="input-group-text" style="width: 110px;margin: 2px 0px 0px 0px;" for="year">Año Fin<br></span></div>
+                          <select  class="form-select" aria-label="Default select example"  id="anofin" name="anofin" [(ngModel)]="anofin">
+                            <option  ></option> 
+                                 
+                                   <option id="op" value="actualmente">Estoy Cursando Actualmente</option>  
+                                   <option *ngFor="let popo of io"  id="op" value="{{popo[1]}}">{{popo[1]}}</option>  
+                                 
+                          </select>
+                           
+                          
+                          </div>
+                      
+                                    
+                                    <input type="submit" [hidden]="this.rol===0 || this.rol===2" class="form-control" id="Sapves" data-bs-dismiss="modal" value="Guardar" class="btn btn-outline-primary" >
+                        </form>
+                   
+                 
+           </div>
+            
+           </div>
+        </div>
+          <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+         
+        </div>
+      </div>
+    </div>
+  </div>
+    <!--fin otro modal-->
+    
+</div>
+
+</div>

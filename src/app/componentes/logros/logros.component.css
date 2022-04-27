@@ -1,0 +1,23 @@
+footer{
+    margin-top:30px;
+    text-align:center;
+}
+.footer-dark {
+    height:40px;
+    /* padding: 50px 0; */
+    color: #f0f9ff;
+    background-color: #282d32;
+    border-radius: 10px;
+  }
+  .footer-dark .item.social {
+     
+    text-align: center;
+  }
+  
+  @media (max-width:991px) {
+    .footer-dark .item.social {
+      text-align: center;
+      margin-top: 5px;
+    }
+  }
+ 

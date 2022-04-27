@@ -1,0 +1,191 @@
+
+<div class="container">
+    <div class="mb-3 row" >  
+    <div class="row"><div class="col-sm-10"></div><h1 class="co-sm-2">Conocimientos</h1></div>
+    <div class="taskt row"></div>
+    <div class="task row">
+    <h5>Conocimientos de Ingles</h5>
+    
+    <form (ngSubmit)="submit()">
+    <div class="input-group">
+    <label for="customRange2" class="form-label">Ingles Técnico</label> 
+    <input id="ex1" data-id='ex1RangePicker' (input)="ValorRan()"  type="range" data-min="0" data-max="20" data-step="1" data-value="{{this.ingtec}}" [disabled]="this.showrang"/>
+    <p id="demo"></p>
+
+    </div>
+    <div class="input-group">
+        <label for="customRange2" class="form-label">Ingles Escrito</label> 
+        <input id="ex2" data-id='ex1RangePicker'  (input)="ValorRan()" type="range" data-min="0" data-max="20" data-step="1" data-value="{{this.ingescr}}" [disabled]="this.showrang"/>
+        <p id="demo1"></p>
+        </div>
+        <div class="input-group">
+            <label for="customRange2" class="form-label">Ingles Oral</label> 
+            <input id="ex3" data-id='ex1RangePicker'  (input)="ValorRan()" type="range" data-min="0" data-max="20" data-step="1" data-value="{{this.ingoral}}" [disabled]="this.showrang"/>
+            <p id="demo2"></p>
+        </div>
+        <div class="input-group">
+            <label for="customRange2" class="form-label">Ingles Basico</label> 
+            <input id="ex4" data-id='ex1RangePicker'  (input)="ValorRan()" type="range" data-min="0" data-max="20" data-step="1" data-value="{{this.ingbas}}" [disabled]="this.showrang"/>
+            <p id="demo3"></p>
+        </div>
+        <div class="input-group">
+            <label for="customRange2" class="form-label">Ingles Avanzado</label> 
+            <input id="ex5" data-id='ex1RangePicker'  (input)="ValorRan()" type="range" data-min="0" data-max="20" data-step="1" data-value="{{this.ingav}}" [disabled]="this.showrang"/>
+            <p id="demo4"></p>
+        </div>
+        <button type="submit" class="btn btn-primary" (click)="this.showall=true" [hidden]="this.showall">Aplicar</button>
+        <button type="submit" class="btn btn-primary"  [hidden]="!this.showingle ">Aplicar cambios</button>
+        <button type="button" class="btn btn-primary" (click)="this.showrang=true;this.showingle=false;" [hidden]="!this.showingle">Volver</button>
+        <button type="button" class="btn btn-primary" (click)="this.showrang=false;this.showingle=true" [hidden]="!this.showrang">Modificar</button>
+        <button type="button" class="btn btn-primary" *ngFor="let ig of this.ingle" (click)="this.borrarIng(ig);this.showrang=false;this.showall=false" [hidden]="!this.showrang">Borrar Datos</button>
+    </form>
+   
+<div id="chartConta" style="height: 370px; width: 100%;"></div>
+<div class="taskt"></div>
+</div>
+
+
+<div class="task row">
+<h5>Conocimientos de Lenguajes de Programación</h5>
+
+<form (ngSubmit)="submitLen()">
+    <div class="input-group">
+    <label for="customRange2" class="form-label">PHP</label> 
+    <input id="php" data-id='ex1RangePicker'  (input)="ValorLen()" type="range" data-min="0" data-max="20" data-step="1" data-value="{{this.php}}" [disabled]="this.showalller"/>
+    <p id="phpdemo"></p>
+
+    </div>
+    <div class="input-group">
+        <label for="customRange2" class="form-label">Java</label> 
+        <input id="java" data-id='ex1RangePicker'  (input)="ValorLen()" type="range" data-min="0" data-max="20" data-step="1" data-value="{{this.java}}" [disabled]="this.showalller"/>
+        <p id="javademo"></p>
+        </div>
+        <div class="input-group">
+            <label for="customRange2" class="form-label">Ruby</label> 
+            <input id="ruby" data-id='ex1RangePicker'  (input)="ValorLen()" type="range" data-min="0" data-max="20" data-step="1" data-value="{{this.ruby}}"[disabled]="this.showalller"/>
+            <p id="rubydemo"></p>
+        </div>
+        <div class="input-group">
+            <label for="customRange2" class="form-label">Javascript</label> 
+            <input id="javascript" data-id='ex1RangePicker'  (input)="ValorLen()" type="range" data-min="0" data-max="20" data-step="1" data-value="{{this.javascript}}"[disabled]="this.showalller"/>
+            <p id="javascriptdemo"></p>
+        </div>
+        <div class="input-group">
+            <label for="customRange2" class="form-label">Typescript</label> 
+            <input id="typescript" data-id='ex1RangePicker'  (input)="ValorLen()" type="range" data-min="0" data-max="20" data-step="1" data-value="{{this.typescript}}"[disabled]="this.showalller"/>
+            <p id="typescriptdemo"></p>
+        </div>
+        <div class="input-group">
+            <label for="customRange2" class="form-label">Python</label> 
+            <input id="python" data-id='ex1RangePicker'  (input)="ValorLen()" type="range" data-min="0" data-max="20" data-step="1" data-value="{{this.python}}"[disabled]="this.showalller"/>
+            <p id="pythondemo"></p>
+        </div>
+        <div class="input-group">
+            <label for="customRange2" class="form-label">Otros</label> 
+            <input id="otros" data-id='ex1RangePicker'  (input)="ValorLen()" type="range" data-min="0" data-max="20" data-step="1" data-value="{{this.otros}}"[disabled]="this.showalller"/>
+            <p id="otrosdemo"></p>
+        </div>
+        <button type="submit" class="btn btn-primary" (click)="this.showalengu=true"  [hidden]="this.showalengu">Aplicar</button>
+        <button type="submit" class="btn btn-primary"  [hidden]="!this.showbuton">Aplicar cambios</button>
+        <button type="button" class="btn btn-primary" (click)="this.showalller=true;this.showbuton=false;" [hidden]="!this.showbuton">Volver</button>
+        <button type="button" class="btn btn-primary" (click)="this.showalller=false;this.showbuton=true" [hidden]="!this.showalller">Modificar</button>
+        <button type="button" class="btn btn-primary" *ngFor="let lp of this.lengp" (click)="this.showalller=false;this.showalengu=false;this.borrarLeng(lp);" [hidden]="!this.showalller">Borrar Datos</button>
+    </form>
+   
+<div id="chartContainer2" style="height: 370px; width: 100%;"></div>
+<div class="taskt"></div>
+</div>
+
+<div class="task row">
+<h5>Conocimientos de Sistemas Operativos</h5>
+
+<form (ngSubmit)="submitSop()">
+    <div class="input-group">
+    <label for="customRange2" class="form-label">Windows</label> 
+    <input id="windows" data-id='ex1RangePicker' (input)="ValorRanSop()"  type="range" data-min="0" data-max="20" data-step="1" data-value="{{this.windows}}" [disabled]="this.showsopr"/>
+    <p id="windowsdemo"></p>
+
+    </div>
+    <div class="input-group">
+        <label for="customRange2" class="form-label">Linux</label> 
+        <input id="linux" data-id='ex1RangePicker'  (input)="ValorRanSop()" type="range" data-min="0" data-max="20" data-step="1" data-value="{{this.linux}}" [disabled]="this.showsopr"/>
+        <p id="linuxdemo"></p>
+        </div>
+        <div class="input-group">
+            <label for="customRange2" class="form-label">MacOs</label> 
+            <input id="macos" data-id='ex1RangePicker'  (input)="ValorRanSop()" type="range" data-min="0" data-max="20" data-step="1" data-value="{{this.macos}}"[disabled]="this.showsopr"/>
+            <p id="macosdemo"></p>
+        </div>
+        <div class="input-group">
+            <label for="customRange2" class="form-label">Otros</label> 
+            <input id="otross" data-id='ex1RangePicker'  (input)="ValorRanSop()" type="range" data-min="0" data-max="20" data-step="1" data-value="{{this.otross}}"[disabled]="this.showsopr"/>
+            <p id="otrossdemo"></p>
+        </div>
+       
+        <button type="submit" class="btn btn-primary" (click)="this.showsop=true;" [hidden]="this.showsop">Aplicar</button>
+        <button type="submit" class="btn btn-primary"  [hidden]="!this.showrelo">Aplicar cambios</button>
+        <button type="button" class="btn btn-primary" (click)="this.showsopr=true;this.showrelo=false;" [hidden]="!this.showrelo">Volver</button>
+        <button type="button" class="btn btn-primary" (click)="this.showsopr=false;this.showrelo=true;" [hidden]="!this.showsopr">Modificar</button>
+        <button type="button" class="btn btn-primary" *ngFor="let osp of this.sisop" (click)="this.showsopr=false;this.showsop=false;this.borrarSip(osp)" [hidden]="!this.showsopr">Borrar Datos</button>
+    </form>
+   
+
+<div id="chartContainer3" style="height: 370px; width: 100%;"></div>
+<div class="taskt"></div>
+</div>
+
+<div class="task row">
+<h5>Conocimientos de Base de Datos</h5>
+
+<form (ngSubmit)="submitBd()">
+    <div class="input-group">
+    <label for="customRange2" class="form-label">Mysql</label> 
+    <input id="mysql" data-id='ex1RangePicker' (input)="ValorRanBd()"  type="range" data-min="0" data-max="20" data-step="1" data-value="{{this.mysql}}" [disabled]="this.showbdr"/>
+    <p id="mysqldemo"></p>
+
+    </div>
+    <div class="input-group">
+        <label for="customRange2" class="form-label">PostgreSQL</label> 
+        <input id="postgresql" data-id='ex1RangePicker'  (input)="ValorRanBd()" type="range" data-min="0" data-max="20" data-step="1" data-value="{{this.postgresql}}" [disabled]="this.showbdr"/>
+        <p id="postgresqldemo"></p>
+        </div>
+        <div class="input-group">
+            <label for="customRange2" class="form-label">SqlServer</label> 
+            <input id="sqlserver" data-id='ex1RangePicker'  (input)="ValorRanBd()" type="range" data-min="0" data-max="20" data-step="1" data-value="{{this.sqlserver}}"[disabled]="this.showbdr"/>
+            <p id="sqlserverdemo"></p>
+        </div>
+        <div class="input-group">
+            <label for="customRange2" class="form-label">Otros</label> 
+            <input id="otrosbd" data-id='ex1RangePicker'  (input)="ValorRanBd()" type="range" data-min="0" data-max="20" data-step="1" data-value="{{this.otrosbd}}" [disabled]="this.showbdr"/>
+            <p id="otrosbddemo"></p>
+        </div>
+       
+        <button type="submit" class="btn btn-primary" (click)="this.showbasd=true;" [hidden]="this.showbasd">Aplicar</button>
+        <button type="submit" class="btn btn-primary"  [hidden]="!this.showbd">Aplicar cambios</button>
+        <button type="button" class="btn btn-primary" (click)="this.showbdr=true" [hidden]=" !this.showbd">Volver</button>
+        <button type="button" class="btn btn-primary" (click)="this.showbdr=false;this.showbd=true;" [hidden]="!this.showbdr">Modificar</button>
+        <button type="button" class="btn btn-primary" *ngFor="let bds of this.basdat" (click)="this.showbdr=false;this.showbasd=false;this.borrarBd(bds);" [hidden]="!this.showbdr">Borrar Datos</button>
+    </form>
+    
+
+<div id="chartContainer4" style="height: 370px; width: 100%;"></div>
+<div class="taskt"></div>
+</div>
+</div>
+</div>
+
+<!-- <script type='text/javascript'>
+    $(document).ready(function() {
+      /* Example 1 */
+      $('#ex1').rangepicker({
+      formatter: function(value) {
+      return 'Current value: ' + value;
+      }
+      });
+      $('#ex1').rangepicker({
+      formatter: function(value) {
+      return 'Current value: ' + value;
+      }
+      });}
+              
+  </script> -->
