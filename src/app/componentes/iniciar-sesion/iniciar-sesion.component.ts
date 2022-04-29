@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup,Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 import { timeout } from 'rxjs';
+import {JwtHelperService,JWT_OPTIONS} from '@auth0/angular-jwt';
 import { AutenticacionService } from 'src/app/service/autenticacion.service';
 import Swal from 'sweetalert2';
 @Component({
@@ -39,7 +40,7 @@ export class IniciarSesionComponent implements OnInit {
   e:String="";
   code:String="";
   why:String="";
-constructor(private formBuilder:FormBuilder,public autenticacionService: AutenticacionService,public _router:Router){
+constructor(private formBuilder:FormBuilder,public autenticacionService: AutenticacionService,public _router:Router,private jwtHelper: JwtHelperService){
   // addEventListener('unload', e=>{
 
   //   if(this.autenticacionService.logIn===true){
@@ -67,11 +68,16 @@ pass:['',[Validators.required,Validators.minLength(8)]]});
 }
 
   ngOnInit(): void {
-    if(this.autenticacionService.logIn===true){
-     
+    if(this.autenticacionService.logIn===true ){
+      if(this.jwtHelper.isTokenExpired(localStorage.getItem('auth_token')!) ===true){
+
+        this.autenticacionService.updatEx();
+      }else{
+
        this._router.navigate(['/PortFolio']);
-      
+      }
     }else{
+       // this.autenticacionService.updatEx();
        this._router.navigate(['']);
     }
     if(localStorage.getItem('timelim') ===null){
@@ -151,6 +157,7 @@ pass:['',[Validators.required,Validators.minLength(8)]]});
      
      this.validF();
      this.autenticacionService.login(this.form.get('email')!.value, this.form.get('password')!.value);
+     
      setTimeout(() => {
       this.validF();
     },2000)
