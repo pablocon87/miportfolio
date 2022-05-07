@@ -341,7 +341,7 @@ RolAd(){
   this.id=parseInt(this.t.get('123456$#@$^@1ERF',localStorage.getItem('ids')!));  
   this.user=this.t.get('123456$#@$^@1ERF',localStorage.getItem('usr')!.toString());
   
-  this.password=this.form.get('password')!.value;
+  this.password=this.t.get('123456$#@$^@1ERF',localStorage.getItem('passw')!.toString());
   this.token="";
   this.expired=0;
   this.conec=1;
